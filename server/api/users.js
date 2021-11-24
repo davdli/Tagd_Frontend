@@ -5,7 +5,8 @@ const { models: { User } } = require('../db');
 
 
 // all users sorted by host and guest
-router.get('/', async (req, res, next) => {
+router.route('/')
+  .get( async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: ['type', 'firstName', 'lastName', 'email']
@@ -15,7 +16,14 @@ router.get('/', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+})
+  .post(async(req, res, next) => {
+    try {
+
+    } catch (error) {
+
+    }
+  })
 
 
 router.route('/:id')
@@ -42,5 +50,28 @@ router.route('/:id')
       }
     } catch (error) {
       next(error);
+    }
+  })
+  .put(async (req, res, next) => {
+    try {
+      const {firstName, lastName, email} = req.body
+      update = {
+        firstName,
+        lastName,
+        email
+      }
+      const user = await User.findByPk(req.params.id)
+      if(user){
+      await user.update(update)
+      const newUser = await User.findOne({
+        where: {id: req.params.id},
+        attributes: ["id", "firstName", "lastName", "email", "type"]
+      })
+      res.send(newUser)
+    }else {
+      res.sendStatus(404)
+    }
+    } catch (error) {
+      next(error)
     }
   })
