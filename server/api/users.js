@@ -21,8 +21,26 @@ router.get('/', async (req, res, next) => {
 router.route('/:id')
   .get(async (req, res, next) => {
     try {
-      
+      const user = await User.findByPk(req.params.id);
+      if (user) {
+        res.json(user);
+      } else {
+        res.sendStatus(400);
+      }
     } catch (error) {
-
+      next(error);
+    }
+  })
+  .delete(async (req, res, next) => {
+    try {
+      const user = await User.findByPk(req.params.id);
+      if (user) {
+        await user.destroy();
+        res.sendStatus(202);
+      } else {
+        res.sendStatus(400);
+      }
+    } catch (error) {
+      next(error);
     }
   })
