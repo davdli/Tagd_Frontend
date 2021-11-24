@@ -14,7 +14,6 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-//Get single tag
 router.route('/:id')
     .get(async (req, res, next) => {
         // Get a single tag
@@ -39,7 +38,7 @@ router.route('/:id')
         //Delete a single tag
         try {
             const singleTag = await Tag.findByPk(req.params.id);
-            singleTag.destroy();
+            await singleTag.destroy();
             res.status(202).send(singleTag);
         } catch (error) {
             next(error);
@@ -52,7 +51,7 @@ router.route('/:locationId')
         try {
             const location = await Location.findByPk(req.params.locationId)
             const newTag = await Tag.create(req.body);
-            location.setTag(newTag);
+            location.addTag(newTag);
             res.status(200).send(newTag);
         } catch (error) {
             next(error);
