@@ -44,3 +44,26 @@ router.route('/:id')
       next(error);
     }
   })
+  .put(async (req, res, next) => {
+    try {
+      const {firstName, lastName, email} = req.body
+      update = {
+        firstName,
+        lastName,
+        email
+      }
+      const user = await User.findByPk(req.params.id)
+      if(user){
+      await user.update(update)
+      const newUser = await User.findOne({
+        where: {id: req.params.id},
+        attributes: ["id", "firstName", "lastName", "email", "type"]
+      })
+      res.send(newUser)
+    }else {
+      res.sendStatus(404)
+    }
+    } catch (error) {
+      next(error)
+    }
+  })
