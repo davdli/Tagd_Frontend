@@ -5,7 +5,8 @@ const { models: { User } } = require('../db');
 
 
 // all users sorted by host and guest
-router.get('/', async (req, res, next) => {
+router.route('/')
+  .get( async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: ['type', 'firstName', 'lastName', 'email']
@@ -15,7 +16,14 @@ router.get('/', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+})
+  .post(async(req, res, next) => {
+    try {
+
+    } catch (error) {
+
+    }
+  })
 
 
 router.route('/:id')
