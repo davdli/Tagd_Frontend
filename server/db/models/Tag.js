@@ -1,10 +1,8 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const SALT_ROUNDS = 5;
-
 const Tag = db.define("tag", {
-  name: {
+  title: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
@@ -14,6 +12,15 @@ const Tag = db.define("tag", {
   description: {
     type: Sequelize.TEXT,
   },
+  latitude: {
+    type: Sequelize.DECIMAL(10, 6)
+  },
+  longitude: {
+    type: Sequelize.DECIMAL(10, 6)
+  },
+  imageUrl: {
+    type: Sequelize.STRING
+  }
 })
 
 module.exports = Tag;
