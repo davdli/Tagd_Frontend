@@ -11,7 +11,7 @@ router.get( '/', async (req, res, next) => {
       attributes: ['type', 'firstName', 'lastName', 'email']
     });
     users.sort((a) => a.type === 'Host' ? 1 : -1);
-    res.json(users);
+    res.send(users);
   } catch (error) {
     next(error);
   }
