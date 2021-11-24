@@ -9,7 +9,6 @@ const Location = db.define("location", {
       notEmpty: true,
     },
   },
-
   address: {
     type: Sequelize.STRING,
     validate: {
