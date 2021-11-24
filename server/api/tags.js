@@ -28,8 +28,9 @@ router.route('/:id')
         //Edit a single tag
         try {
             const singleTag = await Tag.findByPk(req.params.id);
-            await singleTag.update()
-            res.status(200).send(newTag);
+            const { title, description, imageUrl } = req.body
+            await singleTag.update({ title, description, imageUrl })
+            res.status(200).send(singleTag);
         } catch (error) {
             next(error);
         }
