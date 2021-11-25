@@ -5,14 +5,9 @@ const Tag = require("./models/Tag");
 
 // ASSOCIATIONS (See Schema)
 // Revisit; discuss associations maybe ask Sarah/Joe
-User.hasMany(Tag)
-Tag.belongsTo(User)
+User.belongsToMany(Tag, { through: Location })
+Tag.belongsTo(User, { through: Location })
 
-User.hasMany(Location)
-Location.belongsTo(User)
-
-Location.hasMany(Tag)
-Tag.belongsTo(Location)
 
 module.exports = {
   db,
