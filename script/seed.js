@@ -3,7 +3,7 @@
 const db = require('../server/db/db')
 const {models: {User, Location, Tag}} = require('../server/db')
 
-const users = [
+const usersData = [
   {
     type: 'Host',
     firstName: 'Tai',
@@ -34,61 +34,83 @@ const users = [
   }
 ]
 
-const tags = [
+const tagsData = [
   {
     title: 'Doorway',
     description: 'Home entrance',
+    userId: 1
   },
   {
     title: 'Kitchen',
     description: 'Kitchen',
+    userId: 2
   },
   {
     title: 'Bedroom',
     description: 'Bedroom',
+    userId: 3
+  },
+  {
+    title: 'Bathroom',
+    description: 'Bathroom',
+    userId: 4
   }
 ]
 
-// const locations = [
-//   {
-//     name: 'TaiHome',
-//     address: 'VA',
-//   },
-//   {
-//     name: 'DavidHome',
-//     address: 'NY',
-//   },
-//   {
-//     name: 'GregHome',
-//     address: 'NJ',
-//   },
-//   {
-//     name: 'TonyHome',
-//     address: 'PA',
-//   }
-// ]
+const locationsData = [
+  {
+    name: 'TaiHome',
+    address: 'VA',
+    userId: 1,
+    tagId: 1
+  },
+  {
+    name: 'DavidHome',
+    address: 'NY',
+    userId: 2,
+    tagId: 2
+  },
+  {
+    name: 'GregHome',
+    address: 'NJ',
+    userId: 3,
+    tagId: 3
+  },
+  {
+    name: 'TonyHome',
+    address: 'PA',
+    userId: 4,
+    tagId: 4
+  }
+]
 
 async function seed() {
   await db.sync({force: true});
   console.log('db synced!');
 
-  await Promise.all(
-    users.map(user => {
+  const users = await Promise.all(
+    usersData.map(user => {
       return User.create(user)
     })
   );
 
-  await Promise.all(
-    tags.map(tag => {
+  const tags = await Promise.all(
+    tagsData.map(tag => {
       return Tag.create(tag)
     })
   );
 
-  // await Promise.all(
-  //   locations.map(location => {
-  //     return Location.create(location)
-  //   })
-  // );
+  const locations = await Promise.all(
+    locationsData.map(location => {
+      return Location.create(location)
+    })
+  );
+
+  return {
+    users,
+    tags,
+    locations
+  }
 }
 
 // We've separated the `seed` function from the `runSeed` function.
