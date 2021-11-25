@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Sequelize = require('sequelize');
-const { models: { User, Tag, Location } } = require('../db');
+const { models: { Tag, Location } } = require('../db');
 
 module.exports = router;
 
@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-})
+});
 
 router.route('/:id')
     .get(async (req, res, next) => {
@@ -23,7 +23,8 @@ router.route('/:id')
         } catch (error) {
             next(error);
         }
-    }).put(async (req, res, next) => {
+    })
+    .put(async (req, res, next) => {
         //Edit a single tag
         try {
             const singleTag = await Tag.findByPk(req.params.id);
@@ -43,7 +44,7 @@ router.route('/:id')
         } catch (error) {
             next(error);
         }
-    })
+    });
 
 router.route('/:locationId')
     .post(async (req, res, next) => {
@@ -56,4 +57,4 @@ router.route('/:locationId')
         } catch (error) {
             next(error);
         }
-    })
+    });

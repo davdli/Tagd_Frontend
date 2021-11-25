@@ -3,7 +3,6 @@ const { models: { User } } = require('../db');
 
 // require token file -> import to all of routes
 
-
 // all users sorted by host and guest
 router.get( '/', async (req, res, next) => {
   try {
@@ -15,7 +14,6 @@ router.get( '/', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
 
 router.route('/:id')
   .get(async (req, res, next) => {
@@ -46,12 +44,9 @@ router.route('/:id')
   .put(async (req, res, next) => {
     try {
       const {firstName, lastName, email} = req.body
-      update = {
-        firstName,
-        lastName,
-        email
-      }
+      const update = {firstName, lastName, email}
       const user = await User.findByPk(req.params.id)
+
       if(user){
       await user.update(update)
       const newUser = await User.findOne({
@@ -66,3 +61,11 @@ router.route('/:id')
       next(error)
     }
   })
+  .post(async(req, res, next) => {
+    try {
+      const newUser = await User.create(req.body);
+      res.status(200).json(newUser);
+    } catch (error) {
+      next(error);
+    }
+  });
