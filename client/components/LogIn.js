@@ -13,6 +13,10 @@ class LogIn extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log('You logged in!');
+    this.setState({
+      email: '',
+      password: ''
+    })
   }
 
   render () {
