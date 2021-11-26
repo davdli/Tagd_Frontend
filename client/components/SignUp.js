@@ -30,13 +30,14 @@ class SignUp extends React.Component {
           })}
           defaultValue={''}
           />
+
         <Text>{"/n"}</Text>
 
         <TextInput
           style={{height: 40}}
           placeholder="lastName"
           onChangeText={text => this.setState({
-            lastName: textthis.handleSubmit()
+            lastName: text
           })}
           defaultValue={''}
           />
