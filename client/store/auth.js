@@ -32,7 +32,7 @@ export const authenticate = (user, method) => async dispatch => {
     let res = null;
     if (method === "login") {
       res = await axios.post(`/auth/${method}`, {
-        username: user.username,
+        email: user.email,
         password: user.password,
       });
     } else {
@@ -64,8 +64,6 @@ export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
       return action.auth
-    // case UPDATE_USER:
-    //   return action.user
     default:
       return state;
   }
