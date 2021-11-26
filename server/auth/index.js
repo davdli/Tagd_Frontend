@@ -14,14 +14,13 @@ router.post("/login", async (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   try {
     //this is done to protect against injection attacks, so they can't change the type
-    const { username, password, email, image, address } = req.body;
+    const { firstName, lastName, password, email} = req.body;
 
     const user = await User.create({
-      username,
+      firstName,
+      lastName,
       password,
-      email,
-      image,
-      address,
+      email
     });
     res.send({ token: await user.generateToken() });
   } catch (err) {
