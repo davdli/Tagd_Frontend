@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, Button } from 'react-native';
-import { connect } from 'react-redux';
 
 class LogIn extends Component {
   constructor() {
@@ -9,7 +8,13 @@ class LogIn extends Component {
       email: '',
       password: ''
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('You logged in!');
+  }
+
   render () {
     return (
       <View>
@@ -21,8 +26,6 @@ class LogIn extends Component {
         })}
         />
 
-        <Text>{"/n"}</Text>
-
         <TextInput
         placeholder="Password"
         onChangeText={text => this.setState({
@@ -30,14 +33,12 @@ class LogIn extends Component {
         })}
         />
 
-        <Text>{"/n"}</Text>
-
         <Text>Forgot Password? Click here</Text>
 
-        <Text>{"/n"}</Text>
-
-        <Button title="Log in" />
+        <Button title="Log in" onPress={this.handleSubmit()} />
       </View>
     )
   }
 }
+
+export default LogIn;
