@@ -28,7 +28,7 @@ class SignUp extends React.Component {
             firstName: text
           })}
           defaultValue={''}
-        />
+
         <Text>~{"\n"}</Text>
 
         <TextInput
