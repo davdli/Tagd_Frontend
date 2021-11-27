@@ -28,8 +28,8 @@ class SignUp extends React.Component {
             firstName: text
           })}
           defaultValue={''}
-
-        <Text>~{"\n"}</Text>
+          />
+        <Text>{"\n"}</Text>
 
         <TextInput
           style={localStyles.textInput}
@@ -146,4 +146,4 @@ const localStyles = StyleSheet.create({
   }
 });
 
-export default connect(mapState, mapProps)(SignUp)
+export default (SignUp)
