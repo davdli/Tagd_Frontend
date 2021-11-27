@@ -15,8 +15,7 @@ class SignUp extends React.Component {
   }
 
   handleSubmit() {
-    //e.preventDefault()
-    console.log("Congrats you clicked Submit")
+
   }
 
   render() {
@@ -72,6 +71,14 @@ class SignUp extends React.Component {
       </View>
     )
   }
+
+}
+
+const mapState = state => {
+
+}
+
+const mapProps = () => {
 
 }
 
@@ -139,4 +146,4 @@ const localStyles = StyleSheet.create({
   }
 });
 
-export default SignUp;
+export default connect(mapState, mapProps)(SignUp)
