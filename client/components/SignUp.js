@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { Text, View, TextInput, Button } from 'react-native'
+import { Text, View, TextInput, Button, StyleSheet } from 'react-native'
 
 class SignUp extends React.Component {
   constructor() {
@@ -23,17 +23,17 @@ class SignUp extends React.Component {
     return (
       <View>
         <TextInput
-          style={{ height: 40 }}
+          style={localStyles.textInput}
           placeholder="firstName"
           onChangeText={text => this.setState({
             firstName: text
           })}
           defaultValue={''}
         />
-        <Text>{"/n"}</Text>
+        <Text>~{"\n"}</Text>
 
         <TextInput
-          style={{ height: 40 }}
+          style={localStyles.textInput}
           placeholder="lastName"
           onChangeText={text => this.setState({
             lastName: text
@@ -44,7 +44,7 @@ class SignUp extends React.Component {
         <Text>{"/n"}</Text>
 
         <TextInput
-          style={{ height: 40 }}
+          style={localStyles.textInput}
           placeholder="email"
           onChangeText={text => this.setState({
             email: text
@@ -55,7 +55,7 @@ class SignUp extends React.Component {
         <Text>{"/n"}</Text>
 
         <TextInput
-          style={{ height: 40 }}
+          style={localStyles.textInput}
           placeholder="password"
           onChangeText={text => this.setState({
             password: text
@@ -127,6 +127,15 @@ const localStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#fff',
+  },
+
+  textInput : {
+    width: '85%',
+    height: 40,
+    textAlign:'center',
+    borderWidth: 1,
+    borderColor: '#FF9800',
+    backgroundColor: '#fff',
   }
 });
 
