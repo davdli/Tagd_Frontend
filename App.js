@@ -43,6 +43,7 @@ export default class App extends Component {
   LogInNavigator() {
     this.setState({ navigatorType: LOG_IN })
   }
+
 }
 
 module.exports = App;
