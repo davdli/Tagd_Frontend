@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from "react-redux";
+import { NavigationContainer } from '@react-navigation/native';
 // import store from './client/store';
 import Home from './client/components/Home';
 
@@ -13,11 +14,13 @@ export default class App extends Component {
     }
     this.HomeNavigator = this.HomeNavigator.bind(this);
   }
-  render () {
+  render() {
     return (
-      // <Provider store={store}>
+      <NavigationContainer>
+        {/* // <Provider store={store}> */}
         <Home />
-      // </Provider>
+        {/* // </Provider> */}
+      </NavigationContainer>
     )
   }
   HomeNavigator() {

@@ -9,9 +9,12 @@
     "seed": "node script/seed.js"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.6",
     "bcrypt": "^5.0.1",
     "react": "16.8.3",
     "react-native": "0.59.9",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.9.0",
     "react-redux": "^7.2.6",
     "react-viro": "2.17.0",
     "redux": "^4.1.2",
