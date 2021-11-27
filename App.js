@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Provider } from "react-redux";
+import { View } from 'react-native';
 // import store from './client/store';
 import Home from './client/components/Home';
+import SignUp from './client/components/SignUp';
+//import { ViroARSceneNavigator } from 'react-viro';
 
-let HOME = 'HOME';
+
+const HOME = 'HOME';
+const SIGN_UP = 'SIGN_UP'
+const LOGIN = 'LOGIN'
 
 export default class App extends Component {
   constructor() {
@@ -12,16 +18,31 @@ export default class App extends Component {
       navigatorType: 'HOME'
     }
     this.HomeNavigator = this.HomeNavigator.bind(this);
+    this.SignUpNavigator = this.SignUpNavigator.bind(this);
   }
-  render () {
+  render() {
+
     return (
-      // <Provider store={store}>
-        <Home />
-      // </Provider>
+
+      <View>
+        {this.state.navigatorType === HOME ? (
+          <Home signUp={this.SignUpNavigator} />
+        ) : this.state.navigatorType === LOGIN ? (
+          <Login />
+        ) : (
+          <SignUp />
+        )}
+      </View>
     )
   }
   HomeNavigator() {
     this.setState({ navigatorType: HOME })
+  }
+  SignUpNavigator() {
+    this.setState({ navigatorType: SIGN_UP })
+  }
+  LoginNavigator() {
+    this.setState({ navigatorType: LOGIN })
   }
 }
 
