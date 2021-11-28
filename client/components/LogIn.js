@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TextInput, StyleSheet, Button } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 
 class LogIn extends Component {
   constructor() {
@@ -8,17 +8,7 @@ class LogIn extends Component {
       email: '',
       password: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log('You logged in!');
-    this.setState({
-      email: '',
-      password: ''
-    })
-  }
-
   render () {
     return (
       <View>
@@ -39,7 +29,7 @@ class LogIn extends Component {
 
         <Text>Forgot Password? Click here</Text>
 
-        <Button title="Log in" onPress={this.handleSubmit()} />
+        <Button title="Log in"/>
       </View>
     )
   }
