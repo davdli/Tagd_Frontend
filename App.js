@@ -3,11 +3,16 @@ import { Provider } from "react-redux";
 import { View } from 'react-native';
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
-import LogIn from './client/components/LogIn';
+import Login from './client/components/LogIn';
+import HostHomePage from './client/components/HostHomePage';
+import SelectUserType from './client/components/SelectUserType';
+
 
 const HOME = 'HOME';
 const SIGN_UP = 'SIGN_UP'
-const LOG_IN = 'LOG_IN'
+const LOGIN = 'LOGIN'
+const SELECT_TYPE = 'SELECT_TYPE'
+const HOST_PAGE = 'HOST_PAGE'
 
 export default class App extends Component {
   constructor() {
@@ -17,7 +22,9 @@ export default class App extends Component {
     }
     this.HomeNavigator = this.HomeNavigator.bind(this);
     this.SignUpNavigator = this.SignUpNavigator.bind(this);
-    this.LogInNavigator = this.LogInNavigator.bind(this);
+    this.LoginNavigator = this.LoginNavigator.bind(this);
+    this.SelectTypeNavigator = this.SelectTypeNavigator.bind(this);
+    this.HostPageNavigator = this.HostPageNavigator.bind(this);
   }
   render() {
 
@@ -25,11 +32,15 @@ export default class App extends Component {
 
       <View>
         {this.state.navigatorType === HOME ? (
-          <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
-        ) : this.state.navigatorType === LOG_IN ? (
-          <LogIn />
+          <Home signUp={this.SignUpNavigator} logIn={this.LoginNavigator} />
+        ) : this.state.navigatorType === LOGIN ? (
+          <Login selectType={this.SelectTypeNavigator} />
+        ) : this.state.navigatorType === SIGN_UP ? (
+          <SignUp selectType={this.SelectTypeNavigator} />
+        ) : this.state.navigatorType === SELECT_TYPE ? (
+          <SelectUserType hostPage={this.HostPageNavigator} />
         ) : (
-          <SignUp />
+          <HostHomePage />
         )}
       </View>
     )
@@ -43,7 +54,12 @@ export default class App extends Component {
   LogInNavigator() {
     this.setState({ navigatorType: LOG_IN })
   }
-
+  SelectTypeNavigator() {
+    this.setState({ navigatorType: SELECT_TYPE })
+  }
+  HostPageNavigator() {
+    this.setState({ navigatorType: HOST_PAGE })
+  }
 }
 
 module.exports = App;

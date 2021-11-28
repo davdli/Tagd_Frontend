@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, Button } from 'react-native';
 
 class SelectUserType extends Component {
-  render () {
+  render() {
     return (
       <View>
         <Text>Tagd</Text>
 
-        <Button title="Host" />
+        <Button title="Host" onClick={this.props.hostPage} />
 
         <Button title="Guest" />
 
