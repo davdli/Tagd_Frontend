@@ -15,17 +15,26 @@ import {
     ViroAnimations,
     ViroARTrackingTargets,
     ViroARImageMarker,
+    ViroARSceneNavigator
 } from 'react-viro';
+
+const InitialARScene = require('../../js/HelloWorldSceneAR');
+const sharedProps = {
+    apiKey: "API_KEY_HERE",
+}
 
 export default class HostAR extends Component {
     constructor() {
         super();
+        this.state = {
+            sharedProps: sharedProps
+        }
     }
 
     render() {
         return (
             <View>
-                <Text>Test</Text>
+                <ViroARSceneNavigator {...this.state.sharedProps} initialScene={{ scene: InitialARScene }} />
             </View>
         )
     }
