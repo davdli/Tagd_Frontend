@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, TextInput, Button } from 'react-native';
 
-class HostPassword extends Component {
+class GuestHomePage extends Component {
   constructor() {
     super();
     this.state = {
@@ -25,4 +25,4 @@ class HostPassword extends Component {
   }
 }
 
-export default HostPassword;
+export default GuestHomePage;
