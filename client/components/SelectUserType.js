@@ -7,9 +7,9 @@ class SelectUserType extends Component {
       <View>
         <Text>Tagd</Text>
 
-        <Button title="Host" onClick={this.props.hostPage} />
+        <Button title="Host" onPress={this.props.hostPage} />
 
-        <Button title="Guest" />
+        <Button title="Guest" onPress={this.props.guestPage} />
 
         <Button title="Next" />
       </View>
