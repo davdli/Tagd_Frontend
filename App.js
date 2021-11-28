@@ -4,12 +4,17 @@ import { View } from 'react-native';
 // import store from './client/store';
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
+import Login from './client/components/LogIn';
+import HostHomePage from './client/components/HostHomePage';
+import SelectUserType from './client/components/SelectUserType';
 //import { ViroARSceneNavigator } from 'react-viro';
 
 
 const HOME = 'HOME';
 const SIGN_UP = 'SIGN_UP'
 const LOGIN = 'LOGIN'
+const SELECT_TYPE = 'SELECT_TYPE'
+const HOST_PAGE = 'HOST_PAGE'
 
 export default class App extends Component {
   constructor() {
@@ -19,6 +24,9 @@ export default class App extends Component {
     }
     this.HomeNavigator = this.HomeNavigator.bind(this);
     this.SignUpNavigator = this.SignUpNavigator.bind(this);
+    this.LoginNavigator = this.LoginNavigator.bind(this);
+    this.SelectTypeNavigator = this.SelectTypeNavigator.bind(this);
+    this.HostPageNavigator = this.HostPageNavigator.bind(this);
   }
   render() {
 
@@ -26,11 +34,15 @@ export default class App extends Component {
 
       <View>
         {this.state.navigatorType === HOME ? (
-          <Home signUp={this.SignUpNavigator} />
+          <Home signUp={this.SignUpNavigator} login={this.LoginNavigator} />
         ) : this.state.navigatorType === LOGIN ? (
-          <Login />
+          <Login selectType={this.SelectTypeNavigator} />
+        ) : this.state.navigatorType === SIGN_UP ? (
+          <SignUp selectType={this.SelectTypeNavigator} />
+        ) : this.state.navigatorType === SELECT_TYPE ? (
+          <SelectUserType hostPage={this.HostPageNavigator} />
         ) : (
-          <SignUp />
+          <HostHomePage />
         )}
       </View>
     )
@@ -43,6 +55,12 @@ export default class App extends Component {
   }
   LoginNavigator() {
     this.setState({ navigatorType: LOGIN })
+  }
+  SelectTypeNavigator() {
+    this.setState({ navigatorType: SELECT_TYPE })
+  }
+  HostPageNavigator() {
+    this.setState({ navigatorType: HOST_PAGE })
   }
 }
 

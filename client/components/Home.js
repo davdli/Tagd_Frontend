@@ -19,7 +19,7 @@ class Home extends Component {
 
         <Text>Home guide for anywhere.</Text>
         <Button title="Login" onPress={() => {
-          console.log('what')
+          this.props.login();
         }} />
         <Text>Dont't have an account?</Text>
         <Button title="Sign Up" onPress={() => {

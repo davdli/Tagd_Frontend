@@ -8,38 +8,29 @@ class LogIn extends Component {
       email: '',
       password: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log('You logged in!');
-    this.setState({
-      email: '',
-      password: ''
-    })
   }
 
-  render () {
+  render() {
     return (
       <View>
         <Text>Tagd</Text>
         <TextInput
-        placeholder="Email"
-        onChangeText={text => this.setState({
-          email: text
-        })}
+          placeholder="Email"
+          onChangeText={text => this.setState({
+            email: text
+          })}
         />
 
         <TextInput
-        placeholder="Password"
-        onChangeText={text => this.setState({
-          password: text
-        })}
+          placeholder="Password"
+          onChangeText={text => this.setState({
+            password: text
+          })}
         />
 
         <Text>Forgot Password? Click here</Text>
 
-        <Button title="Log in" onPress={this.handleSubmit()} />
+        <Button title="Log in" onPress={this.props.selectType} />
       </View>
     )
   }
