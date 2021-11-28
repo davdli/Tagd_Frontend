@@ -17,7 +17,7 @@ class HostHomePage extends React.Component {
                     <Text>Menu</Text>
                     <Button
                         title="Camera View"
-                    />
+                        onPress={this.props.hostAR} />
                     <Button
                         title="My Tags"
                     />

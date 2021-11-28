@@ -5783,7 +5783,7 @@
     "global" "^4.3.0"
     "react-proxy" "^1.1.7"
 
-"react-viro@2.17.0":
+"react-viro@^2.17.0":
   "integrity" "sha512-5100TePD0X62DRCF1ELOOz/J0b+NJNcQHlppqFW4OHwzxI2ONfSKWAkwooYseinHgSWqe12z5jWf51aF7aHuDQ=="
   "resolved" "https://registry.npmjs.org/react-viro/-/react-viro-2.17.0.tgz"
   "version" "2.17.0"
