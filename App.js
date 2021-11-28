@@ -7,6 +7,8 @@ import Login from './client/components/LogIn';
 import SelectUserType from './client/components/SelectUserType';
 import HostHomePage from './client/components/HostHomePage';
 import GuestHomePage from './client/components/GuestHomePage';
+import HostAR from './client/components/HostAR';
+import { ViroARSceneNavigator } from 'react-viro';
 
 const HOME = 'HOME';
 const SIGN_UP = 'SIGN_UP';
@@ -14,6 +16,7 @@ const LOG_IN = 'LOG_IN';
 const SELECT_TYPE = 'SELECT_TYPE';
 const HOST_PAGE = 'HOST_PAGE';
 const GUEST_PAGE = 'GUEST_PAGE';
+const HOST_AR = 'HOST_AR';
 
 export default class App extends Component {
   constructor() {
@@ -27,6 +30,7 @@ export default class App extends Component {
     this.SelectTypeNavigator = this.SelectTypeNavigator.bind(this);
     this.HostPageNavigator = this.HostPageNavigator.bind(this);
     this.GuestPageNavigator = this.GuestPageNavigator.bind(this);
+    this.HostARNavigator = this.HostARNavigator.bind(this)
   }
   render() {
     return (
@@ -40,8 +44,12 @@ export default class App extends Component {
         ) : this.state.navigatorType === SELECT_TYPE ? (
           <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
         ) : this.state.navigatorType === HOST_PAGE ? (
-          <HostHomePage />
-        ) : ( <GuestHomePage /> )
+          <HostHomePage hostAR={this.HostARNavigator} />
+        ) : this.state.navigatorType === GUEST_PAGE ? (
+          <GuestHomePage />
+        ) : (
+          <HostAR />
+        )
         }
       </View>
     )
@@ -63,6 +71,9 @@ export default class App extends Component {
   }
   GuestPageNavigator() {
     this.setState({ navigatorType: GUEST_PAGE });
+  }
+  HostARNavigator() {
+    this.setState({ navigatorType: HOST_AR });
   }
 }
 
