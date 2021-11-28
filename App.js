@@ -4,8 +4,8 @@ import { View } from 'react-native';
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
 import Login from './client/components/LogIn';
-import HostHomePage from './client/components/HostHomePage';
 import SelectUserType from './client/components/SelectUserType';
+import HostHomePage from './client/components/HostHomePage';
 
 
 const HOME = 'HOME';
