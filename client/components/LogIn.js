@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TextInput, StyleSheet, Button } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 
 class LogIn extends Component {
   constructor() {
@@ -9,7 +9,6 @@ class LogIn extends Component {
       password: ''
     }
   }
-
   render() {
     return (
       <View>
