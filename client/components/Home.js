@@ -15,7 +15,7 @@ class Home extends Component {
           this.props.logIn();
         }} />
         <Text>Dont't have an account?</Text>
-        <Button title="Sign Up" onPress={() => {
+        <Button title="Sign up" onPress={() => {
           this.props.signUp();
         }} />
       </View>

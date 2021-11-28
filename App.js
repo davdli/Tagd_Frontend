@@ -9,10 +9,10 @@ import SelectUserType from './client/components/SelectUserType';
 
 
 const HOME = 'HOME';
-const SIGN_UP = 'SIGN_UP'
-const LOGIN = 'LOGIN'
-const SELECT_TYPE = 'SELECT_TYPE'
-const HOST_PAGE = 'HOST_PAGE'
+const SIGN_UP = 'SIGN_UP';
+const LOG_IN = 'LOG_IN';
+const SELECT_TYPE = 'SELECT_TYPE';
+const HOST_PAGE = 'HOST_PAGE';
 
 export default class App extends Component {
   constructor() {
@@ -22,7 +22,7 @@ export default class App extends Component {
     }
     this.HomeNavigator = this.HomeNavigator.bind(this);
     this.SignUpNavigator = this.SignUpNavigator.bind(this);
-    this.LoginNavigator = this.LoginNavigator.bind(this);
+    this.LogInNavigator = this.LogInNavigator.bind(this);
     this.SelectTypeNavigator = this.SelectTypeNavigator.bind(this);
     this.HostPageNavigator = this.HostPageNavigator.bind(this);
   }
@@ -32,8 +32,8 @@ export default class App extends Component {
 
       <View>
         {this.state.navigatorType === HOME ? (
-          <Home signUp={this.SignUpNavigator} logIn={this.LoginNavigator} />
-        ) : this.state.navigatorType === LOGIN ? (
+          <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
+        ) : this.state.navigatorType === LOG_IN ? (
           <Login selectType={this.SelectTypeNavigator} />
         ) : this.state.navigatorType === SIGN_UP ? (
           <SignUp selectType={this.SelectTypeNavigator} />
