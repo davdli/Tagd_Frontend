@@ -9,6 +9,7 @@ import HostHomePage from './client/components/HostHomePage';
 import GuestHomePage from './client/components/GuestHomePage';
 import HostAR from './client/components/HostAR';
 import { ViroARSceneNavigator } from 'react-viro';
+import { SafeAreaView} from 'react-native'
 
 const HOME = 'HOME';
 const SIGN_UP = 'SIGN_UP';
@@ -45,22 +46,24 @@ export default class App extends Component {
       return this._getARNavigator();
     } else {
       return (
-        <View>
-          {this.state.navigatorType === HOME ? (
-            <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
-          ) : this.state.navigatorType === LOG_IN ? (
-            <Login selectType={this.SelectTypeNavigator} />
-          ) : this.state.navigatorType === SIGN_UP ? (
-            <SignUp selectType={this.SelectTypeNavigator} />
-          ) : this.state.navigatorType === SELECT_TYPE ? (
-            <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
-          ) : this.state.navigatorType === HOST_PAGE ? (
-            <HostHomePage hostAR={this.HostARNavigator} />
-          ) : (
-            <GuestHomePage />
-          )
-          }
-        </View>
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={{ flex: 1, paddingHorizontal: 20 }}>
+            {this.state.navigatorType === HOME ? (
+              <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
+            ) : this.state.navigatorType === LOG_IN ? (
+              <Login selectType={this.SelectTypeNavigator} />
+            ) : this.state.navigatorType === SIGN_UP ? (
+              <SignUp selectType={this.SelectTypeNavigator} />
+            ) : this.state.navigatorType === SELECT_TYPE ? (
+              <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
+            ) : this.state.navigatorType === HOST_PAGE ? (
+              <HostHomePage hostAR={this.HostARNavigator} />
+            ) : (
+              <GuestHomePage />
+            )
+            }
+          </View>
+        </SafeAreaView>
       )
     }
   }
