@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { View } from 'react-native';
+import { View, TouchableHighlight, Image } from 'react-native';
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
 import Login from './client/components/LogIn';
@@ -90,8 +90,8 @@ export default class App extends Component {
   }
   _getARNavigator() {
     return (
-      <ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{ scene: InitialARScene }} />
+        <ViroARSceneNavigator {...this.state.sharedProps}
+          initialScene={{ scene: InitialARScene }} />
     );
   }
 }
