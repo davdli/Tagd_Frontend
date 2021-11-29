@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {authenticateRequest} from '../gateKeepingMiddleware'
 //ACTION TYPES
 const GET_USERS = 'GET_USERS';
 
@@ -21,6 +21,13 @@ const getUser = user => {
 
 //THUNKS
 
-export const fetchOrCreateSingleUser = () => {
+export const fetchSingleUser = (id) => async dispatch => {
+    try {
+        const user = await authenticateRequest("get", `/api/users/${id}`)
+        if(user){
+            dispatch(getUser(user))
+        }
+    } catch (error) {
 
+    }
 }
