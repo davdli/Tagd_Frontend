@@ -18,11 +18,18 @@ const HOST_PAGE = 'HOST_PAGE';
 const GUEST_PAGE = 'GUEST_PAGE';
 const HOST_AR = 'HOST_AR';
 
+const sharedProps = {
+  apiKey: "API_KEY_HERE",
+}
+
+const InitialARScene = require('./js/HelloWorldSceneAR');
+
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      navigatorType: 'HOME'
+      navigatorType: 'HOME',
+      sharedProps: sharedProps
     }
     this.HomeNavigator = this.HomeNavigator.bind(this);
     this.SignUpNavigator = this.SignUpNavigator.bind(this);
@@ -31,28 +38,31 @@ export default class App extends Component {
     this.HostPageNavigator = this.HostPageNavigator.bind(this);
     this.GuestPageNavigator = this.GuestPageNavigator.bind(this);
     this.HostARNavigator = this.HostARNavigator.bind(this)
+    this._getARNavigator = this._getARNavigator.bind(this);
   }
   render() {
-    return (
-      <View>
-        {this.state.navigatorType === HOME ? (
-          <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
-        ) : this.state.navigatorType === LOG_IN ? (
-          <Login selectType={this.SelectTypeNavigator} />
-        ) : this.state.navigatorType === SIGN_UP ? (
-          <SignUp selectType={this.SelectTypeNavigator} />
-        ) : this.state.navigatorType === SELECT_TYPE ? (
-          <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
-        ) : this.state.navigatorType === HOST_PAGE ? (
-          <HostHomePage hostAR={this.HostARNavigator} />
-        ) : this.state.navigatorType === GUEST_PAGE ? (
-          <GuestHomePage />
-        ) : (
-          <HostAR />
-        )
-        }
-      </View>
-    )
+    if (this.state.navigatorType === HOST_AR) {
+      return this._getARNavigator();
+    } else {
+      return (
+        <View>
+          {this.state.navigatorType === HOME ? (
+            <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
+          ) : this.state.navigatorType === LOG_IN ? (
+            <Login selectType={this.SelectTypeNavigator} />
+          ) : this.state.navigatorType === SIGN_UP ? (
+            <SignUp selectType={this.SelectTypeNavigator} />
+          ) : this.state.navigatorType === SELECT_TYPE ? (
+            <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
+          ) : this.state.navigatorType === HOST_PAGE ? (
+            <HostHomePage hostAR={this.HostARNavigator} />
+          ) : (
+            <GuestHomePage />
+          )
+          }
+        </View>
+      )
+    }
   }
   HomeNavigator() {
     this.setState({ navigatorType: HOME });
@@ -74,6 +84,12 @@ export default class App extends Component {
   }
   HostARNavigator() {
     this.setState({ navigatorType: HOST_AR });
+  }
+  _getARNavigator() {
+    return (
+      <ViroARSceneNavigator {...this.state.sharedProps}
+        initialScene={{ scene: InitialARScene }} />
+    );
   }
 }
 
