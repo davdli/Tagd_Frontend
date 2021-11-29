@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { View, TouchableHighlight, Image } from 'react-native';
+import { View, TouchableHighlight, Image, SafeAreaView, StyleSheet } from 'react-native';
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
 import Login from './client/components/LogIn';
@@ -9,7 +9,6 @@ import HostHomePage from './client/components/HostHomePage';
 import GuestHomePage from './client/components/GuestHomePage';
 import HostAR from './client/components/HostAR';
 import { ViroARSceneNavigator } from 'react-viro';
-import { SafeAreaView} from 'react-native'
 
 const HOME = 'HOME';
 const SIGN_UP = 'SIGN_UP';
@@ -90,11 +89,43 @@ export default class App extends Component {
   }
   _getARNavigator() {
     return (
-        <ViroARSceneNavigator {...this.state.sharedProps}
-          initialScene={{ scene: InitialARScene }} />
+      <View style={localStyles.outer} >
+          <ViroARSceneNavigator {...this.state.sharedProps}
+            initialScene={{ scene: InitialARScene }} />
+
+          <View style={{position: 'absolute',  left: 0, right: 0, bottom: 77, alignItems: 'center'}}>
+            <TouchableHighlight style={localStyles.buttons}
+              underlayColor={'#00000000'} >
+              <Image source={require("./js/res/button_add-tag.png")} />
+            </TouchableHighlight>
+          </View>
+      </View>
     );
   }
 }
+
+const localStyles = StyleSheet.create({
+  outer : {
+    flex : 1,
+  },
+
+  arView: {
+    flex:1,
+  },
+
+  buttons : {
+    height: 80,
+    width: 80,
+    paddingTop:20,
+    paddingBottom:20,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor:'#00000000',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#ffffff00',
+  }
+});
 
 module.exports = App;
 
