@@ -21,9 +21,12 @@ const getUser = user => {
 
 //THUNKS
 
-export const fetchSingleUser = (id) => {
+export const fetchSingleUser = (id) => async dispatch => {
     try {
         const user = await authenticateRequest("get", `/api/users/${id}`)
+        if(user){
+            dispatch(getUser(user))
+        }
     } catch (error) {
 
     }
