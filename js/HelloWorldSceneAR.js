@@ -42,25 +42,43 @@ export default class HelloWorldSceneAR extends Component {
           });
         }} />
         <ViroARImageMarker target={"targetOne"} >
-          <ViroText fontSize={24}
-          style={styles.boldFont} position={[0, 0, 0]}
-          width={20} height={5} extrusionDepth={8}
-          materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-          text="Bold 3D Text (white, blue, red)" />
+          <ViroText fontSize={5}
+              style={styles.boldFont} position={[0, 0, 0]}
+              width={10} height={5} extrusionDepth={0.5}
+              materials={["frontMaterial", "backMaterial", "sideMaterial"]}
+              rotation={[-90, 0, 0]}
+              onDrag={(fixedDistance, fixedToWorld) => {
+                this.state.position = this.setState({
+                  position: fixedDistance
+                });
+              }}
+              text="Hat Info" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetTwo"} >
-          <ViroText fontSize={24}
-          style={styles.boldFont} position={[0, 0, 0]}
-          width={20} height={5} extrusionDepth={8}
-          materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-          text="Bold 3D Text (white, blue, red)" />
+          <ViroText fontSize={5}
+            style={styles.boldFont} position={[0, 0, 0]}
+            width={10} height={5} extrusionDepth={0.5}
+            materials={["frontMaterial", "backMaterial", "sideMaterial"]}
+            rotation={[-90, 0, 0]}
+            onDrag={(fixedDistance, fixedToWorld) => {
+              this.state.position = this.setState({
+                position: fixedDistance
+              });
+            }}
+            text="Logo Info" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
-          <ViroText fontSize={24}
+          <ViroText fontSize={5}
           style={styles.boldFont} position={[0, 0, 0]}
-          width={20} height={5} extrusionDepth={8}
+          width={10} height={5} extrusionDepth={0.5}
           materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-          text="Bold 3D Text (white, blue, red)" />
+          rotation={[-90, 0, 0]}
+          onDrag={(fixedDistance, fixedToWorld) => {
+            this.state.position = this.setState({
+              position: fixedDistance
+            });
+          }}
+          text="Cup Info" />
         </ViroARImageMarker>
       </ViroARScene>
     );
@@ -69,7 +87,7 @@ export default class HelloWorldSceneAR extends Component {
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
-        text: 'Hello World'
+        text: ''
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
@@ -92,10 +110,10 @@ ViroMaterials.createMaterials({
     diffuseColor: '#FFFFFF',
   },
   backMaterial: {
-    diffuseColor: '#FF0000',
+    diffuseColor: '#FFFFFF',
   },
   sideMaterial: {
-    diffuseColor: '#0000FF',
+    diffuseColor: '#F5F5F5',
   },
 });
 
@@ -113,7 +131,7 @@ ViroARTrackingTargets.createTargets({
   "targetThree": {
     source: require('./res/Cup.jpeg'),
     orientation: "Up",
-    physicalWidth: 0.2 // real world width in meters
+    physicalWidth: 0.3 // real world width in meters
   },
 });
 
