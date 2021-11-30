@@ -112,8 +112,6 @@ export default class App extends Component {
   }
 }
 
-
-
 const localStyles = StyleSheet.create({
   outer: {
     flex: 1,
