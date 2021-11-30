@@ -19,7 +19,8 @@ export default class HelloWorldSceneAR extends Component {
 
     // Set initial state here
     this.state = {
-      text: "Initializing AR..."
+      text: "Initializing AR...",
+      position: [0, 0, -1]
     };
 
     // bind 'this' to functions
@@ -29,13 +30,12 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
-        {/* <ViroFlexView style={{ flexDirection: 'row', padding: .1 }}
-          width={5.0} height={5.0}
-          position={[-5.0, 0.0, -2.0]}
-          rotation={[0, 45, 0]} >
-          <ViroImage source={require('./res/button_add-tag.png')} style={{ flex: .5 }} />
-        </ViroFlexView> */}
+        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={this.state.position} style={styles.helloWorldTextStyle} onDrag={(fixedDistance, fixedToWorld) => {
+          console.log('On Drag')
+          this.state.position = this.setState({
+            position: fixedDistance
+          });
+        }} />
       </ViroARScene>
     );
   }
@@ -43,7 +43,7 @@ export default class HelloWorldSceneAR extends Component {
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
-        text: "Hello World!"
+        text: this.props.apiKey
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking

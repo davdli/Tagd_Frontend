@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { View, TouchableHighlight, Image, StyleSheet, SafeAreaView } from 'react-native';
+import { View, TouchableHighlight, Image, SafeAreaView, StyleSheet, Alert } from 'react-native';
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
 import Login from './client/components/LogIn';
@@ -96,16 +96,25 @@ export default class App extends Component {
         <View style={{ position: 'absolute', left: 0, right: 0, bottom: 77, alignItems: 'center' }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this._onDisplayDialog}
-            underlayColor={'#00000000'} >
+            underlayColor={'#00000000'}>
             <Image source={require("./js/res/button_add-tag.png")} />
           </TouchableHighlight>
         </View>
       </View>
     );
   }
+  _onDisplayDialog() {
+    Alert.prompt(
+      'Leave a tag',
+      'Write a message to place in the world!',
+      '...'
+    );
+  }
 }
 
-var localStyles = StyleSheet.create({
+
+
+const localStyles = StyleSheet.create({
   outer: {
     flex: 1,
   },
