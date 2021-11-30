@@ -43,21 +43,21 @@ export default class HelloWorldSceneAR extends Component {
         }} />
         <ViroARImageMarker target={"targetOne"} >
           <ViroText fontSize={24}
-          style={stylesTest.boldFont} position={[0, 0, 0]}
+          style={styles.boldFont} position={[0, 0, 0]}
           width={20} height={5} extrusionDepth={8}
           materials={["frontMaterial", "backMaterial", "sideMaterial"]}
           text="Bold 3D Text (white, blue, red)" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetTwo"} >
           <ViroText fontSize={24}
-          style={stylesTest.boldFont} position={[0, 0, 0]}
+          style={styles.boldFont} position={[0, 0, 0]}
           width={20} height={5} extrusionDepth={8}
           materials={["frontMaterial", "backMaterial", "sideMaterial"]}
           text="Bold 3D Text (white, blue, red)" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
           <ViroText fontSize={24}
-          style={stylesTest.boldFont} position={[0, 0, 0]}
+          style={styles.boldFont} position={[0, 0, 0]}
           width={20} height={5} extrusionDepth={8}
           materials={["frontMaterial", "backMaterial", "sideMaterial"]}
           text="Bold 3D Text (white, blue, red)" />
@@ -78,16 +78,6 @@ export default class HelloWorldSceneAR extends Component {
 }
 
 const styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-  },
-});
-
-const stylesTest = StyleSheet.create({
   boldFont: {
        color: '#FFFFFF',
        flex: 1,
