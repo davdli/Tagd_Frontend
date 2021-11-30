@@ -9,7 +9,11 @@ import {
   ViroText,
   ViroConstants,
   ViroFlexView,
-  ViroImage
+  ViroImage,
+  ViroARImageMarker,
+  ViroBox,
+  ViroARTrackingTargets,
+
 } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
@@ -36,6 +40,10 @@ export default class HelloWorldSceneAR extends Component {
             position: fixedDistance
           });
         }} />
+        <ViroARImageMarker target={"targetOne"} >
+          <ViroBox position={[0, -.25, 0]} scale={[.25, .25, .25]} />
+          <ViroBox position={[.25, .25, 0]} scale={[.25, .25, .25]} />
+        </ViroARImageMarker>
       </ViroARScene>
     );
   }
@@ -58,6 +66,14 @@ var styles = StyleSheet.create({
     color: '#ffffff',
     textAlignVertical: 'center',
     textAlign: 'center',
+  },
+});
+
+ViroARTrackingTargets.createTargets({
+  "targetOne": {
+    source: require('./res/targetOne.JPG'),
+    orientation: "Up",
+    physicalWidth: 0.1 // real world width in meters
   },
 });
 
