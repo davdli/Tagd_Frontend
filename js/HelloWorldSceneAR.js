@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import { View, StyleSheet } from 'react-native';
 
+
 import {
   ViroARScene,
   ViroText,
@@ -13,7 +14,7 @@ import {
   ViroARImageMarker,
   ViroBox,
   ViroARTrackingTargets,
-
+  ViroMaterials
 } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
@@ -41,13 +42,25 @@ export default class HelloWorldSceneAR extends Component {
           });
         }} />
         <ViroARImageMarker target={"targetOne"} >
-          <ViroBox position={[0, -.25, 0]} scale={[.25, .25, .25]} />
+          <ViroText fontSize={24}
+          style={styles.boldFont} position={[0, 0, 0]}
+          width={20} height={5} extrusionDepth={8}
+          materials={["frontMaterial", "backMaterial", "sideMaterial"]}
+          text="Bold 3D Text (white, blue, red)" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetTwo"} >
-          <ViroBox position={[0, -.25, 0]} scale={[.25, .25, .25]} />
+          <ViroText fontSize={24}
+          style={styles.boldFont} position={[0, 0, 0]}
+          width={20} height={5} extrusionDepth={8}
+          materials={["frontMaterial", "backMaterial", "sideMaterial"]}
+          text="Bold 3D Text (white, blue, red)" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
-          <ViroBox position={[0, -.25, 0]} scale={[.25, .25, .25]} />
+          <ViroText fontSize={24}
+          style={styles.boldFont} position={[0, 0, 0]}
+          width={20} height={5} extrusionDepth={8}
+          materials={["frontMaterial", "backMaterial", "sideMaterial"]}
+          text="Bold 3D Text (white, blue, red)" />
         </ViroARImageMarker>
       </ViroARScene>
     );
@@ -64,13 +77,25 @@ export default class HelloWorldSceneAR extends Component {
   }
 }
 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
+const styles = StyleSheet.create({
+  boldFont: {
+       color: '#FFFFFF',
+       flex: 1,
+       textAlignVertical: 'center',
+       textAlign: 'center',
+       fontWeight: 'bold',
+  },
+});
+
+ViroMaterials.createMaterials({
+  frontMaterial: {
+    diffuseColor: '#FFFFFF',
+  },
+  backMaterial: {
+    diffuseColor: '#FF0000',
+  },
+  sideMaterial: {
+    diffuseColor: '#0000FF',
   },
 });
 
@@ -78,17 +103,17 @@ ViroARTrackingTargets.createTargets({
   "targetOne": {
     source: require('./res/nyyhat.jpg'),
     orientation: "Up",
-    physicalWidth: 0.1 // real world width in meters
+    physicalWidth: 0.2 // real world width in meters
   },
   "targetTwo": {
     source: require('./res/UniqueLogo.jpg'),
     orientation: "Up",
-    physicalWidth: 0.1 // real world width in meters
+    physicalWidth: 0.2 // real world width in meters
   },
   "targetThree": {
     source: require('./res/Cup.jpeg'),
     orientation: "Up",
-    physicalWidth: 0.1 // real world width in meters
+    physicalWidth: 0.2 // real world width in meters
   },
 });
 
