@@ -90,47 +90,45 @@ export default class App extends Component {
   _getARNavigator() {
     return (
       <View style={localStyles.outer} >
-          <ViroARSceneNavigator {...this.state.sharedProps}
-            initialScene={{ scene: InitialARScene }} />
+        <ViroARSceneNavigator {...this.state.sharedProps}
+          initialScene={{ scene: InitialARScene }} />
 
-          <View style={{position: 'absolute',  left: 0, right: 0, bottom: 77, alignItems: 'center'}}>
-            <TouchableHighlight style={localStyles.buttons}
-              onPress={this._onDisplayDialog}
-              underlayColor={'#00000000'}>
-              <Image source={require("./js/res/button_add-tag.png")} />
-            </TouchableHighlight>
-          </View>
+        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 77, alignItems: 'center' }}>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._onDisplayDialog}
+            underlayColor={'#00000000'}>
+            <Image source={require("./js/res/button_add-tag.png")} />
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
   _onDisplayDialog() {
     Alert.prompt(
-    'Leave a tag',
-    'Write a message to place in the world!',
-    '...'
+      'Leave a tag',
+      'Write a message to place in the world!',
+      '...'
     );
   }
 }
 
-
-
 const localStyles = StyleSheet.create({
-  outer : {
-    flex : 1,
+  outer: {
+    flex: 1,
   },
 
   arView: {
-    flex:1,
+    flex: 1,
   },
 
-  buttons : {
+  buttons: {
     height: 80,
     width: 80,
-    paddingTop:20,
-    paddingBottom:20,
+    paddingTop: 20,
+    paddingBottom: 20,
     marginTop: 10,
     marginBottom: 10,
-    backgroundColor:'#00000000',
+    backgroundColor: '#00000000',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#ffffff00',
@@ -138,4 +136,3 @@ const localStyles = StyleSheet.create({
 });
 
 module.exports = App;
-
