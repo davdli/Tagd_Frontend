@@ -42,7 +42,12 @@ export default class HelloWorldSceneAR extends Component {
         }} />
         <ViroARImageMarker target={"targetOne"} >
           <ViroBox position={[0, -.25, 0]} scale={[.25, .25, .25]} />
-          <ViroBox position={[.25, .25, 0]} scale={[.25, .25, .25]} />
+        </ViroARImageMarker>
+        <ViroARImageMarker target={"targetTwo"} >
+          <ViroBox position={[0, -.25, 0]} scale={[.25, .25, .25]} />
+        </ViroARImageMarker>
+        <ViroARImageMarker target={"targetThree"} >
+          <ViroBox position={[0, -.25, 0]} scale={[.25, .25, .25]} />
         </ViroARImageMarker>
       </ViroARScene>
     );
@@ -71,7 +76,17 @@ var styles = StyleSheet.create({
 
 ViroARTrackingTargets.createTargets({
   "targetOne": {
-    source: require('./res/targetOne.JPG'),
+    source: require('./res/nyyhat.jpg'),
+    orientation: "Up",
+    physicalWidth: 0.1 // real world width in meters
+  },
+  "targetTwo": {
+    source: require('./res/UniqueLogo.jpg'),
+    orientation: "Up",
+    physicalWidth: 0.1 // real world width in meters
+  },
+  "targetThree": {
+    source: require('./res/Cup.jpeg'),
     orientation: "Up",
     physicalWidth: 0.1 // real world width in meters
   },
