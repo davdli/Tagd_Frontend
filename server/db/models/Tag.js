@@ -12,15 +12,9 @@ const Tag = db.define("tag", {
   description: {
     type: Sequelize.TEXT,
   },
-  latitude: {
-    type: Sequelize.DECIMAL(10, 6)
-  },
-  longitude: {
-    type: Sequelize.DECIMAL(10, 6)
-  },
   imageUrl: {
-    type: Sequelize.STRING
-  }
+    type: Sequelize.STRING || Sequelize.BLOB,
+  },
 })
 
 module.exports = Tag;

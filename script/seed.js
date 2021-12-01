@@ -36,25 +36,29 @@ const usersData = [
 
 const tagsData = [
   {
-    title: 'Doorway',
-    description: 'Home entrance',
-    userId: 1
+    title: 'Masks',
+    description: 'COVID19 Masks',
+    userId: 1,
+    imageUrl: "https://drive.google.com/file/d/1bK7kW1Je_9UhxsfiUG4tHI13olbNdR4v/view?usp=sharing",
   },
   {
-    title: 'Kitchen',
-    description: 'Kitchen',
-    userId: 2
+    title: 'Logo',
+    description: 'logo',
+    userId: 2,
+    imageUrl: "https://drive.google.com/file/d/1JHCvDopJTBzooddciU0x-qnwZOSfW9-5/view?usp=sharing",
   },
   {
-    title: 'Bedroom',
-    description: 'Bedroom',
-    userId: 3
+    title: 'Cup',
+    description: 'cup',
+    userId: 3,
+    imageUrl: "https://drive.google.com/file/d/1A2JU7pjUoFsWIujiwboH1rnWONtNEiWk/view?usp=sharing",
   },
   {
-    title: 'Bathroom',
-    description: 'Bathroom',
-    userId: 4
-  }
+    title: 'Hat',
+    description: 'hat',
+    userId: 4,
+    imageUrl: "https://drive.google.com/file/d/1t7Zo43k713bzljTT5gKPBQGCJp671w9-/view?usp=sharing",
+  },
 ]
 
 const locationsData = [
