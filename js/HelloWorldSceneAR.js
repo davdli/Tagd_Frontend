@@ -68,17 +68,22 @@ export default class HelloWorldSceneAR extends Component {
             text="Logo Info" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
-          <ViroText fontSize={5}
-          style={styles.boldFont} position={[0, 0, 0]}
-          width={10} height={5} extrusionDepth={0.5}
-          materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-          rotation={[-90, 0, 0]}
+          <ViroFlexView dragType="FixedDistance" onDrag={() => { }} position={[0, 0, 0]} rotation={[0, 20, 0]}  height={.4} width={.8} style={styles.contactInfo}
           onDrag={(fixedDistance, fixedToWorld) => {
             this.state.position = this.setState({
               position: fixedDistance
             });
-          }}
-          text="Poland Spring" />
+          }}>
+            <ViroText fontSize={20}
+            style={styles.contactText} position={[.00, .020, 0]}
+            scale={[0.014, 0.014, 0]} height={1} width={6}
+            materials={["frontMaterial", "backMaterial", "sideMaterial"]}
+            textClipMode="None"
+            rotation={[-90, 0, 0]}
+            text="Remeber to drink water!"
+            textAlign='center'
+            />
+          </ViroFlexView >
         </ViroARImageMarker>
       </ViroARScene>
     );
@@ -96,12 +101,27 @@ export default class HelloWorldSceneAR extends Component {
 }
 
 const styles = StyleSheet.create({
-  boldFont: {
-       color: '#FFFFFF',
-       flex: 1,
-       textAlignVertical: 'center',
-       textAlign: 'center',
-       fontWeight: 'bold',
+  // boldFont: {
+  //      color: '#FFFFFF',
+  //      flex: 1,
+  //      textAlignVertical: 'center',
+  //      textAlign: 'center',
+  //      fontWeight: 'bold',
+  // },
+  contactInfo: {
+
+    backgroundColor: '#D3D3D3',
+    // opacity: 0.90,
+    flex: 1,
+    flexDirection: 'row'
+  },
+  contactText: {
+    color: 'white',
+    fontSize: 50,
+    fontWeight: 'bold',
+    // textShadowOffset: { width: 2, height: 2 },
+    // textShadowRadius: 1,
+    // textShadowColor: '#000',
   },
 });
 
