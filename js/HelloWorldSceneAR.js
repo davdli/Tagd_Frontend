@@ -78,7 +78,7 @@ export default class HelloWorldSceneAR extends Component {
               position: fixedDistance
             });
           }}
-          text="Cup Info" />
+          text="Poland Spring" />
         </ViroARImageMarker>
       </ViroARScene>
     );
@@ -129,7 +129,7 @@ ViroARTrackingTargets.createTargets({
     physicalWidth: 0.2 // real world width in meters
   },
   "targetThree": {
-    source: require('./res/Cup.jpeg'),
+    source: require('./res/BottleIcon.jpeg'),
     orientation: "Up",
     physicalWidth: 0.3 // real world width in meters
   },
