@@ -9,12 +9,14 @@ const Location = db.define("location", {
       notEmpty: true,
     },
   },
-  address: {
+  houseImg: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       notEmpty: true,
+      isUrl: true,
     },
-  },
+  }
 })
 
 module.exports = Location;
