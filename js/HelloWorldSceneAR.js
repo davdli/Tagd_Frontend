@@ -43,17 +43,26 @@ export default class HelloWorldSceneAR extends Component {
         }} />
         <ViroARImageMarker target={"targetOne"} >
           <ViroText fontSize={24}
-          style={styles.boldFont} position={[0, 0, 0]}
+          style={styles.boldFont}
+          position={this.state.position}
           width={20} height={5} extrusionDepth={8}
           materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-          text="Bold 3D Text (white, blue, red)" />
+          text="Bold 3D Text (white, blue, red)"
+          rotation={[-90, 0, 0]}
+          onDrag={(fixedDistance, fixedToWorld) => {
+            this.state.position = this.setState({
+              position: fixedDistance
+            });
+          }}
+          />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetTwo"} >
           <ViroText fontSize={24}
           style={styles.boldFont} position={[0, 0, 0]}
           width={20} height={5} extrusionDepth={8}
           materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-          text="Bold 3D Text (white, blue, red)" />
+          text="Bold 3D Text (white, blue, red)"
+          />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
           <ViroText fontSize={24}
