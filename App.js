@@ -45,8 +45,8 @@ export default class App extends Component {
       return this._getARNavigator();
     } else {
       return (
-        <SafeAreaView style={{ flex: 1 }}>
-          <View style={{ flex: 1, paddingHorizontal: 20 }}>
+        <SafeAreaView>
+          <View>
             {this.state.navigatorType === HOME ? (
               <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
             ) : this.state.navigatorType === LOG_IN ? (
