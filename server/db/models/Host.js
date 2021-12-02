@@ -39,36 +39,36 @@ const Host = db.define('host', {
 
 module.exports = Host;
 
-User.prototype.correctPassword = function (candidatePwd) {
+Host.prototype.correctPassword = function (candidatePwd) {
     //we need to compare the plain version to an encrypted version of the password
     return bcrypt.compare(candidatePwd, this.password);
 };
 
-User.prototype.generateToken = function () {
+Host.prototype.generateToken = function () {
     return jwt.sign({ id: this.id }, process.env.JWT);
 };
 
 /**
  * classMethods
  */
-User.authenticate = async function ({ email, password }) {
-    const user = await this.findOne({ where: { email } });
-    if (!user || !(await user.correctPassword(password))) {
+Host.authenticate = async function ({ email, password }) {
+    const host = await this.findOne({ where: { email } });
+    if (!host || !(await host.correctPassword(password))) {
         const error = Error("Incorrect username/password");
         error.status = 401;
         throw error;
     }
-    return user.generateToken();
+    return host.generateToken();
 };
 
-User.findByToken = async function (token) {
+Host.findByToken = async function (token) {
     try {
         const { id } = await jwt.verify(token, process.env.JWT);
-        const user = User.findByPk(id);
-        if (!user) {
-            throw "You are not a user. Register Please. Can change this later";
+        const host = Host.findByPk(id);
+        if (!host) {
+            throw "You are not a host. Register Please. Can change this later";
         }
-        return user;
+        return host;
     } catch (ex) {
         const error = Error("bad token");
         error.status = 401;
@@ -79,13 +79,13 @@ User.findByToken = async function (token) {
 /**
  * hooks
  */
-const hashPassword = async user => {
+const hashPassword = async host => {
     //in case the password has been changed, we want to encrypt it with bcrypt
-    if (user.changed("password")) {
-        user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+    if (host.changed("password")) {
+        host.password = await bcrypt.hash(host.password, SALT_ROUNDS);
     }
 };
 
-User.beforeCreate(hashPassword);
-User.beforeUpdate(hashPassword);
-User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)));
+Host.beforeCreate(hashPassword);
+Host.beforeUpdate(hashPassword);
+Host.beforeBulkCreate(hosts => Promise.all(hosts.map(hashPassword)));

@@ -16,12 +16,12 @@ const Tag = db.define("tag", {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEMpty: true,
+      notEmpty: true,
       isUrl: true
     }
   },
   position: {
-    type: Sequelize.ARRAY,
+    type: Sequelize.ARRAY(Sequelize.DECIMAL),
     allowNull: false,
     validate: {
       notEmpty: true

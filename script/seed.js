@@ -62,21 +62,25 @@ const tagsData = [
     title: 'Spade',
     description: 'Ace of spades',
     imageUrl: "https://media.istockphoto.com/photos/playing-card-ace-of-spades-picture-id166086175?k=20&m=166086175&s=612x612&w=0&h=07Kyk1dMYcgi_UPUKnSsv-mkZ1wg6UIlQRIoyAtyq2I=",
+    position: [0, 0, -1],
   },
   {
     title: 'Heart',
     description: 'Ace of hearts',
     imageUrl: "https://media.istockphoto.com/photos/ace-of-hearts-playing-card-on-white-background-picture-id166089289?k=20&m=166089289&s=612x612&w=0&h=IdC9kvm9EyDUXNL1IyGA6Rl-5qnLTeBVl-oifUSFJL8=",
+    position: [0, 0, -1],
   },
   {
     title: 'Diamonds',
     description: 'Ace of diamonds',
     imageUrl: "https://media.istockphoto.com/photos/ace-of-diamonds-picture-id624179566?k=20&m=624179566&s=612x612&w=0&h=Bcr-s_68-xOY2kKljKS0zW7Zi3fcnwCRgQHCMRpUQk0=",
+    position: [0, 0, -1],
   },
   {
     title: 'Clubs',
     description: 'Ace of clubs',
     imageUrl: "https://media.istockphoto.com/photos/playing-card-ace-of-clubs-picture-id164002847?k=20&m=164002847&s=612x612&w=0&h=g9focAcWYb3AnziyyV_KE6K66fR6sCvlmEZkuJ-c0qE=",
+    position: [0, 0, -1],
   },
 ]
 
@@ -98,6 +102,21 @@ const locationsData = [
     houseImg: 'https://media.istockphoto.com/photos/playing-card-two-of-hearts-picture-id166089272?k=20&m=166089272&s=612x612&w=0&h=zODXUL-8g-CyRao9P2yO1ESSxnBc7EOminanb9sjctY='
   }
 ]
+
+// const cards = [
+//   {
+//     card: 'two of clubs',
+//     image: 'https://media.istockphoto.com/photos/playing-card-two-of-clubs-picture-id149138132?k=20&m=149138132&s=612x612&w=0&h=RiFclzYIk14Dcp9aBG5DFGOEp5cr2birsxH-lWIy758='
+//   },
+//   {
+//     card: 'two of hearts',
+//     image: 'https://media.istockphoto.com/photos/playing-card-two-of-hearts-picture-id166089272?k=20&m=166089272&s=612x612&w=0&h=zODXUL-8g-CyRao9P2yO1ESSxnBc7EOminanb9sjctY='
+//   },
+//   {
+//     card: 'two of spades',
+//     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Playing_card_spade_2.svg/1200px-Playing_card_spade_2.svg.png'
+//   }
+// ]
 
 async function seed() {
   await db.sync({ force: true });
@@ -127,16 +146,17 @@ async function seed() {
     })
   );
 
-  hosts.map(host => {
-    await host.setLocation(locations[Math.floor(Math.random() * 4)])
-    
-  })
+  locations[0].addTag(tags[0])
+  locations[0].addTag(tags[1])
+  locations[2].addTag(tags[2])
+  locations[3].addTag(tags[3])
 
-  locations.map(location => {
-    await location.setTags([tags[Math.floor(Math.random() * 4)], tags[Math.floor(Math.random() * 4)]]);
-  })
+  hosts[0].addLocation(locations[0])
+  hosts[0].addLocation(locations[1])
+  hosts[1].addLocation(locations[2])
+  hosts[2].addLocation(locations[3])
 
-  
+
 
 
 
