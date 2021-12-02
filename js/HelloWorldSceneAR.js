@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 
 
 import {
@@ -68,18 +68,20 @@ export default class HelloWorldSceneAR extends Component {
             text="Logo Info" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
-          <ViroFlexView dragType="FixedDistance" onDrag={() => { }} position={[0, 1, 0]} rotation={[0, 0, 0]}  height={.4} width={.6} style={styles.contactInfo}
+          <ViroFlexView dragType="FixedDistance" opacity={0.90}
             onDrag={(fixedDistance, fixedToWorld) => {
               this.state.position = this.setState({
                 position: fixedDistance
               });
-            }}>
+            }}
+            position={[0, 1, 0]} rotation={[-50, 0, 0]}
+            height={.2} width={.3} style={styles.contactInfo}
+            >
             <ViroText
-            textAlign='center'
+            textAlign='center' textClipMode="None"
             style={styles.contactText} position={[.00, .1, 0]}
             scale={[0.014, 0.014, 0]} height={1} width={6}
-            textClipMode="None"
-            text="Remeber to drink water!"
+            text="Remember to drink water!"
             />
           </ViroFlexView >
         </ViroARImageMarker>
@@ -98,11 +100,10 @@ export default class HelloWorldSceneAR extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   contactInfo: {
-
-    backgroundColor: '#808080',
-    // opacity: 0.90,
+    backgroundColor: '#DCDCDC',
     flex: 1,
     flexDirection: 'row'
   },
@@ -110,9 +111,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 300,
     fontWeight: '600',
-    // textShadowOffset: { width: 2, height: 2 },
-    // textShadowRadius: 1,
-    // textShadowColor: '#000',
   },
 });
 
@@ -142,7 +140,7 @@ ViroARTrackingTargets.createTargets({
   "targetThree": {
     source: require('./res/BottleIcon.jpeg'),
     orientation: "Up",
-    physicalWidth: 0.3 // real world width in meters
+    physicalWidth: 0.2 // real world width in meters
   },
 });
 
