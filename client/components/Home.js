@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, Button, ImageBackground, TouchableOpacity } from 'react-native';
 
 // class Home extends Component {
 //   constructor() {
@@ -38,16 +38,33 @@ class Home extends Component {
           <Text style={styles.title}>Tagd</Text>
           {/* <Button>Button</Button> */}
           <View style={styles.descriptionView}>
-            <Text style={styles.descriptionText}>Explore AR Easy</Text>
+            <Text style={styles.descriptionText}>Discover AR Easy</Text>
           </View>
         </ImageBackground>
+        <View style={styles.loginView}>
+          <TouchableOpacity onPress={() => {
+            this.props.logIn()
+          }}>
+            <View style={styles.loginButton}>
+              <Text style={styles.loginText}>Log in</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.signupView}>
+          <TouchableOpacity onPress={() => {
+            this.props.signUp()
+          }}>
+            <View style={styles.signupButton}>
+              <Text style={styles.signupText}>Don't have an account? Sign up</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
 }
 
 export default Home;
-module.exports  = Home;
 
 const styles = StyleSheet.create({
   image: {
@@ -77,5 +94,41 @@ const styles = StyleSheet.create({
     color: '#008080',
     fontSize: 16,
     fontWeight: 'bold',
-  }
+  },
+  loginView: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingTop: 50,
+    marginBottom: 30
+  },
+  loginButton: {
+    height: 60,
+    marginHorizontal: 20,
+    backgroundColor: '#008080',
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  loginText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  signupView: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginTop: 50
+  },
+  signupButton: {
+    height: 60,
+    marginHorizontal: 20,
+    backgroundColor: 'white',
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  signupText: {
+    color: '#008080',
+    fontSize: 16,
+  },
 })
