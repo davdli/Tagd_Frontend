@@ -13,8 +13,20 @@ const Tag = db.define("tag", {
     type: Sequelize.TEXT,
   },
   imageUrl: {
-    type: Sequelize.STRING || Sequelize.BLOB,
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      isUrl: true
+    }
   },
+  position: {
+    type: Sequelize.ARRAY(Sequelize.DECIMAL),
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  }
 })
 
 module.exports = Tag;

@@ -1,32 +1,28 @@
 'use strict'
 
 const db = require('../server/db/db')
-const {models: {User, Location, Tag}} = require('../server/db')
+const { models: { User, Location, Tag, Host } } = require('../server/db')
 
 const usersData = [
   {
-    type: 'Host',
     firstName: 'Tai',
     lastName: 'Stack',
     email: 'tai@email.com',
     password: '123'
   },
   {
-    type: 'Host',
     firstName: 'David',
     lastName: 'Stack',
     email: 'david@email.com',
     password: 'abc'
   },
   {
-    type: 'Guest',
     firstName: 'Greg',
     lastName: 'Stack',
     email: 'greg@email.com',
     password: '123'
   },
   {
-    type: 'Guest',
     firstName: 'Tony',
     lastName: 'Stack',
     email: 'tony@email.com',
@@ -34,67 +30,107 @@ const usersData = [
   }
 ]
 
+const hostData = [
+  {
+    firstName: 'Drew',
+    lastName: 'Stack',
+    email: 'drew@email.com',
+    password: '123'
+  },
+  {
+    firstName: 'Sarah',
+    lastName: 'Stack',
+    email: 'sarah@email.com',
+    password: 'abc'
+  },
+  {
+    firstName: 'Omar',
+    lastName: 'Stack',
+    email: 'omar@email.com',
+    password: '123'
+  },
+  {
+    firstName: 'Joe',
+    lastName: 'Stack',
+    email: 'joe@email.com',
+    password: '123'
+  }
+]
+
 const tagsData = [
   {
-    title: 'Masks',
-    description: 'COVID19 Masks',
-    userId: 1,
-    imageUrl: "https://drive.google.com/file/d/1bK7kW1Je_9UhxsfiUG4tHI13olbNdR4v/view?usp=sharing",
+    title: 'Spade',
+    description: 'Ace of spades',
+    imageUrl: "https://media.istockphoto.com/photos/playing-card-ace-of-spades-picture-id166086175?k=20&m=166086175&s=612x612&w=0&h=07Kyk1dMYcgi_UPUKnSsv-mkZ1wg6UIlQRIoyAtyq2I=",
+    position: [0, 0, -1],
   },
   {
-    title: 'Logo',
-    description: 'logo',
-    userId: 2,
-    imageUrl: "https://drive.google.com/file/d/1JHCvDopJTBzooddciU0x-qnwZOSfW9-5/view?usp=sharing",
+    title: 'Heart',
+    description: 'Ace of hearts',
+    imageUrl: "https://media.istockphoto.com/photos/ace-of-hearts-playing-card-on-white-background-picture-id166089289?k=20&m=166089289&s=612x612&w=0&h=IdC9kvm9EyDUXNL1IyGA6Rl-5qnLTeBVl-oifUSFJL8=",
+    position: [0, 0, -1],
   },
   {
-    title: 'Cup',
-    description: 'cup',
-    userId: 3,
-    imageUrl: "https://drive.google.com/file/d/1A2JU7pjUoFsWIujiwboH1rnWONtNEiWk/view?usp=sharing",
+    title: 'Diamonds',
+    description: 'Ace of diamonds',
+    imageUrl: "https://media.istockphoto.com/photos/ace-of-diamonds-picture-id624179566?k=20&m=624179566&s=612x612&w=0&h=Bcr-s_68-xOY2kKljKS0zW7Zi3fcnwCRgQHCMRpUQk0=",
+    position: [0, 0, -1],
   },
   {
-    title: 'Hat',
-    description: 'hat',
-    userId: 4,
-    imageUrl: "https://drive.google.com/file/d/1t7Zo43k713bzljTT5gKPBQGCJp671w9-/view?usp=sharing",
+    title: 'Clubs',
+    description: 'Ace of clubs',
+    imageUrl: "https://media.istockphoto.com/photos/playing-card-ace-of-clubs-picture-id164002847?k=20&m=164002847&s=612x612&w=0&h=g9focAcWYb3AnziyyV_KE6K66fR6sCvlmEZkuJ-c0qE=",
+    position: [0, 0, -1],
   },
 ]
 
 const locationsData = [
   {
     name: 'TaiHome',
-    address: 'VA',
-    userId: 1,
-    tagId: 1
+    houseImg: 'https://media.istockphoto.com/photos/playing-card-two-of-clubs-picture-id149138132?k=20&m=149138132&s=612x612&w=0&h=RiFclzYIk14Dcp9aBG5DFGOEp5cr2birsxH-lWIy758=',
   },
   {
     name: 'DavidHome',
-    address: 'NY',
-    userId: 2,
-    tagId: 2
+    houseImg: 'https://media.istockphoto.com/photos/playing-card-two-of-hearts-picture-id166089272?k=20&m=166089272&s=612x612&w=0&h=zODXUL-8g-CyRao9P2yO1ESSxnBc7EOminanb9sjctY=',
   },
   {
     name: 'GregHome',
-    address: 'NJ',
-    userId: 3,
-    tagId: 3
+    houseImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Playing_card_spade_2.svg/1200px-Playing_card_spade_2.svg.png',
   },
   {
     name: 'TonyHome',
-    address: 'PA',
-    userId: 4,
-    tagId: 4
+    houseImg: 'https://media.istockphoto.com/photos/playing-card-two-of-hearts-picture-id166089272?k=20&m=166089272&s=612x612&w=0&h=zODXUL-8g-CyRao9P2yO1ESSxnBc7EOminanb9sjctY='
   }
 ]
 
+// const cards = [
+//   {
+//     card: 'two of clubs',
+//     image: 'https://media.istockphoto.com/photos/playing-card-two-of-clubs-picture-id149138132?k=20&m=149138132&s=612x612&w=0&h=RiFclzYIk14Dcp9aBG5DFGOEp5cr2birsxH-lWIy758='
+//   },
+//   {
+//     card: 'two of hearts',
+//     image: 'https://media.istockphoto.com/photos/playing-card-two-of-hearts-picture-id166089272?k=20&m=166089272&s=612x612&w=0&h=zODXUL-8g-CyRao9P2yO1ESSxnBc7EOminanb9sjctY='
+//   },
+//   {
+//     card: 'two of spades',
+//     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Playing_card_spade_2.svg/1200px-Playing_card_spade_2.svg.png'
+//   }
+// ]
+
 async function seed() {
-  await db.sync({force: true});
+  await db.sync({ force: true });
   console.log('db synced!');
 
   const users = await Promise.all(
     usersData.map(user => {
       return User.create(user)
+    })
+  );
+
+  const hosts = await Promise.all(
+    hostData.map(host => {
+      return Host.create(host)
     })
   );
 
@@ -110,9 +146,24 @@ async function seed() {
     })
   );
 
+  locations[0].addTag(tags[0])
+  locations[0].addTag(tags[1])
+  locations[2].addTag(tags[2])
+  locations[3].addTag(tags[3])
+
+  hosts[0].addLocation(locations[0])
+  hosts[0].addLocation(locations[1])
+  hosts[1].addLocation(locations[2])
+  hosts[2].addLocation(locations[3])
+
+
+
+
+
   return {
     users,
     tags,
+    hosts,
     locations
   }
 }

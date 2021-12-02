@@ -7,15 +7,6 @@ const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 5;
 
 const User = db.define("user", {
-  type: {
-    type: Sequelize.STRING,
-    defaultValue: 'Guest',
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      isIn: [['Guest', 'Host']]
-    }
-  },
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
