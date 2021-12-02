@@ -146,19 +146,17 @@ async function seed() {
     })
   );
 
+
+
   locations[0].addTag(tags[0])
-  locations[0].addTag(tags[1])
+  locations[1].addTag(tags[1])
   locations[2].addTag(tags[2])
   locations[3].addTag(tags[3])
 
   hosts[0].addLocation(locations[0])
-  hosts[0].addLocation(locations[1])
-  hosts[1].addLocation(locations[2])
-  hosts[2].addLocation(locations[3])
-
-
-
-
+  hosts[1].addLocation(locations[1])
+  hosts[2].addLocation(locations[2])
+  hosts[3].addLocation(locations[3])
 
   return {
     users,
@@ -168,9 +166,6 @@ async function seed() {
   }
 }
 
-// We've separated the `seed` function from the `runSeed` function.
-// This way we can isolate the error handling and exit trapping.
-// The `seed` function is concerned only with modifying the database.
 async function runSeed() {
   console.log('seeding...')
   try {
@@ -178,11 +173,7 @@ async function runSeed() {
   } catch (err) {
     console.error(err)
     process.exitCode = 1
-  } finally {
-    console.log('closing db connection')
-    await db.close();
-    console.log('db connection closed')
-  }
+    }
 }
 
 // Execute the `seed` function, IF we ran this module directly (`node seed`).

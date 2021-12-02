@@ -26,7 +26,7 @@ const Tag = db.define("tag", {
     validate: {
       notEmpty: true
     }
-  }
+  },
 })
 
 module.exports = Tag;
