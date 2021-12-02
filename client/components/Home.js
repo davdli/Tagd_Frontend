@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button, ImageBackground, Pressable } from 'react-native';
+import { StyleSheet, View, Text, Button, ImageBackground } from 'react-native';
 
 // class Home extends Component {
 //   constructor() {
@@ -36,10 +36,10 @@ class Home extends Component {
           source={require('../../js/res/HomeImage.jpeg')}
           style={styles.image}>
           <Text style={styles.title}>Tagd</Text>
-          {/* <Pressable
-            style={styles.button}>
-            <Text style={styles.buttonText}>Explore Augmented Reality</Text>
-          </Pressable> */}
+          {/* <Button>Button</Button> */}
+          <View style={styles.descriptionView}>
+            <Text style={styles.descriptionText}>Explore AR Easy</Text>
+          </View>
         </ImageBackground>
       </View>
     )
@@ -47,6 +47,7 @@ class Home extends Component {
 }
 
 export default Home;
+module.exports  = Home;
 
 const styles = StyleSheet.create({
   image: {
@@ -62,17 +63,19 @@ const styles = StyleSheet.create({
     width: '70%',
     marginLeft: 25
   },
-  // button: {
-  //   backgroundColor: 'white',
-  //   width: 200,
-  //   height: 40,
-  //   borderRadius: 10,
-  //   marginTop: 25,
-  //   marginLeft: 25,
-  //   justifyContent: 'center',
-  // },
-  // buttonText: {
-  //   fontSize: 16,
-  //   fontWeight: 'bold',
-  // }
+  descriptionView: {
+    backgroundColor: 'white',
+    width: 200,
+    height: 40,
+    borderRadius: 10,
+    marginTop: 25,
+    marginLeft: 25,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  descriptionText: {
+    color: '#008080',
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
 })
