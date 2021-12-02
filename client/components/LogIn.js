@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+//import LinearGradient from 'react-native-linear-gradient';
 
 class LogIn extends Component {
   constructor() {
@@ -12,27 +13,29 @@ class LogIn extends Component {
   render() {
     return (
       <View style={localStyles.loginContainer} >
-        <Text style={localStyles.titleText} >Tagd</Text>
-        <TextInput
-          placeholder="Email"
-          style={localStyles.textInput}
-          onChangeText={text => this.setState({
-            email: text
-          })}
-        />
-
-        <TextInput
-          placeholder="Password"
-          style={localStyles.textInput}
-          onChangeText={text => this.setState({
-            password: text
-          })}
-        />
-
-
-        <View onPress={this.props.selectType} style={flex = 1} >
-          <Text style={localStyles.loginButton} >Login</Text>
+        <Text style={localStyles.titleText} >TAGD</Text>
+        <View style={localStyles.inputContainer} >
+          <TextInput
+            placeholder="Email"
+            style={localStyles.textInput}
+            onChangeText={text => this.setState({
+              email: text
+            })}
+          />
         </View>
+        <View style={localStyles.inputContainer} >
+          <TextInput
+            placeholder="Password"
+            style={localStyles.textInput}
+            onChangeText={text => this.setState({
+              password: text
+            })}
+          />
+        </View>
+
+        <TouchableOpacity onPress={this.props.selectType} style={localStyles.loginButton} >
+          <Text style={localStyles.loginButtonText} >Login</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -44,6 +47,9 @@ const localStyles = StyleSheet.create({
     flex: 1,
     alignItems: 'center'
   },
+  // linearGradient: {
+  //   flex: 1
+  // },
   outer: {
     flex: 1,
     flexDirection: 'row',
@@ -61,7 +67,8 @@ const localStyles = StyleSheet.create({
     paddingBottom: 20,
     color: '#fff',
     textAlign: 'center',
-    fontSize: 25
+    fontSize: 40,
+    paddingTop: 80
   },
   buttonText: {
     color: '#fff',
@@ -93,20 +100,39 @@ const localStyles = StyleSheet.create({
     borderColor: '#fff',
   },
 
-  loginButton: {
+  loginButtonText: {
     color: '#fff',
+    fontSize: 20,
+  },
+
+  loginButton: {
+    width: '85%',
+    height: 45,
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: '#616161',
+    justifyContent: 'center',
+    marginTop: 35,
+    borderRadius: 12,
   },
 
   textInput: {
     width: '85%',
     height: 40,
     borderWidth: 1,
-    color: 'green',
+    color: 'white',
+    fontSize: 18,
     backgroundColor: '#008080',
     borderBottomColor: '#fff',
     borderLeftColor: '#008080',
     borderRightColor: '#008080',
     borderTopColor: '#008080',
+  },
+  inputContainer: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: '100%',
+    alignItems: 'center',
   }
 });
 
