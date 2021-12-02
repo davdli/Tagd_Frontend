@@ -68,20 +68,18 @@ export default class HelloWorldSceneAR extends Component {
             text="Logo Info" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
-          <ViroFlexView dragType="FixedDistance" onDrag={() => { }} position={[0, 0, 0]} rotation={[0, 20, 0]}  height={.4} width={.8} style={styles.contactInfo}
-          onDrag={(fixedDistance, fixedToWorld) => {
-            this.state.position = this.setState({
-              position: fixedDistance
-            });
-          }}>
-            <ViroText fontSize={20}
-            style={styles.contactText} position={[.00, .020, 0]}
-            scale={[0.014, 0.014, 0]} height={1} width={6}
-            materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-            textClipMode="None"
-            rotation={[-90, 0, 0]}
-            text="Remeber to drink water!"
+          <ViroFlexView dragType="FixedDistance" onDrag={() => { }} position={[0, 1, 0]} rotation={[0, 0, 0]}  height={.4} width={.6} style={styles.contactInfo}
+            onDrag={(fixedDistance, fixedToWorld) => {
+              this.state.position = this.setState({
+                position: fixedDistance
+              });
+            }}>
+            <ViroText
             textAlign='center'
+            style={styles.contactText} position={[.00, .1, 0]}
+            scale={[0.014, 0.014, 0]} height={1} width={6}
+            textClipMode="None"
+            text="Remeber to drink water!"
             />
           </ViroFlexView >
         </ViroARImageMarker>
@@ -101,24 +99,17 @@ export default class HelloWorldSceneAR extends Component {
 }
 
 const styles = StyleSheet.create({
-  // boldFont: {
-  //      color: '#FFFFFF',
-  //      flex: 1,
-  //      textAlignVertical: 'center',
-  //      textAlign: 'center',
-  //      fontWeight: 'bold',
-  // },
   contactInfo: {
 
-    backgroundColor: '#D3D3D3',
+    backgroundColor: '#808080',
     // opacity: 0.90,
     flex: 1,
     flexDirection: 'row'
   },
   contactText: {
-    color: 'white',
-    fontSize: 50,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 300,
+    fontWeight: '600',
     // textShadowOffset: { width: 2, height: 2 },
     // textShadowRadius: 1,
     // textShadowColor: '#000',
