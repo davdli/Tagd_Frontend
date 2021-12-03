@@ -60,6 +60,7 @@ class SignUp extends React.Component {
           <TextInput
             style={localStyles.textInput}
             placeholder="password"
+            secureTextEntry={true}
             onChangeText={text => this.setState({
               password: text
             })}
@@ -68,10 +69,14 @@ class SignUp extends React.Component {
         </View>
         <View style={localStyles.centerTypeButtons}>
           <View style={localStyles.typeSelection} >
-            <TouchableOpacity style={localStyles.selectUserType} >
+            <TouchableOpacity style={localStyles.selectUserType} onPress={() => this.setState({
+              userType: 'host'
+            })} >
               <Text style={localStyles.signupButtonText} >Host</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={localStyles.selectUserType} >
+            <TouchableOpacity style={localStyles.selectUserType} onPress={() => this.setState({
+              userType: 'guest'
+            })} >
               <Text style={localStyles.signupButtonText} >Guest</Text>
             </TouchableOpacity>
           </View>
@@ -151,11 +156,13 @@ const localStyles = StyleSheet.create({
     alignItems: 'center'
   },
   selectUserType: {
-    width: "30%",
+    width: "40%",
     margin: 5,
-    height: 25,
+    height: 37,
     backgroundColor: '#804000',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
   },
   centerTypeButtons: {
     alignItems: 'center'

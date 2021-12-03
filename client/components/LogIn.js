@@ -31,6 +31,7 @@ class LogIn extends Component {
             <TextInput
               placeholder="Password"
               style={localStyles.textInput}
+              secureTextEntry={true}
               onChangeText={text => this.setState({
                 password: text
               })}
