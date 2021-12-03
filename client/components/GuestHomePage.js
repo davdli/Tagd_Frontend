@@ -17,23 +17,21 @@ class GuestHomePage extends Component {
 
   render() {
     return (
-      <View style={localStyles.guestHomePage} >
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} >
-          <Text style={localStyles.titleText} >Hello, Guest</Text>
-          <Text style={localStyles.personalInfo} >Personal Information</Text>
-          <View style={{ paddingBottom: 15, alignItems: 'center' }} >
-            <Text style={localStyles.infoType} >First Name</Text>
-            <Text style={localStyles.info} >{'User first name'}</Text>
-          </View>
-          <View style={{ paddingBottom: 15, alignItems: 'center' }} >
-            <Text style={localStyles.infoType} >Last Name</Text>
-            <Text style={localStyles.info} >{'User last name'}</Text>
-          </View>
-          <View style={{ paddingBottom: 15, alignItems: 'center' }} >
-            <Text style={localStyles.infoType} >Email</Text>
-            <Text style={localStyles.info} >{'User email'}</Text>
-          </View>
-        </TouchableWithoutFeedback>
+      <View style={localStyles.guestHomePage} onPress={() => Keyboard.dismiss()} >
+        <Text style={localStyles.titleText} onPress={() => Keyboard.dismiss()} >Hello, Guest</Text>
+        <Text style={localStyles.personalInfo} onPress={() => Keyboard.dismiss()} >Personal Information</Text>
+        <View style={{ paddingBottom: 15, alignItems: 'center' }} >
+          <Text style={localStyles.infoType} onPress={() => Keyboard.dismiss()} >First Name</Text>
+          <Text style={localStyles.info} onPress={() => Keyboard.dismiss()} >{'User first name'}</Text>
+        </View>
+        <View style={{ paddingBottom: 15, alignItems: 'center' }} >
+          <Text style={localStyles.infoType} >Last Name</Text>
+          <Text style={localStyles.info} >{'User last name'}</Text>
+        </View>
+        <View style={{ paddingBottom: 15, alignItems: 'center' }} >
+          <Text style={localStyles.infoType} >Email</Text>
+          <Text style={localStyles.info} >{'User email'}</Text>
+        </View>
         <View style={localStyles.hostKey} >
           <Text style={{ color: '#fff', fontSize: 25 }} >Enter Host Key</Text>
           <View style={localStyles.inputContainer} >
