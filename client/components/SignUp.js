@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { Text, View, TextInput, Button, StyleSheet } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button } from 'react-native'
 
 class SignUp extends React.Component {
   constructor() {
@@ -10,139 +10,155 @@ class SignUp extends React.Component {
       lastName: '',
       email: '',
       password: '',
+      userType: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onPressSelectUser = this.onPressSelectUser.bind(this);
   }
 
-  handleSubmit() {
-
-  }
+  onPressSelectUser(type) {
+    this.setState({ userType: type })
+  };
 
   render() {
     return (
-      <View>
-        <TextInput
-          style={localStyles.textInput}
-          placeholder="firstName"
-          onChangeText={text => this.setState({
-            firstName: text
-          })}
-          defaultValue={''}
-        />
-        <Text>{"\n"}</Text>
-
-        <TextInput
-          style={localStyles.textInput}
-          placeholder="lastName"
-          onChangeText={text => this.setState({
-            lastName: text
-          })}
-          defaultValue={''}
-        />
-
-        <Text>{"/n"}</Text>
-
-        <TextInput
-          style={localStyles.textInput}
-          placeholder="email"
-          onChangeText={text => this.setState({
-            email: text
-          })}
-          defaultValue={''}
-        />
-
-        <Text>{"/n"}</Text>
-
-        <TextInput
-          style={localStyles.textInput}
-          placeholder="password"
-          onChangeText={text => this.setState({
-            password: text
-          })}
-          defaultValue={''}
-        />
-
-        <Text>{"/n"}</Text>
-        <Button
-          onPress={this.props.selectType}
-          title="Submit"
-        />
-
-      </View>
+      <View style={localStyles.signupContainer} >
+        <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton} >
+          <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Back'}</Text>
+        </TouchableOpacity>
+        <Text style={localStyles.titleText} >TAGD</Text>
+        <View style={localStyles.inputContainer} >
+          <TextInput
+            style={localStyles.textInput}
+            placeholder="firstName"
+            onChangeText={text => this.setState({
+              firstName: text
+            })}
+            defaultValue={''}
+          />
+        </View>
+        <View style={localStyles.inputContainer} >
+          <TextInput
+            style={localStyles.textInput}
+            placeholder="lastName"
+            onChangeText={text => this.setState({
+              lastName: text
+            })}
+            defaultValue={''}
+          />
+        </View>
+        <View style={localStyles.inputContainer} >
+          <TextInput
+            style={localStyles.textInput}
+            placeholder="email"
+            onChangeText={text => this.setState({
+              email: text
+            })}
+            defaultValue={''}
+          />
+        </View>
+        <View style={localStyles.inputContainer} >
+          <TextInput
+            style={localStyles.textInput}
+            placeholder="password"
+            onChangeText={text => this.setState({
+              password: text
+            })}
+            defaultValue={''}
+          />
+        </View>
+        <View style={localStyles.centerTypeButtons}>
+          <View style={localStyles.typeSelection} >
+            <TouchableOpacity style={localStyles.selectUserType} >
+              <Text style={localStyles.signupButtonText} >Host</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={localStyles.selectUserType} >
+              <Text style={localStyles.signupButtonText} >Guest</Text>
+            </TouchableOpacity>
+          </View>
+          <Text>{this.state.userType}</Text>
+          <TouchableOpacity onPress={this.props.selectType} style={localStyles.signupButton} >
+            <Text style={localStyles.signupButtonText} >Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View >
     )
   }
 
 }
 
-const mapState = state => {
-
-}
-
-const mapProps = () => {
-
-}
-
 const localStyles = StyleSheet.create({
-  viroContainer: {
-    flex: 1,
-    backgroundColor: "black",
-  },
-  outer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: "black",
-  },
-  inner: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: "black",
-  },
   titleText: {
-    paddingTop: 30,
     paddingBottom: 20,
     color: '#fff',
     textAlign: 'center',
-    fontSize: 25
+    fontSize: 40,
   },
-  buttonText: {
+  signupContainer: {
+    backgroundColor: "#008080",
+    flex: 1,
+  },
+  backHomeButton: {
+    width: '20%',
+    height: 45,
+    alignItems: 'center',
+    backgroundColor: '#008080',
+    justifyContent: 'center',
+    marginTop: 15,
+    marginLeft: 15,
+    borderRadius: 12,
+  },
+  backButtonText: {
     color: '#fff',
-    textAlign: 'center',
-    fontSize: 20
+    fontSize: 20,
   },
-  buttons: {
-    height: 80,
-    width: 150,
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-  exitButton: {
-    height: 50,
-    width: 100,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-
   textInput: {
     width: '85%',
     height: 40,
-    textAlign: 'center',
     borderWidth: 1,
-    borderColor: '#FF9800',
-    backgroundColor: '#fff',
+    color: 'white',
+    fontSize: 18,
+    backgroundColor: '#008080',
+    borderBottomColor: '#fff',
+    borderLeftColor: '#008080',
+    borderRightColor: '#008080',
+    borderTopColor: '#008080',
+  },
+  inputContainer: {
+    paddingTop: 18,
+    paddingBottom: 18,
+    width: '100%',
+    alignItems: 'center',
+  },
+  signupButton: {
+    width: '85%',
+    height: 45,
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: '#616161',
+    justifyContent: 'center',
+    marginTop: 35,
+    borderRadius: 12,
+  },
+  signupButtonText: {
+    color: '#fff',
+    fontSize: 20,
+  },
+  //   signupButtonText:active {
+  //   backgroundColor: '#e5e5e5',
+  // },
+  typeSelection: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  selectUserType: {
+    width: "30%",
+    margin: 5,
+    height: 25,
+    backgroundColor: '#804000',
+    alignItems: 'center'
+  },
+  centerTypeButtons: {
+    alignItems: 'center'
   }
 });
 
