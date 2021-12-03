@@ -13,29 +13,34 @@ class LogIn extends Component {
   render() {
     return (
       <View style={localStyles.loginContainer} >
-        <Text style={localStyles.titleText} >TAGD</Text>
-        <View style={localStyles.inputContainer} >
-          <TextInput
-            placeholder="Email"
-            style={localStyles.textInput}
-            onChangeText={text => this.setState({
-              email: text
-            })}
-          />
-        </View>
-        <View style={localStyles.inputContainer} >
-          <TextInput
-            placeholder="Password"
-            style={localStyles.textInput}
-            onChangeText={text => this.setState({
-              password: text
-            })}
-          />
-        </View>
-
-        <TouchableOpacity onPress={this.props.selectType} style={localStyles.loginButton} >
-          <Text style={localStyles.loginButtonText} >Login</Text>
+        <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton} >
+          <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Back'}</Text>
         </TouchableOpacity>
+        <View style={localStyles.bellowBack} >
+          <Text style={localStyles.titleText} >TAGD</Text>
+          <View style={localStyles.inputContainer} >
+            <TextInput
+              placeholder="Email"
+              style={localStyles.textInput}
+              onChangeText={text => this.setState({
+                email: text
+              })}
+            />
+          </View>
+          <View style={localStyles.inputContainer} >
+            <TextInput
+              placeholder="Password"
+              style={localStyles.textInput}
+              onChangeText={text => this.setState({
+                password: text
+              })}
+            />
+          </View>
+
+          <TouchableOpacity onPress={this.props.selectType} style={localStyles.loginButton} >
+            <Text style={localStyles.loginButtonText} >Login</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -45,6 +50,8 @@ const localStyles = StyleSheet.create({
   loginContainer: {
     backgroundColor: "#008080",
     flex: 1,
+  },
+  bellowBack: {
     alignItems: 'center'
   },
   // linearGradient: {
@@ -63,12 +70,11 @@ const localStyles = StyleSheet.create({
     backgroundColor: "black",
   },
   titleText: {
-    paddingTop: 30,
     paddingBottom: 20,
     color: '#fff',
     textAlign: 'center',
     fontSize: 40,
-    paddingTop: 80
+    paddingTop: 60
   },
   buttonText: {
     color: '#fff',
@@ -105,6 +111,11 @@ const localStyles = StyleSheet.create({
     fontSize: 20,
   },
 
+  backButtonText: {
+    color: '#fff',
+    fontSize: 20,
+  },
+
   loginButton: {
     width: '85%',
     height: 45,
@@ -113,6 +124,17 @@ const localStyles = StyleSheet.create({
     backgroundColor: '#616161',
     justifyContent: 'center',
     marginTop: 35,
+    borderRadius: 12,
+  },
+
+  backHomeButton: {
+    width: '20%',
+    height: 45,
+    alignItems: 'center',
+    backgroundColor: '#008080',
+    justifyContent: 'center',
+    marginTop: 15,
+    marginLeft: 15,
     borderRadius: 12,
   },
 
