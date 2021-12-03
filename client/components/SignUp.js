@@ -68,10 +68,10 @@ class SignUp extends React.Component {
         </View>
         <View style={localStyles.centerTypeButtons}>
           <View style={localStyles.typeSelection} >
-            <TouchableOpacity style={localStyles.selectUserType} onPress={this.onPressSelectUser('host')} >
+            <TouchableOpacity style={localStyles.selectUserType} >
               <Text style={localStyles.signupButtonText} >Host</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={localStyles.selectUserType} onPress={this.onPressSelectUser('guest')} >
+            <TouchableOpacity style={localStyles.selectUserType} >
               <Text style={localStyles.signupButtonText} >Guest</Text>
             </TouchableOpacity>
           </View>
