@@ -12,6 +12,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "ngrok": "^4.2.2",
     "pg": "^8.7.1",

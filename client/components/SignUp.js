@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button } from 'react-native'
+import { noExtendLeft } from 'sequelize/dist/lib/operators'
+import { createSingleUser } from '../store/reducers/users'
 
 class SignUp extends React.Component {
   constructor() {
@@ -12,11 +14,27 @@ class SignUp extends React.Component {
       password: '',
       userType: ''
     }
-    this.onPressSelectUser = this.onPressSelectUser.bind(this);
+    this.onPressSignup = this.onPressSignup.bind(this);
   }
 
-  onPressSelectUser(type) {
-    this.setState({ userType: type })
+  async onPressSignup() {
+    console.debug('text')
+    const newUser = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+      userType: this.state.userType
+    }
+    if (this.state.userType === 'host') {
+
+    } else if (this.state.userType === 'guest') {
+      try {
+        const newUser = await this.props.creatUser(newUser)
+      } catch (e) {
+        console.log(e)
+      }
+    }
   };
 
   render() {
@@ -81,7 +99,8 @@ class SignUp extends React.Component {
             </TouchableOpacity>
           </View>
           <Text>{this.state.userType}</Text>
-          <TouchableOpacity onPress={this.props.selectType} style={localStyles.signupButton} >
+          {/* this.props.selectType is used to get to select type page */}
+          <TouchableOpacity onPress={this.onPressSignup} style={localStyles.signupButton} >
             <Text style={localStyles.signupButtonText} >Sign Up</Text>
           </TouchableOpacity>
         </View>
@@ -168,5 +187,12 @@ const localStyles = StyleSheet.create({
     alignItems: 'center'
   }
 });
+
+mapDispatch = (dispatch) => {
+  return {
+    creatUser: (user) => { dispatch(createSingleUser(user)) },
+    createHost: () => { },
+  }
+}
 
 export default (SignUp)
