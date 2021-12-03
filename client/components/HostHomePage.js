@@ -1,29 +1,47 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { Text, View, TextInput, Button, StyleSheet } from 'react-native'
+import { Text, View, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native'
 
 class HostHomePage extends React.Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+            username: 'Guest' || this.props.firstName + ' ' + this.props.lastName,
+            icon: '',
+            title: '',
+            message: '',
+        }
     }
 
     render() {
+
         return (
-            <View>
-                <Text>TAGD</Text>
-                <Text>Welcome Back!</Text>
+            <View style={localStyles.hostHomePage} >
+                <Text style={localStyles.titleText} >{`Hello, ${this.state.username}`}</Text>
+                <Text style={localStyles.personalInfo} >Create a tag</Text>
                 <View>
-                    <Text>Menu</Text>
-                    <Button
-                        title="Camera View"
-                        onPress={this.props.hostAR} />
-                    <Button
-                        title="My Tags"
+                    <TextInput
+                        placeholder="title"
+                        style={localStyles.textInput}
+                        onChangeText={text => this.setState({
+                            title: text
+                        })}
                     />
-                    <Button
-                        title="Messages"
+                    <TextInput
+                        editable
+                        multiline
+                        maxLength={40}
+                        placeholder="description"
+                        style={localStyles.textInput}
+                        onChangeText={text => this.setState({
+                            message: text
+                        })}
                     />
+                    <TouchableOpacity style={localStyles.signupButton} >
+                        <Text style={localStyles.signupButtonText} >
+                            Create Tag
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -40,66 +58,90 @@ const mapProps = () => {
 }
 
 const localStyles = StyleSheet.create({
-    viroContainer: {
-        flex: 1,
-        backgroundColor: "black",
-    },
-    outer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: "black",
-    },
-    inner: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: "black",
-    },
     titleText: {
-        paddingTop: 30,
         paddingBottom: 20,
         color: '#fff',
         textAlign: 'center',
-        fontSize: 25
+        fontSize: 40,
+        marginTop: 15
     },
-    buttonText: {
+    hostHomePage: {
+        backgroundColor: "#008080",
+        flex: 1,
+        alignItems: 'center',
+        fontSize: 20,
+    },
+    personalInfo: {
+        color: '#fff',
+        fontSize: 30,
+        paddingBottom: 30,
+    },
+    infoType: {
+        fontSize: 25,
+        color: 'black',
+        textAlign: 'center',
+    },
+    info: {
+        fontSize: 25,
         color: '#fff',
         textAlign: 'center',
-        fontSize: 20
     },
-    buttons: {
-        height: 80,
-        width: 150,
-        paddingTop: 20,
-        paddingBottom: 20,
-        marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: '#68a0cf',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#fff',
-    },
-    exitButton: {
-        height: 50,
-        width: 100,
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: '#68a0cf',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#fff',
-    },
-
     textInput: {
         width: '85%',
         height: 40,
-        textAlign: 'center',
         borderWidth: 1,
-        borderColor: '#FF9800',
-        backgroundColor: '#fff',
+        color: 'white',
+        fontSize: 18,
+        backgroundColor: '#008080',
+        borderBottomColor: '#fff',
+        borderLeftColor: '#008080',
+        borderRightColor: '#008080',
+        borderTopColor: '#008080',
+    },
+    inputContainer: {
+        paddingTop: 18,
+        paddingBottom: 18,
+        width: '100%',
+        alignItems: 'center',
+    },
+    signupButton: {
+        width: '85%',
+        height: 45,
+        alignSelf: 'center',
+        alignItems: 'center',
+        backgroundColor: '#616161',
+        justifyContent: 'center',
+        marginTop: 35,
+        borderRadius: 12,
+    },
+    signupButtonText: {
+        color: '#fff',
+        fontSize: 20,
+    },
+    //   signupButtonText:active {
+    //   backgroundColor: '#e5e5e5',
+    // },
+    typeSelection: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    selectUserType: {
+        width: "40%",
+        margin: 5,
+        height: 37,
+        backgroundColor: '#804000',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 12,
+    },
+    centerTypeButtons: {
+        alignItems: 'center'
+    },
+    hostKey: {
+        position: 'absolute',
+        bottom: 0,
+        paddingBottom: 40,
+
     }
 });
 
