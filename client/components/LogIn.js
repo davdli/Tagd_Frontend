@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import { connect } from 'react-redux';
 
 class LogIn extends Component {
@@ -12,13 +12,13 @@ class LogIn extends Component {
   }
   render() {
     return (
-      <View style={localStyles.loginContainer} >
-        <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton} >
-          <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Back'}</Text>
+      <View style={localStyles.loginContainer}>
+        <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
+          <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Back'}</Text>
         </TouchableOpacity>
-        <View style={localStyles.bellowBack} >
-          <Text style={localStyles.titleText} >Log in with email</Text>
-          <View style={localStyles.inputContainer} >
+        <View style={localStyles.bellowBack}>
+          <Text style={localStyles.titleText}>Log in with email</Text>
+          <View style={localStyles.inputContainer}>
             <TextInput
               placeholder="Email" placeholderTextColor={'white'}
               style={localStyles.textInput}
@@ -27,7 +27,7 @@ class LogIn extends Component {
               })}
             />
           </View>
-          <View style={localStyles.inputContainer} >
+          <View style={localStyles.inputContainer}>
             <TextInput
               placeholder="Password" placeholderTextColor={'white'}
               style={localStyles.textInput}
@@ -38,14 +38,31 @@ class LogIn extends Component {
             />
           </View>
 
-          <TouchableOpacity onPress={this.props.selectType} style={localStyles.loginButton} >
-            <Text style={localStyles.loginButtonText} >Log in</Text>
+          <TouchableOpacity onPress={this.props.guestPage} style={localStyles.loginButton}>
+            <Text style={localStyles.loginButtonText}>Log in</Text>
           </TouchableOpacity>
         </View>
       </View>
     )
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     user: state.user
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     // backHome: () => {
+//     //   dispatch({ type: 'BACK_HOME' })
+//     // },
+//     // selectType: () => {
+//     //   dispatch({ type: 'LOGIN', email: this.state.email, password: this.state.password })
+//     // }
+//   }
+// }
 
 const localStyles = StyleSheet.create({
   loginContainer: {
@@ -156,22 +173,5 @@ const localStyles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-mapStateToProps = (state) => {
-  return {
-    user: state.user
-  }
-}
-
-mapDispatchToProps = (dispatch) => {
-  return {
-    backHome: () => {
-      dispatch({ type: 'BACK_HOME' })
-    },
-    selectType: () => {
-      dispatch({ type: 'LOGIN', email: this.state.email, password: this.state.password })
-    }
-  }
-}
 
 export default LogIn;
