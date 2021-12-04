@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
 
 class LogIn extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       email: '',
@@ -155,5 +156,22 @@ const localStyles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+mapDispatchToProps = (dispatch) => {
+  return {
+    backHome: () => {
+      dispatch({ type: 'BACK_HOME' })
+    },
+    selectType: () => {
+      dispatch({ type: 'LOGIN', email: this.state.email, password: this.state.password })
+    }
+  }
+}
 
 export default LogIn;
