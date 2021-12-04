@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-//import LinearGradient from 'react-native-linear-gradient';
 
 class LogIn extends Component {
   constructor() {
@@ -17,10 +16,10 @@ class LogIn extends Component {
           <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Back'}</Text>
         </TouchableOpacity>
         <View style={localStyles.bellowBack} >
-          <Text style={localStyles.titleText} >TAGD</Text>
+          <Text style={localStyles.titleText} >Log in with email</Text>
           <View style={localStyles.inputContainer} >
             <TextInput
-              placeholder="Email"
+              placeholder="Email" placeholderTextColor={'white'}
               style={localStyles.textInput}
               onChangeText={text => this.setState({
                 email: text
@@ -29,7 +28,7 @@ class LogIn extends Component {
           </View>
           <View style={localStyles.inputContainer} >
             <TextInput
-              placeholder="Password"
+              placeholder="Password" placeholderTextColor={'white'}
               style={localStyles.textInput}
               secureTextEntry={true}
               onChangeText={text => this.setState({
@@ -39,7 +38,7 @@ class LogIn extends Component {
           </View>
 
           <TouchableOpacity onPress={this.props.selectType} style={localStyles.loginButton} >
-            <Text style={localStyles.loginButtonText} >Login</Text>
+            <Text style={localStyles.loginButtonText} >Log in</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -55,9 +54,6 @@ const localStyles = StyleSheet.create({
   bellowBack: {
     alignItems: 'center'
   },
-  // linearGradient: {
-  //   flex: 1
-  // },
   outer: {
     flex: 1,
     flexDirection: 'row',
@@ -71,10 +67,11 @@ const localStyles = StyleSheet.create({
     backgroundColor: "black",
   },
   titleText: {
-    paddingBottom: 20,
+    paddingBottom: 30,
     color: '#fff',
     textAlign: 'center',
-    fontSize: 40,
+    fontSize: 30,
+    fontWeight: 'bold',
     paddingTop: 60
   },
   buttonText: {
@@ -108,7 +105,7 @@ const localStyles = StyleSheet.create({
   },
 
   loginButtonText: {
-    color: '#fff',
+    color: '#fd8a5e',
     fontSize: 20,
   },
 
@@ -122,7 +119,7 @@ const localStyles = StyleSheet.create({
     height: 45,
     alignSelf: 'center',
     alignItems: 'center',
-    backgroundColor: '#616161',
+    backgroundColor: 'white',
     justifyContent: 'center',
     marginTop: 35,
     borderRadius: 12,
@@ -130,11 +127,11 @@ const localStyles = StyleSheet.create({
 
   backHomeButton: {
     width: '20%',
-    height: 45,
+    height: 50,
     alignItems: 'center',
     backgroundColor: '#008080',
     justifyContent: 'center',
-    marginTop: 15,
+    marginTop: 50,
     marginLeft: 15,
     borderRadius: 12,
   },
@@ -156,7 +153,7 @@ const localStyles = StyleSheet.create({
     paddingBottom: 20,
     width: '100%',
     alignItems: 'center',
-  }
+  },
 });
 
 export default LogIn;
