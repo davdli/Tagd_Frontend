@@ -6,8 +6,8 @@ import usersReducer from "./reducers/users";
 import hostsReducer from "./reducers/hosts";
 
 const reducer = combineReducers({
-  users: usersReducer,
-  hosts: hostsReducer
+  usersReducer,
+  hostsReducer
 })
 
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger({ collapsed: true })))
@@ -15,3 +15,4 @@ const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, createLo
 const store = createStore(reducer, middleware)
 
 export default store;
+export * from './reducers/users';

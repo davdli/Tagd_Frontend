@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { View, TouchableHighlight, Image, SafeAreaView, StyleSheet, Alert } from 'react-native';
+import store from './client/store'
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
 import Login from './client/components/LogIn';
@@ -45,27 +46,29 @@ export default class App extends Component {
       return this._getARNavigator();
     } else {
       return (
-        <View style={{ flex: 1 }} >
+        <Provider store={store}>
           <View style={{ flex: 1 }} >
-            {this.state.navigatorType === HOME ? (
-              <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
-            ) : this.state.navigatorType === LOG_IN ? (
-              <Login selectType={this.SelectTypeNavigator}
-                      backHome={this.HomeNavigator}
-                      guestPage={this.GuestPageNavigator}
-                      hostPage={this.HostPageNavigator}/>
-            ) : this.state.navigatorType === SIGN_UP ? (
-              <SignUp selectType={this.SelectTypeNavigator} backHome={this.HomeNavigator} />
-            ) : this.state.navigatorType === SELECT_TYPE ? (
-              <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
-            ) : this.state.navigatorType === HOST_PAGE ? (
-              <HostHomePage hostAR={this.HostARNavigator} />
-            ) : (
-              <GuestHomePage guestAR={this.HostARNavigator} />
-            )
-            }
+            <View style={{ flex: 1 }} >
+              {this.state.navigatorType === HOME ? (
+                <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
+              ) : this.state.navigatorType === LOG_IN ? (
+                <Login selectType={this.SelectTypeNavigator}
+                        backHome={this.HomeNavigator}
+                        guestPage={this.GuestPageNavigator}
+                        hostPage={this.HostPageNavigator}/>
+              ) : this.state.navigatorType === SIGN_UP ? (
+                <SignUp selectType={this.SelectTypeNavigator} backHome={this.HomeNavigator} />
+              ) : this.state.navigatorType === SELECT_TYPE ? (
+                <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
+              ) : this.state.navigatorType === HOST_PAGE ? (
+                <HostHomePage hostAR={this.HostARNavigator} />
+              ) : (
+                <GuestHomePage guestAR={this.HostARNavigator} />
+              )
+              }
+            </View>
           </View>
-        </View>
+        </Provider>
       )
     }
   }

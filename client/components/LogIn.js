@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import { connect } from 'react-redux';
+import { fetchSingleUser } from '../store/reducers/users';
 
 class LogIn extends Component {
   constructor(props) {
@@ -38,7 +39,10 @@ class LogIn extends Component {
             />
           </View>
 
-          <TouchableOpacity onPress={this.props.guestPage} style={localStyles.loginButton}>
+          <TouchableOpacity onPress={() => {
+            this.props.loginUser(this.state.email, this.state.password)
+          }}
+            style={localStyles.loginButton}>
             <Text style={localStyles.loginButtonText}>Log in</Text>
           </TouchableOpacity>
         </View>
@@ -47,22 +51,13 @@ class LogIn extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.user
-//   }
-// }
+const mapStateToProps = state => {
+  return { isUser: !!state.usersReducer.user };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     // backHome: () => {
-//     //   dispatch({ type: 'BACK_HOME' })
-//     // },
-//     // selectType: () => {
-//     //   dispatch({ type: 'LOGIN', email: this.state.email, password: this.state.password })
-//     // }
-//   }
-// }
+const mapDispatchToProps = dispatch => ({
+  loginUser: (email, password) => dispatch(fetchSingleUser(email, password))
+});
 
 const localStyles = StyleSheet.create({
   loginContainer: {
@@ -174,4 +169,4 @@ const localStyles = StyleSheet.create({
   },
 });
 
-export default LogIn;
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
