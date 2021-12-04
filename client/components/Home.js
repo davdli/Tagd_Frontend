@@ -45,7 +45,7 @@ export default Home;
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: 600,
+    height: '85%',
     resizeMode: 'cover',
     justifyContent: 'center',
   },
@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
   loginView: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingTop: 50,
     marginBottom: 30
   },
   loginButton: {
