@@ -43,11 +43,11 @@ class SignUp extends React.Component {
         <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton} >
           <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Back'}</Text>
         </TouchableOpacity>
-        <Text style={localStyles.titleText} >TAGD</Text>
+        <Text style={localStyles.titleText} >Sign up with email</Text>
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="firstName"
+            placeholder="First name" placeholderTextColor={'white'}
             onChangeText={text => this.setState({
               firstName: text
             })}
@@ -57,7 +57,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="lastName"
+            placeholder="Last name" placeholderTextColor={'white'}
             onChangeText={text => this.setState({
               lastName: text
             })}
@@ -67,7 +67,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="email"
+            placeholder="Email" placeholderTextColor={'white'}
             onChangeText={text => this.setState({
               email: text
             })}
@@ -77,7 +77,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="password"
+            placeholder="Password" placeholderTextColor={'white'}
             secureTextEntry={true}
             onChangeText={text => this.setState({
               password: text
@@ -112,10 +112,12 @@ class SignUp extends React.Component {
 
 const localStyles = StyleSheet.create({
   titleText: {
-    paddingBottom: 20,
+    paddingBottom: 30,
     color: '#fff',
     textAlign: 'center',
-    fontSize: 40,
+    fontSize: 30,
+    fontWeight: 'bold',
+    paddingTop: 60
   },
   signupContainer: {
     backgroundColor: "#008080",
@@ -123,11 +125,11 @@ const localStyles = StyleSheet.create({
   },
   backHomeButton: {
     width: '20%',
-    height: 45,
+    height: 50,
     alignItems: 'center',
     backgroundColor: '#008080',
     justifyContent: 'center',
-    marginTop: 15,
+    marginTop: 50,
     marginLeft: 15,
     borderRadius: 12,
   },
@@ -158,13 +160,13 @@ const localStyles = StyleSheet.create({
     height: 45,
     alignSelf: 'center',
     alignItems: 'center',
-    backgroundColor: '#616161',
+    backgroundColor: 'white',
     justifyContent: 'center',
     marginTop: 35,
     borderRadius: 12,
   },
   signupButtonText: {
-    color: '#fff',
+    color: '#fd8a5e',
     fontSize: 20,
   },
   //   signupButtonText:active {
@@ -178,7 +180,7 @@ const localStyles = StyleSheet.create({
     width: "40%",
     margin: 5,
     height: 37,
-    backgroundColor: '#804000',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,

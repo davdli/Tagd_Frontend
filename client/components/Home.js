@@ -1,30 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Button, ImageBackground, TouchableOpacity } from 'react-native';
 
-// class Home extends Component {
-//   constructor() {
-//     super();
-//   }
-//   render() {
-//     return (
-//       <View>
-//         <Text>Tagd</Text>
-
-//         <Text>Home guide for anywhere.</Text>
-//         <Button title="Log in" onPress={() => {
-//           this.props.logIn();
-//         }} />
-//         <Text>Dont't have an account?</Text>
-//         <Button title="Sign up" onPress={() => {
-//           this.props.signUp();
-//         }} />
-//       </View>
-//     )
-//   }
-// }
-
-// export default Home;
-
 class Home extends Component {
   constructor() {
     super();
@@ -35,10 +11,10 @@ class Home extends Component {
         <ImageBackground
           source={require('../../js/res/HomeImage.jpeg')}
           style={styles.image}>
-          <Text style={styles.title}>Tagd</Text>
+          <Text style={styles.title}>TAGD</Text>
           {/* <Button>Button</Button> */}
           <View style={styles.descriptionView}>
-            <Text style={styles.descriptionText}>Discover AR Easy</Text>
+            <Text style={styles.descriptionText}>AR Home Guide</Text>
           </View>
         </ImageBackground>
         <View style={styles.loginView}>
@@ -69,7 +45,7 @@ export default Home;
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: 500,
+    height: 600,
     resizeMode: 'cover',
     justifyContent: 'center',
   },
