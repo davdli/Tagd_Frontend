@@ -13,7 +13,8 @@ class SignUp extends React.Component {
       lastName: '',
       email: '',
       password: '',
-      userType: ''
+      userType: '',
+      user: {}
     }
     this.onPressSignup = this.onPressSignup.bind(this);
   }
@@ -29,6 +30,7 @@ class SignUp extends React.Component {
       try {
         const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts/1`, newUser)
         this.setState({
+          user,
           userType: user.firstName
         })
       } catch (e) {
@@ -38,6 +40,7 @@ class SignUp extends React.Component {
       try {
         const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users/1`, newUser)
         this.setState({
+          user,
           userType: user.firstName
         })
       } catch (e) {
@@ -202,7 +205,7 @@ const localStyles = StyleSheet.create({
 
 mapState = (state) => {
   return {
-    
+    user: state.user
   }
 }
 
@@ -212,4 +215,4 @@ mapDispatch = (dispatch) => {
   }
 }
 
-export default (SignUp)
+export default connect(mapState, mapDispatch)(SignUp)

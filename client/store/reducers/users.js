@@ -56,8 +56,9 @@ export const createSingleUser = (userData, userType) => async dispatch => {
 export default function usersReducer(state = {}, action) {
     switch (action.type) {
         case GET_USER:
-            return {...state, user: action.user}
+            return { ...state, user: action.user }
         case CREATE_USER:
+            return { ...state, user: action.newUser }
         default:
             return state;
     }
