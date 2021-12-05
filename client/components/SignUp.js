@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native'
 import { noExtendLeft } from 'sequelize/dist/lib/operators'
-import { authenticate } from '../store/auth'
+import { createSingleUser } from '../store/reducers/users'
+import axios from 'axios'
 
 class SignUp extends React.Component {
   constructor() {
@@ -18,19 +19,27 @@ class SignUp extends React.Component {
   }
 
   async onPressSignup() {
-    console.debug('text')
     const newUser = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      password: this.state.password,
-      userType: this.state.userType
+      password: this.state.password
     }
     if (this.state.userType === 'host') {
-
+      try {
+        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts/1`, newUser)
+        this.setState({
+          userType: user.firstName
+        })
+      } catch (e) {
+        console.log(e)
+      }
     } else if (this.state.userType === 'guest') {
       try {
-        const newUser = await this.props.creatUser(newUser, 'signup')
+        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users/1`, newUser)
+        this.setState({
+          userType: user.firstName
+        })
       } catch (e) {
         console.log(e)
       }
@@ -38,12 +47,13 @@ class SignUp extends React.Component {
   };
 
   render() {
+    console.log()
     return (
       <View style={localStyles.signupContainer} >
         <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton} >
           <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Back'}</Text>
         </TouchableOpacity>
-        <Text style={localStyles.titleText} >Sign up with email</Text>
+        <Text onPress={() => Keyboard.dismiss()} style={localStyles.titleText} >Sign up with email</Text>
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
@@ -190,9 +200,15 @@ const localStyles = StyleSheet.create({
   }
 });
 
+mapState = (state) => {
+  return {
+    
+  }
+}
+
 mapDispatch = (dispatch) => {
   return {
-    creatUser: (user) => { dispatch(authenticate(user, method)) },
+    creatUser: (user) => { dispatch(createSingleUser(user, method)) },
   }
 }
 

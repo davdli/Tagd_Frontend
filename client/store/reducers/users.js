@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {authenticateRequest} from '../gateKeepingMiddleware'
+import { authenticateRequest } from '../gateKeepingMiddleware'
 
 //ACTION TYPES
 const GET_USER = 'GET_USER';
@@ -15,24 +15,24 @@ const getUser = (user) => {
     }
 }
 const createUser = (newUser) => {
-  return {
-      type: CREATE_USER,
-      newUser
-  }
+    return {
+        type: CREATE_USER,
+        newUser
+    }
 }
 
 //HOST ACTION CREATORS
 const getHost = (host) => {
-  return {
-      type: GET_HOST,
-      host
-  }
+    return {
+        type: GET_HOST,
+        host
+    }
 }
 const createHost = (newHost) => {
-  return {
-      type: CREATE_HOST,
-      newHost
-  }
+    return {
+        type: CREATE_HOST,
+        newHost
+    }
 }
 
 //USER THUNKS
@@ -44,46 +44,54 @@ export const fetchSingleUser = (email, password) => async dispatch => {
         console.log(error)
     }
 }
-export const createSingleUser = (userData) => async dispatch => {
-  try {
-      const newUser = await authenticateRequest("post", `/api/user`, userData)
-      if (newUser) {
-          dispatch(createUser(newUser))
-      }
-  } catch (error) {
-      console.log(error)
-  }
+export const createSingleUser = (userData, userType) => async dispatch => {
+    try {
+        let createdUser = { firstName: userData.firstName, lastName: userData.lastName, email: userData.email, password: userData.password }
+        if (userType === 'guest') {
+            const { user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users/1`, createdUser)
+            if (user) {
+                dispatch(createUser(user))
+            }
+        } else {
+            const { user } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts/1`, createdUser)
+            if (user) {
+                dispatch(createUser(user))
+            }
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 // HOST THUNKS
 export const fetchSingleHost = (email, password) => async dispatch => {
-  try {
-      const { host } = await axios.get(`https://tagd-backend.herokuapp.com/api/hosts/${id}`)
-      dispatch(getHost(host))
-  } catch (error) {
-      console.log(error)
-  }
+    try {
+        const { host } = await axios.get(`https://tagd-backend.herokuapp.com/api/hosts/${id}`)
+        dispatch(getHost(host))
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const createSingleHost = (hostData) => async dispatch => {
-  try {
-      const newHost = await authenticateRequest("post", `/api/host`, hostData)
-      if (newHost) {
-          dispatch(createHost(newHost))
-      }
-  } catch (error) {
-      console.log(error)
-  }
+    try {
+        const newHost = await authenticateRequest("post", `/api/host`, hostData)
+        if (newHost) {
+            dispatch(createHost(newHost))
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 //STATE
-const initialState = []
+const initialState = {}
 export default usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_USER:
             return action.user
         case CREATE_USER:
-            return [...state, action.newUser]
+            return [action.newUser]
         case GET_HOST:
             return action.host
         case CREATE_HOST:
