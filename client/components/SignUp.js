@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from "react-redux"
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button } from 'react-native'
 import { noExtendLeft } from 'sequelize/dist/lib/operators'
-import { createSingleUser } from '../store/reducers/users'
+import { authenticate } from '../store/auth'
 
 class SignUp extends React.Component {
   constructor() {
@@ -30,7 +30,7 @@ class SignUp extends React.Component {
 
     } else if (this.state.userType === 'guest') {
       try {
-        const newUser = await this.props.creatUser(newUser)
+        const newUser = await this.props.creatUser(newUser, 'signup')
       } catch (e) {
         console.log(e)
       }
@@ -192,8 +192,7 @@ const localStyles = StyleSheet.create({
 
 mapDispatch = (dispatch) => {
   return {
-    creatUser: (user) => { dispatch(createSingleUser(user)) },
-    createHost: () => { },
+    creatUser: (user) => { dispatch(authenticate(user, method)) },
   }
 }
 
