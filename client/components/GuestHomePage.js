@@ -24,7 +24,7 @@ class GuestHomePage extends Component {
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Hi, Sarah</Text>
           <View style={localStyles.personalContainer}>
-            <Text style={localStyles.infoTitle}>Personal Information</Text>
+            <Text style={localStyles.infoTitle}>Personal information</Text>
             <View style={{borderBottomColor: 'black', borderBottomWidth: 1}}>
               <Text style={localStyles.infoSection}>First Name</Text>
               <Text style={localStyles.infoText}>Sarah</Text>
@@ -39,6 +39,17 @@ class GuestHomePage extends Component {
             </View>
           </View>
 
+          <View style={localStyles.hostKeyContainer}>
+            <Text style={localStyles.infoTitle}>Enter AR experience</Text>
+            <TextInput
+              placeholder="Host key" placeholderTextColor={'gray'}
+              style={localStyles.hostKeyInput}
+              secureTextEntry={true}
+              onChangeText={text => this.setState({
+                password: text
+              })}
+            />
+          </View>
           <TouchableOpacity onPress={this.props.guestAR}
             style={localStyles.arButton}>
             <Text style={localStyles.arButtonText}>Let's go!</Text>
@@ -92,7 +103,7 @@ const localStyles = StyleSheet.create({
   arButtonText: {
     color: 'white',
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   inputContainer: {
     paddingTop: 20,
@@ -119,7 +130,22 @@ const localStyles = StyleSheet.create({
     fontSize: 18,
     marginTop: 5,
     marginBottom: 10
-  }
+  },
+  hostKeyContainer: {
+    padding: 20,
+    width: '90%'
+  },
+  hostKeyInput: {
+    width: '100%',
+    height: 40,
+    borderWidth: 1,
+    fontSize: 18,
+    backgroundColor: 'white',
+    borderBottomColor: 'black',
+    borderLeftColor: 'white',
+    borderRightColor: 'white',
+    borderTopColor: 'white',
+  },
 });
 
 mapStateToProps = () => {

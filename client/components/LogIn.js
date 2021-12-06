@@ -167,7 +167,6 @@ const localStyles = StyleSheet.create({
     marginLeft: 15,
     borderRadius: 12,
   },
-
   textInput: {
     width: '85%',
     height: 40,
