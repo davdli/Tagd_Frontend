@@ -24,11 +24,11 @@ const createUser = (newUser) => {
 export const fetchSingleUser = (email, password) => {
     return async (dispatch) => {
         try {
-            const { user } = await axios.post('https://tagd-backend.herokuapp.com/auth/login', {
+            const { data } = await axios.post('https://tagd-backend.herokuapp.com/auth/login', {
                 email,
                 password
             })
-            dispatch(getUser(user))
+            dispatch(getUser(data))
         } catch (error) {
             console.log(error)
         }
@@ -55,12 +55,10 @@ export const createSingleUser = (userData, userType) => async dispatch => {
 }
 
 
-export default function usersReducer(state = {}, action) {
+export default function userReducer(state = {}, action) {
     switch (action.type) {
         case GET_USER:
             return action.user
-        case CREATE_USER:
-            return { ...state, user: action.newUser }
         default:
             return state;
     }
