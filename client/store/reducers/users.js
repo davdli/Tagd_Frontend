@@ -60,6 +60,7 @@ export default function usersReducer(state = {}, action) {
         case GET_USER:
             return action.user
         case CREATE_USER:
+            return { ...state, user: action.newUser }
         default:
             return state;
     }
