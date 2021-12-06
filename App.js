@@ -66,7 +66,7 @@ export default class App extends Component {
               ) : this.state.navigatorType === HOST_PAGE ? (
                 <HostHomePage hostAR={this.HostARNavigator} />
               ) : (
-                <GuestHomePage guestAR={this.HostARNavigator} backHome={this.HomeNavigator} />
+                <GuestHomePage guestAR={this.HostARNavigator} backHome={this.HomeNavigator}/>
               )
               }
             </View>
@@ -112,7 +112,7 @@ export default class App extends Component {
         <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.GuestPageNavigator}>
-            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 10 }} >
+            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 20 }} >
               <Text style={{ fontSize: 24, color: '#fff' }}>Back</Text>
             </View>
           </TouchableHighlight>
