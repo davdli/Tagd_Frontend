@@ -64,7 +64,7 @@ export default class App extends Component {
               ) : this.state.navigatorType === SELECT_TYPE ? (
                 <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
               ) : this.state.navigatorType === HOST_PAGE ? (
-                <HostHomePage hostAR={this.HostARNavigator} />
+                <HostHomePage hostAR={this.HostARNavigator} backHome={this.HomeNavigator} />
               ) : (
                 <GuestHomePage guestAR={this.HostARNavigator} backHome={this.HomeNavigator}/>
               )
