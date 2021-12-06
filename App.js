@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { View, TouchableHighlight, Image, SafeAreaView, StyleSheet, Alert } from 'react-native';
+import { View, TouchableHighlight, Image, SafeAreaView, StyleSheet, Alert, Text } from 'react-native';
 import store from './client/store'
 import Home from './client/components/Home';
 import SignUp from './client/components/SignUp';
@@ -107,6 +107,14 @@ export default class App extends Component {
             onPress={this._onDisplayDialog}
             underlayColor={'#00000000'}>
             <Image source={require("./js/res/button_add-tag.png")} />
+          </TouchableHighlight>
+        </View>
+        <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this.GuestPageNavigator}>
+            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 20 }} >
+              <Text style={{ fontSize: 24, color: '#fff' }}>Back</Text>
+            </View>
           </TouchableHighlight>
         </View>
       </View>
