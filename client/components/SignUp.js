@@ -4,18 +4,18 @@ import { connect } from "react-redux"
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native'
 import { noExtendLeft } from 'sequelize/dist/lib/operators'
 import { createSingleUser } from '../store/reducers/users'
+import { createSingleHost } from '../store/reducers/hosts'
 import axios from 'axios'
 
 class SignUp extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       firstName: '',
       lastName: '',
       email: '',
       password: '',
       userType: '',
-      user: {}
     }
     this.onPressSignup = this.onPressSignup.bind(this);
   }
@@ -29,23 +29,17 @@ class SignUp extends React.Component {
     }
     if (this.state.userType === 'host') {
       try {
-        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts/1`, newUser)
-        this.setState({
-          user,
-          userType: user.firstName
-        })
+        this.props.createHost(newUser)
       } catch (e) {
-        console.log(e)
+        let error = new Error(e)
+        throw error
       }
     } else if (this.state.userType === 'guest') {
       try {
-        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users/1`, newUser)
-        this.setState({
-          user,
-          userType: user.firstName
-        })
+        this.props.createUser(newUser, 'guest')
       } catch (e) {
-        console.log(e)
+        let error = new Error(e)
+        throw error
       }
     }
   };
@@ -204,16 +198,16 @@ const localStyles = StyleSheet.create({
   }
 });
 
-mapState = (state) => {
+const mapState = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    host: state.host
   }
 }
 
-mapDispatch = (dispatch) => {
-  return {
-    creatUser: (user) => { dispatch(createSingleUser(user, method)) },
-  }
-}
+const mapDispatch = (dispatch) => ({
+    creatUser: (user, method) => dispatch(createSingleUser(user, method)),
+    creatHost: (host) => dispatch(createSingleHost(host))
+});
 
 export default connect(mapState, mapDispatch)(SignUp)

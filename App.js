@@ -53,11 +53,14 @@ export default class App extends Component {
                 <Home signUp={this.SignUpNavigator} logIn={this.LogInNavigator} />
               ) : this.state.navigatorType === LOG_IN ? (
                 <Login selectType={this.SelectTypeNavigator}
-                        backHome={this.HomeNavigator}
-                        guestPage={this.GuestPageNavigator}
-                        hostPage={this.HostPageNavigator}/>
+                  backHome={this.HomeNavigator}
+                  guestPage={this.GuestPageNavigator}
+                  hostPage={this.HostPageNavigator} />
               ) : this.state.navigatorType === SIGN_UP ? (
-                <SignUp selectType={this.SelectTypeNavigator} backHome={this.HomeNavigator} />
+                <SignUp selectType={this.SelectTypeNavigator}
+                  backHome={this.HomeNavigator}
+                  guestPage={this.GuestPageNavigator}
+                  hostPage={this.HostPageNavigator} />
               ) : this.state.navigatorType === SELECT_TYPE ? (
                 <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
               ) : this.state.navigatorType === HOST_PAGE ? (
