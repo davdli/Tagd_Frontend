@@ -18,20 +18,18 @@ class GuestHomePage extends Component {
   render() {
     return (
       <View style={localStyles.guestContainer}>
-        <View style={{ height: '14%' }} >
-          <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
-            <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
+          <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
+        </TouchableOpacity>
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Hi, Sarah</Text>
           <View style={localStyles.personalContainer}>
             <Text style={localStyles.infoTitle}>Personal information</Text>
-            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
+            <View style={{borderBottomColor: 'black', borderBottomWidth: 1}}>
               <Text style={localStyles.infoSection}>First Name</Text>
               <Text style={localStyles.infoText}>Sarah</Text>
             </View>
-            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
+            <View style={{borderBottomColor: 'black', borderBottomWidth: 1}}>
               <Text style={localStyles.infoSection}>Last Name</Text>
               <Text style={localStyles.infoText}>Yang</Text>
             </View>
@@ -68,8 +66,7 @@ const localStyles = StyleSheet.create({
     flex: 1,
   },
   bellowBack: {
-    alignItems: 'center',
-    height: '86%'
+    alignItems: 'center'
   },
   titleText: {
     paddingBottom: 30,
@@ -77,7 +74,7 @@ const localStyles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     fontWeight: 'bold',
-    paddingTop: 30
+    paddingTop: 60
   },
   backHomeButton: {
     width: '20%',
@@ -85,7 +82,7 @@ const localStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     justifyContent: 'center',
-    marginTop: 60,
+    marginTop: 50,
     marginLeft: 15,
     borderRadius: 12,
   },
