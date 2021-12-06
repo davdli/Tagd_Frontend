@@ -28,6 +28,7 @@ class SignUp extends React.Component {
     if (this.state.userType === 'host') {
       try {
         this.props.createHost(newUser)
+        this.props.hostPage(this.state.host)
       } catch (e) {
         let error = new Error(e)
         throw error
@@ -35,11 +36,13 @@ class SignUp extends React.Component {
     } else if (this.state.userType === 'guest') {
       try {
         this.props.createUser(newUser)
+        this.props.guestPage(this.state.user)
       } catch (e) {
         let error = new Error(e)
         throw error
       }
     }
+
   };
 
   render() {
@@ -204,7 +207,7 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => ({
-  createUser: (user, method) => dispatch(createSingleUser(user, method)),
+  createUser: (user, method) => dispatch(createSingleUser(user)),
   createHost: (host) => dispatch(createSingleHost(host))
 });
 

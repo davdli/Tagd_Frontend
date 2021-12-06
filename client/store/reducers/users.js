@@ -37,8 +37,8 @@ export const fetchSingleUser = (email, password) => {
 
 export const createSingleUser = (userData) => async dispatch => {
     try {
-        let createdUser = { firstName: userData.firstName, lastName: userData.lastName, email: userData.email, password: userData.password }
-        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users`, createdUser)
+
+        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users`, userData)
         if (user) {
             dispatch(createUser(user))
         }
