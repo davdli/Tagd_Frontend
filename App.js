@@ -66,7 +66,7 @@ export default class App extends Component {
               ) : this.state.navigatorType === HOST_PAGE ? (
                 <HostHomePage hostAR={this.HostARNavigator} />
               ) : (
-                <GuestHomePage guestAR={this.HostARNavigator} />
+                <GuestHomePage guestAR={this.HostARNavigator} backHome={this.HomeNavigator}/>
               )
               }
             </View>
