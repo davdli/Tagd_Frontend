@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Animated, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
-class GuestHomePage extends Component {
+class HostHomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,12 +35,8 @@ class GuestHomePage extends Component {
               <Text style={localStyles.infoText}>{host.email}</Text>
             </View>
           </View>
-
-          // need to figure out location/house select plan for hosts
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
-
-            // ICON PIC COMPONENTS HERE THEN MESSAGE
 
 
             <TextInput
@@ -56,9 +52,6 @@ class GuestHomePage extends Component {
             style={localStyles.arButton}>
             <Text style={localStyles.arButtonText}>Upload</Text>
           </TouchableOpacity>
-
-          // Add tags menu icon for hosts, enter into tag menu, display tags component
-
         </View>
       </View>
     )
