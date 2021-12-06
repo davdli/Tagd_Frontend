@@ -174,7 +174,7 @@ const localStyles = StyleSheet.create({
     borderRadius: 12,
   },
   signupButtonText: {
-    color: '#fd8a5e',
+    color: 'black',
     fontSize: 20,
   },
   //   signupButtonText:active {
@@ -206,8 +206,8 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => ({
-    creatUser: (user, method) => dispatch(createSingleUser(user, method)),
-    creatHost: (host) => dispatch(createSingleHost(host))
+  creatUser: (user, method) => dispatch(createSingleUser(user, method)),
+  creatHost: (host) => dispatch(createSingleHost(host))
 });
 
 export default connect(mapState, mapDispatch)(SignUp)

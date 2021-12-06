@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchSingleUser } from '../store/reducers/users';
 import axios from 'axios';
@@ -25,9 +25,11 @@ class LogIn extends Component {
   render() {
     return (
       <View style={localStyles.loginContainer}>
-        <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
-          <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
-        </TouchableOpacity>
+        <View style={{ height: '14%' }} >
+          <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
+            <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
+          </TouchableOpacity>
+        </View>
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Log in with email</Text>
           <View style={localStyles.inputContainer}>
@@ -50,8 +52,8 @@ class LogIn extends Component {
             />
           </View>
 
-          <View style={{marginTop: 10}}>
-            <Text style={{color: 'white', fontSize: 18}}>Forgot Password? Click here</Text>
+          <View style={{ marginTop: 10 }}>
+            <Text style={{ color: 'white', fontSize: 18 }}>Forgot Password? Click here</Text>
           </View>
 
           <TouchableOpacity onPress={this.onLogin}
@@ -83,7 +85,8 @@ const localStyles = StyleSheet.create({
     flex: 1,
   },
   bellowBack: {
-    alignItems: 'center'
+    alignItems: 'center',
+    height: '86%',
   },
   outer: {
     flex: 1,
@@ -103,7 +106,7 @@ const localStyles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     fontWeight: 'bold',
-    paddingTop: 60
+    paddingTop: 30
   },
   buttonText: {
     color: '#fff',
@@ -163,7 +166,7 @@ const localStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#008080',
     justifyContent: 'center',
-    marginTop: 50,
+    marginTop: 60,
     marginLeft: 15,
     borderRadius: 12,
   },
