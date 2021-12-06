@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchSingleUser } from '../store/reducers/users';
-import axios from 'axios';
 
 class LogIn extends Component {
   constructor(props) {
@@ -52,19 +51,18 @@ class LogIn extends Component {
               })}
             />
           </View>
-
           <View style={{ marginTop: 10 }}>
             <Text style={{ color: 'white', fontSize: 18 }}>Forgot Password? Click here</Text>
           </View>
-
           <TouchableOpacity onPress={() => this.onLogin()}
             style={localStyles.loginButton}>
             <Text style={localStyles.loginButtonText}>Log in</Text>
           </TouchableOpacity>
 
-          <View>
+          {/* <View>
             <Text>{JSON.stringify(this.props)}</Text>
-          </View>
+          </View> */}
+
         </View>
       </View>
     )
