@@ -23,23 +23,23 @@ const createUser = (newUser) => {
 //THUNKS
 export const fetchSingleUser = (email, password) => {
     return async (dispatch) => {
-      try {
-          const { user } = await axios.post('https://tagd-backend.herokuapp.com/auth/login', {
-              email,
-              password
-          })
-          dispatch(getUser(user))
-      } catch (error) {
-          console.log(error)
-      }
+        try {
+            const { user } = await axios.post('https://tagd-backend.herokuapp.com/auth/login', {
+                email,
+                password
+            })
+            dispatch(getUser(user))
+        } catch (error) {
+            console.log(error)
+        }
     }
-  }
+}
 
 export const createSingleUser = (userData, userType) => async dispatch => {
     try {
         let createdUser = { firstName: userData.firstName, lastName: userData.lastName, email: userData.email, password: userData.password }
         if (userType === 'guest') {
-            const { user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users/1`, createdUser)
+            const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users/1`, createdUser)
             if (user) {
                 dispatch(createUser(user))
             }
