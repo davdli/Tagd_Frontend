@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
-import { Connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Animated, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 class GuestHomePage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      locationKey: '',
+      hostKey: '',
     }
-    this.onPress = this.onPress.bind(this)
   }
-
-  onPress() {
-    //thunk to get
-  }
-
   render() {
+    const guest = this.props.user.user;
     return (
       <View style={localStyles.guestContainer}>
         <View style={{ height: "14%" }} >
@@ -24,20 +19,20 @@ class GuestHomePage extends Component {
           </TouchableOpacity>
         </View>
         <View style={localStyles.bellowBack}>
-          <Text style={localStyles.titleText}>Hi, Sarah</Text>
+          <Text style={localStyles.titleText}>Hi, {guest.firstName}</Text>
           <View style={localStyles.personalContainer}>
             <Text style={localStyles.infoTitle}>Personal information</Text>
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
               <Text style={localStyles.infoSection}>First Name</Text>
-              <Text style={localStyles.infoText}>Sarah</Text>
+              <Text style={localStyles.infoText}>{guest.firstName}</Text>
             </View>
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
               <Text style={localStyles.infoSection}>Last Name</Text>
-              <Text style={localStyles.infoText}>Yang</Text>
+              <Text style={localStyles.infoText}>{guest.lastName}</Text>
             </View>
             <View>
               <Text style={localStyles.infoSection}>Email</Text>
-              <Text style={localStyles.infoText}>sarah@email.com</Text>
+              <Text style={localStyles.infoText}>{guest.email}</Text>
             </View>
           </View>
 
@@ -48,7 +43,7 @@ class GuestHomePage extends Component {
               style={localStyles.hostKeyInput}
               secureTextEntry={true}
               onChangeText={text => this.setState({
-                password: text
+                hostKey: text
               })}
             />
           </View>
@@ -56,11 +51,22 @@ class GuestHomePage extends Component {
             style={localStyles.arButton}>
             <Text style={localStyles.arButtonText}>Let's go!</Text>
           </TouchableOpacity>
+
+          {/* <View>
+            <Text>{JSON.stringify(this.props)}</Text>
+          </View> */}
+
         </View>
       </View>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
 
 const localStyles = StyleSheet.create({
   guestContainer: {
@@ -151,15 +157,4 @@ const localStyles = StyleSheet.create({
   },
 });
 
-mapStateToProps = () => {
-
-}
-
-//incomplete, need to import thunk and pass to dispatch
-mapDispatchToProps = dispatch => {
-  return {
-    findLocation: () => dispatch()
-  }
-}
-
-export default GuestHomePage;
+export default connect(mapStateToProps, null)(GuestHomePage);
