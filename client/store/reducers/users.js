@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { authenticateRequest } from '../gateKeepingMiddleware'
+import axios from 'axios';
+import { authenticateRequest } from '../gateKeepingMiddleware';
 
 //ACTION TYPES
 const GET_USER = 'GET_USER';
@@ -21,17 +21,19 @@ const createUser = (newUser) => {
 }
 
 //THUNKS
-export const fetchSingleUser = (email, password) => async dispatch => {
-    try {
-        const { user } = await axios.post(`https://tagd-backend.herokuapp.com/auth/login`, {
-            email,
-            password
-        })
-        dispatch(getUser(user))
-    } catch (error) {
-        console.log(error)
+export const fetchSingleUser = (email, password) => {
+    return async (dispatch) => {
+      try {
+          const { user } = await axios.post('https://tagd-backend.herokuapp.com/auth/login', {
+              email,
+              password
+          })
+          dispatch(getUser(user))
+      } catch (error) {
+          console.log(error)
+      }
     }
-}
+  }
 
 export const createSingleUser = (userData, userType) => async dispatch => {
     try {
@@ -56,7 +58,7 @@ export const createSingleUser = (userData, userType) => async dispatch => {
 export default function usersReducer(state = {}, action) {
     switch (action.type) {
         case GET_USER:
-            return { ...state, user: action.user }
+            return action.user
         case CREATE_USER:
             return { ...state, user: action.newUser }
         default:

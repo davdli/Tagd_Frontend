@@ -6,8 +6,8 @@ import usersReducer from "./reducers/users";
 import hostsReducer from "./reducers/hosts";
 
 const reducer = combineReducers({
-  usersReducer,
-  hostsReducer
+  users: usersReducer,
+  hosts: hostsReducer
 })
 
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger({ collapsed: true })))

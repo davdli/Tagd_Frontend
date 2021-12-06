@@ -21,12 +21,17 @@ const createHost = (newHost) => {
 }
 
 // THUNKS
-export const fetchSingleHost = (id) => async dispatch => {
-  try {
-      const { host } = await axios.get(`https://tagd-backend.herokuapp.com/api/hosts/${id}`)
-      dispatch(getHost(host))
-  } catch (error) {
-      console.log(error)
+export const fetchSingleHost = (email, password) => {
+  return async (dispatch) => {
+    try {
+        const { host } = await axios.post('https://tagd-backend.herokuapp.com/auth/login', {
+            email,
+            password
+        })
+        dispatch(getHost(host))
+    } catch (error) {
+        console.log(error)
+    }
   }
 }
 
@@ -41,7 +46,7 @@ export const createSingleHost = (hostData) => async dispatch => {
   }
 }
 
-export default function hostsReducer(state = [], action) {
+export default function hostsReducer(state = {}, action) {
   switch (action.type) {
       case GET_HOST:
           return action.host
