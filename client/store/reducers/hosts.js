@@ -13,10 +13,10 @@ const getHost = (host) => {
   }
 }
 
-const createHost = (newHost) => {
+const createHost = (host) => {
   return {
     type: CREATE_HOST,
-    newHost
+    host
   }
 }
 
@@ -37,8 +37,7 @@ export const fetchSingleHost = (email, password) => {
 
 export const createSingleHost = (hostData) => async dispatch => {
   try {
-    let createdHost = { firstName: hostData.firstName, lastName: hostData.lastName, email: hostData.email, password: hostData.password }
-    const { host } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts`, createdHost)
+    const { host } = await axios.post(`https://tagd-backend.herokuapp.com/auth/signup`, hostData)
     if (host) {
       dispatch(createHost(host))
     }
@@ -52,7 +51,7 @@ export default function hostsReducer(state = {}, action) {
     case GET_HOST:
       return action.host
     case CREATE_HOST:
-      return { ...state, host: action.newHost }
+      return action.host
     default:
       return state;
   }
