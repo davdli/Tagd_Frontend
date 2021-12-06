@@ -26,7 +26,7 @@ class LogIn extends Component {
     return (
       <View style={localStyles.loginContainer}>
         <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
-          <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Back'}</Text>
+          <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
         </TouchableOpacity>
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Log in with email</Text>
@@ -48,6 +48,10 @@ class LogIn extends Component {
                 password: text
               })}
             />
+          </View>
+
+          <View style={{marginTop: 10}}>
+            <Text style={{color: 'white', fontSize: 18}}>Forgot Password? Click here</Text>
           </View>
 
           <TouchableOpacity onPress={this.onLogin}
@@ -132,8 +136,9 @@ const localStyles = StyleSheet.create({
   },
 
   loginButtonText: {
-    color: '#fd8a5e',
+    color: 'black',
     fontSize: 20,
+    fontWeight: 'bold'
   },
 
   backButtonText: {

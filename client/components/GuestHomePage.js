@@ -17,34 +17,31 @@ class GuestHomePage extends Component {
 
   render() {
     return (
-      <View style={localStyles.guestHomePage} onPress={() => Keyboard.dismiss()} >
-        <Text style={localStyles.titleText} onPress={() => Keyboard.dismiss()} >Hello, Guest</Text>
-        <Text style={localStyles.personalInfo} onPress={() => Keyboard.dismiss()} >Personal Information</Text>
-        <View style={{ paddingBottom: 15, alignItems: 'center' }} >
-          <Text style={localStyles.infoType} onPress={() => Keyboard.dismiss()} >First Name</Text>
-          <Text style={localStyles.info} onPress={() => Keyboard.dismiss()} >{'User first name'}</Text>
-        </View>
-        <View style={{ paddingBottom: 15, alignItems: 'center' }} >
-          <Text style={localStyles.infoType} >Last Name</Text>
-          <Text style={localStyles.info} >{'User last name'}</Text>
-        </View>
-        <View style={{ paddingBottom: 15, alignItems: 'center' }} >
-          <Text style={localStyles.infoType} >Email</Text>
-          <Text style={localStyles.info} >{'User email'}</Text>
-        </View>
-        <View style={localStyles.hostKey} >
-          <Text style={{ color: '#fff', fontSize: 25 }} >Enter Host Key</Text>
-          <View style={localStyles.inputContainer} >
-            <TextInput
-              placeholder="key"
-              style={localStyles.textInput}
-              onChangeText={text => this.setState({
-                locationKey: text
-              })}
-            />
+      <View style={localStyles.guestContainer}>
+        <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
+          <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
+        </TouchableOpacity>
+        <View style={localStyles.bellowBack}>
+          <Text style={localStyles.titleText}>Hi, Sarah</Text>
+          <View style={localStyles.personalContainer}>
+            <Text style={localStyles.infoTitle}>Personal Information</Text>
+            <View style={{borderBottomColor: 'black', borderBottomWidth: 1}}>
+              <Text style={localStyles.infoSection}>First Name</Text>
+              <Text style={localStyles.infoText}>Sarah</Text>
+            </View>
+            <View style={{borderBottomColor: 'black', borderBottomWidth: 1}}>
+              <Text style={localStyles.infoSection}>Last Name</Text>
+              <Text style={localStyles.infoText}>Yang</Text>
+            </View>
+            <View>
+              <Text style={localStyles.infoSection}>Email</Text>
+              <Text style={localStyles.infoText}>sarah@email.com</Text>
+            </View>
           </View>
-          <TouchableOpacity onPress={this.props.guestAR} style={localStyles.signupButton} >
-            <Text style={localStyles.signupButtonText} >Enter</Text>
+
+          <TouchableOpacity onPress={this.props.guestAR}
+            style={localStyles.arButton}>
+            <Text style={localStyles.arButtonText}>Let's go!</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -53,90 +50,75 @@ class GuestHomePage extends Component {
 }
 
 const localStyles = StyleSheet.create({
-  titleText: {
-    paddingBottom: 20,
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: 40,
-    marginTop: 15
-  },
-  guestHomePage: {
-    backgroundColor: "#008080",
+  guestContainer: {
+    backgroundColor: "white",
     flex: 1,
+  },
+  bellowBack: {
+    alignItems: 'center'
+  },
+  titleText: {
+    paddingBottom: 30,
+    color: '#008080',
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: 'bold',
+    paddingTop: 60
+  },
+  backHomeButton: {
+    width: '20%',
+    height: 50,
     alignItems: 'center',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    marginTop: 50,
+    marginLeft: 15,
+    borderRadius: 12,
+  },
+  backButtonText: {
+    color: '#008080',
     fontSize: 20,
   },
-  personalInfo: {
-    color: '#fff',
-    fontSize: 30,
-    paddingBottom: 30,
-  },
-  infoType: {
-    fontSize: 25,
-    color: 'black',
-    textAlign: 'center',
-  },
-  info: {
-    fontSize: 25,
-    color: '#fff',
-    textAlign: 'center',
-  },
-  textInput: {
-    width: '85%',
-    height: 40,
-    borderWidth: 1,
-    color: 'white',
-    fontSize: 18,
-    backgroundColor: '#008080',
-    borderBottomColor: '#fff',
-    borderLeftColor: '#008080',
-    borderRightColor: '#008080',
-    borderTopColor: '#008080',
-  },
-  inputContainer: {
-    paddingTop: 18,
-    paddingBottom: 18,
-    width: '100%',
-    alignItems: 'center',
-  },
-  signupButton: {
+  arButton: {
     width: '85%',
     height: 45,
     alignSelf: 'center',
     alignItems: 'center',
-    backgroundColor: '#616161',
+    backgroundColor: '#008080',
     justifyContent: 'center',
     marginTop: 35,
     borderRadius: 12,
   },
-  signupButtonText: {
-    color: '#fff',
+  arButtonText: {
+    color: 'white',
     fontSize: 20,
+    fontWeight: 'bold'
   },
-  //   signupButtonText:active {
-  //   backgroundColor: '#e5e5e5',
-  // },
-  typeSelection: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  selectUserType: {
-    width: "40%",
-    margin: 5,
-    height: 37,
-    backgroundColor: '#804000',
+  inputContainer: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 12,
   },
-  centerTypeButtons: {
-    alignItems: 'center'
+  personalContainer: {
+    padding: 20,
+    width: '90%'
   },
-  hostKey: {
-    position: 'absolute',
-    bottom: 0,
-    paddingBottom: 40,
-
+  infoTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5
+  },
+  infoSection: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 5
+  },
+  infoText: {
+    fontSize: 18,
+    marginTop: 5,
+    marginBottom: 10
   }
 });
 
