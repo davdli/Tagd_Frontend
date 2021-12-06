@@ -13,10 +13,10 @@ const getUser = (user) => {
     }
 }
 
-const createUser = (newUser) => {
+const createUser = (user) => {
     return {
         type: CREATE_USER,
-        newUser
+        user
     }
 }
 
@@ -37,10 +37,9 @@ export const fetchSingleUser = (email, password) => {
 
 export const createSingleUser = (userData) => async dispatch => {
     try {
-
-        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users`, userData)
-        if (user) {
-            dispatch(createUser(user))
+        const { data } = await axios.post(`https://tagd-backend.herokuapp.com/auth/signup`, userData)
+        if (data) {
+            dispatch(createUser(data))
         }
     } catch (error) {
         console.log(error)
@@ -51,6 +50,8 @@ export const createSingleUser = (userData) => async dispatch => {
 export default function userReducer(state = {}, action) {
     switch (action.type) {
         case GET_USER:
+            return action.user
+        case CREATE_USER:
             return action.user
         default:
             return state;

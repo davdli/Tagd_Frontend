@@ -23,20 +23,21 @@ class SignUp extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      userType: this.state.userType
     }
     if (this.state.userType === 'host') {
       try {
-        this.props.createHost(newUser)
-        this.props.hostPage(this.state.host)
+        await this.props.createHost(newUser)
+        this.props.hostPage()
       } catch (e) {
         let error = new Error(e)
         throw error
       }
     } else if (this.state.userType === 'guest') {
       try {
-        this.props.createUser(newUser)
-        this.props.guestPage(this.state.user)
+        await this.props.createUser(newUser)
+        this.props.guestPage()
       } catch (e) {
         let error = new Error(e)
         throw error
@@ -202,12 +203,11 @@ const localStyles = StyleSheet.create({
 const mapState = (state) => {
   return {
     user: state.user,
-    host: state.host
   }
 }
 
 const mapDispatch = (dispatch) => ({
-  createUser: (user, method) => dispatch(createSingleUser(user)),
+  createUser: (user) => dispatch(createSingleUser(user)),
   createHost: (host) => dispatch(createSingleHost(host))
 });
 
