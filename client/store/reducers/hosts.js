@@ -37,8 +37,8 @@ export const fetchSingleHost = (email, password) => {
 
 export const createSingleHost = (hostData) => async dispatch => {
   try {
-    let createdHost = { firstName: userData.firstName, lastName: userData.lastName, email: userData.email, password: userData.password }
-    const { host } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts/1`, createdHost)
+    let createdHost = { firstName: hostData.firstName, lastName: hostData.lastName, email: hostData.email, password: hostData.password }
+    const { host } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts`, createdHost)
     if (host) {
       dispatch(createHost(host))
     }
