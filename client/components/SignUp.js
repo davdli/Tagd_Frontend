@@ -2,10 +2,8 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native'
-import { noExtendLeft } from 'sequelize/dist/lib/operators'
 import { createSingleUser } from '../store/reducers/users'
 import { createSingleHost } from '../store/reducers/hosts'
-import axios from 'axios'
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -36,7 +34,7 @@ class SignUp extends React.Component {
       }
     } else if (this.state.userType === 'guest') {
       try {
-        this.props.createUser(newUser, 'guest')
+        this.props.createUser(newUser)
       } catch (e) {
         let error = new Error(e)
         throw error
@@ -206,8 +204,8 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => ({
-  creatUser: (user, method) => dispatch(createSingleUser(user, method)),
-  creatHost: (host) => dispatch(createSingleHost(host))
+  createUser: (user, method) => dispatch(createSingleUser(user, method)),
+  createHost: (host) => dispatch(createSingleHost(host))
 });
 
 export default connect(mapState, mapDispatch)(SignUp)

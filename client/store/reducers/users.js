@@ -35,19 +35,12 @@ export const fetchSingleUser = (email, password) => {
     }
 }
 
-export const createSingleUser = (userData, userType) => async dispatch => {
+export const createSingleUser = (userData) => async dispatch => {
     try {
         let createdUser = { firstName: userData.firstName, lastName: userData.lastName, email: userData.email, password: userData.password }
-        if (userType === 'guest') {
-            const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users/1`, createdUser)
-            if (user) {
-                dispatch(createUser(user))
-            }
-        } else {
-            const { user } = await axios.post(`https://tagd-backend.herokuapp.com/api/hosts/1`, createdUser)
-            if (user) {
-                dispatch(createUser(user))
-            }
+        const { data: user } = await axios.post(`https://tagd-backend.herokuapp.com/api/users`, createdUser)
+        if (user) {
+            dispatch(createUser(user))
         }
     } catch (error) {
         console.log(error)
