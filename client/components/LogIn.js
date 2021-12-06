@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import { connect } from 'react-redux';
 import { fetchSingleUser } from '../store/reducers/users';
+import axios from 'axios';
 
 class LogIn extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       email: '',
       password: ''
+    }
+    this.onLogin = this.onLogin.bind(this);
+  }
+  async onLogin() {
+    const type = this.props.loginUser(this.state.email, this.state.password)
+    console.log(type);
+    if (!type.user) {
+      this.props.guestPage();
+    } else {
+      this.props.hostPage();
     }
   }
   render() {
@@ -39,9 +50,7 @@ class LogIn extends Component {
             />
           </View>
 
-          <TouchableOpacity onPress={() => {
-            this.props.loginUser(this.state.email, this.state.password)
-          }}
+          <TouchableOpacity onPress={this.onLogin}
             style={localStyles.loginButton}>
             <Text style={localStyles.loginButtonText}>Log in</Text>
           </TouchableOpacity>
@@ -51,13 +60,18 @@ class LogIn extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { isUser: !!state.usersReducer.user };
+const mapStateToProps = (state) => {
+  return {
+    user: state.users,
+    host: state.hosts
+  };
 };
 
-const mapDispatchToProps = dispatch => ({
-  loginUser: (email, password) => dispatch(fetchSingleUser(email, password))
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (email, password) => dispatch(fetchSingleUser(email, password))
+  }
+};
 
 const localStyles = StyleSheet.create({
   loginContainer: {
