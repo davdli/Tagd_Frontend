@@ -14,12 +14,13 @@ class LogIn extends Component {
     this.onLogin = this.onLogin.bind(this);
   }
   async onLogin() {
-    const type = this.props.loginUser(this.state.email, this.state.password)
-    console.log(type);
-    if (!type.user) {
+    await this.props.loginUser(this.state.email, this.state.password);
+    if (this.props.user.user) {
       this.props.guestPage();
-    } else {
+    } else if (this.props.user.host) {
       this.props.hostPage();
+    } else {
+      console.log('Incorrect username/password')
     }
   }
   render() {
@@ -56,10 +57,14 @@ class LogIn extends Component {
             <Text style={{ color: 'white', fontSize: 18 }}>Forgot Password? Click here</Text>
           </View>
 
-          <TouchableOpacity onPress={this.onLogin}
+          <TouchableOpacity onPress={() => this.onLogin()}
             style={localStyles.loginButton}>
             <Text style={localStyles.loginButtonText}>Log in</Text>
           </TouchableOpacity>
+
+          <View>
+            <Text>{JSON.stringify(this.props)}</Text>
+          </View>
         </View>
       </View>
     )
@@ -68,8 +73,7 @@ class LogIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.users,
-    host: state.hosts
+    user: state.user
   };
 };
 
