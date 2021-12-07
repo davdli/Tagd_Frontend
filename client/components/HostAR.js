@@ -19,22 +19,20 @@ import {
 } from 'react-viro';
 
 const InitialARScene = require('../../js/HelloWorldSceneAR');
-const sharedProps = {
-    apiKey: "API_KEY_HERE",
-}
+
 
 export default class HostAR extends Component {
     constructor() {
         super();
         this.state = {
-            sharedProps: sharedProps
+
         }
     }
 
     render() {
         return (
             <View>
-                <ViroARSceneNavigator {...this.state.sharedProps} initialScene={{ scene: InitialARScene }} />
+                <ViroARSceneNavigator {...this.state} initialScene={{ scene: InitialARScene }} />
             </View>
         )
     }

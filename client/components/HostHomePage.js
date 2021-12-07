@@ -18,17 +18,27 @@ class HostHomePage extends Component {
     super(props);
     this.state = {
       hostKey: "",
-      icon: "",
+      icon: "https://media.istockphoto.com/photos/playing-card-two-of-hearts-picture-id166089272?k=20&m=166089272&s=612x612&w=0&h=zODXUL-8g-CyRao9P2yO1ESSxnBc7EOminanb9sjctY=",
       tagMessage: "",
       tagTitle: ""
     };
+    this.onPress = this.onPress.bind(this)
   }
 
-  onPress() {
-    this.props.hostAR();
+  async onPress() {
+    const tag = {
+      title: this.state.tagTitle,
+      description: this.state.tagMessage,
+      imageUrl: this.state.icon,
+
+    }
+    await this.props.createATag(tag)
+    if(this.props.tag)
+    this.props.hostAR;
   }
   render() {
     const host = this.props.user.host;
+    const props = this.props
     return (
       <View style={localStyles.hostContainer}>
         <View style={{ height: "14%" }}>
@@ -45,7 +55,7 @@ class HostHomePage extends Component {
           </TouchableOpacity>
         </View>
         <View style={localStyles.bellowBack}>
-          <Text style={localStyles.titleText}>Hi, {host.firstName}</Text>
+          <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
           <View style={localStyles.personalContainer}>
             <Text style={localStyles.infoTitle}>Host Profile</Text>
             <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
@@ -86,7 +96,7 @@ class HostHomePage extends Component {
             />
           </View>
           <TouchableOpacity
-            onPress={this.props.hostAR}
+            onPress={this.onPress}
             style={localStyles.arButton}
           >
             <Text style={localStyles.arButtonText}>Upload!</Text>
@@ -109,7 +119,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    createTag: () => dispatch(createTag())
+    createATag: (tag) => dispatch(createTag(tag))
   }
 }
 
@@ -202,4 +212,4 @@ const localStyles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, null)(HostHomePage);
+export default connect(mapStateToProps, mapDispatch)(HostHomePage);
