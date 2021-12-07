@@ -15,13 +15,13 @@ class HostHomePage extends Component {
       <View style={localStyles.hostContainer}>
         <View style={{ height: "14%" }} >
           <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
-            <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
+            <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Log out'}</Text>
           </TouchableOpacity>
         </View>
         <View style={localStyles.bellowBack}>
-          <Text style={localStyles.titleText}>Hi, {host.firstName}!</Text>
+          <Text style={localStyles.titleText}>Hi, {host.firstName}</Text>
           <View style={localStyles.personalContainer}>
-            <Text style={localStyles.infoTitle}>Account Profile</Text>
+            <Text style={localStyles.infoTitle}>Host Profile</Text>
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
               <Text style={localStyles.infoSection}>First Name</Text>
               <Text style={localStyles.infoText}>{host.firstName}</Text>
@@ -50,8 +50,13 @@ class HostHomePage extends Component {
           </View>
           <TouchableOpacity onPress={this.props.hostAR}
             style={localStyles.arButton}>
-            <Text style={localStyles.arButtonText}>Upload</Text>
+            <Text style={localStyles.arButtonText}>Upload!</Text>
           </TouchableOpacity>
+
+          <View>
+            <Text>{JSON.stringify(this.props.tag)}</Text>
+          </View>
+
         </View>
       </View>
     )
@@ -60,7 +65,7 @@ class HostHomePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
@@ -82,7 +87,7 @@ const localStyles = StyleSheet.create({
     paddingTop: 30
   },
   backHomeButton: {
-    width: '20%',
+    width: '30%',
     height: 50,
     alignItems: 'center',
     backgroundColor: 'white',

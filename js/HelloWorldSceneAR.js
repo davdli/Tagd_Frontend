@@ -68,7 +68,7 @@ export default class HelloWorldSceneAR extends Component {
             text="Logo Info" />
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
-          <ViroFlexView dragType="FixedDistance" opacity={0.60}
+          <ViroFlexView dragType="FixedDistance" opacity={0.75}
             onDrag={(fixedDistance, fixedToWorld) => {
               this.state.position = this.setState({
                 position: fixedDistance
