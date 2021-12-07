@@ -3,7 +3,6 @@ import React from 'react'
 import { connect } from "react-redux"
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native'
 import { createSingleUser } from '../store/reducers/users'
-import { createSingleHost } from '../store/reducers/hosts'
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class SignUp extends React.Component {
     }
     if (this.state.userType === 'host') {
       try {
-        await this.props.createHost(newUser)
+        await this.props.createUser(newUser)
         this.props.hostPage()
       } catch (e) {
         let error = new Error(e)
@@ -208,7 +207,6 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => ({
   createUser: (user) => dispatch(createSingleUser(user)),
-  createHost: (host) => dispatch(createSingleHost(host))
 });
 
 export default connect(mapState, mapDispatch)(SignUp)
