@@ -32,7 +32,7 @@ class HostHomePage extends Component {
       imageUrl: this.state.icon,
 
     }
-    await this.props.createATag(tag)
+    await this.props.createATag(tag, this.state.hostKey)
     if(this.props.tag)
     this.props.hostAR;
   }
@@ -91,6 +91,16 @@ class HostHomePage extends Component {
               onChangeText={(text) =>
                 this.setState({
                   tagMessage: text,
+                })
+              }
+            />
+            <TextInput
+              placeholder="Host Location ID"
+              placeholderTextColor={"gray"}
+              style={localStyles.hostKeyInput}
+              onChangeText={(text) =>
+                this.setState({
+                  hostKey: text,
                 })
               }
             />
