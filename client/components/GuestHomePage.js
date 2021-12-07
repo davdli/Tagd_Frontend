@@ -15,13 +15,13 @@ class GuestHomePage extends Component {
       <View style={localStyles.guestContainer}>
         <View style={{ height: "14%" }} >
           <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
-            <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Home'}</Text>
+            <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Log out'}</Text>
           </TouchableOpacity>
         </View>
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Hi, {guest.firstName}</Text>
           <View style={localStyles.personalContainer}>
-            <Text style={localStyles.infoTitle}>Personal information</Text>
+            <Text style={localStyles.infoTitle}>Guest Profile</Text>
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
               <Text style={localStyles.infoSection}>First Name</Text>
               <Text style={localStyles.infoText}>{guest.firstName}</Text>
@@ -86,13 +86,13 @@ const localStyles = StyleSheet.create({
     paddingTop: 30
   },
   backHomeButton: {
-    width: '20%',
+    width: '30%',
     height: 50,
     alignItems: 'center',
     backgroundColor: 'white',
     justifyContent: 'center',
     marginTop: 60,
-    marginLeft: 15,
+    marginRight: 25,
     borderRadius: 12,
   },
   backButtonText: {
