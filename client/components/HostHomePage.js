@@ -4,14 +4,13 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   TouchableOpacity,
   StyleSheet,
-  Animated,
-  Keyboard,
-  TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
-import {createTag} from "../store/reducers/tags"
+import { createTag } from "../store/reducers/tags"
+import SelectIcons from "./SelectIcons";
+
 
 class HostHomePage extends Component {
   constructor(props) {
@@ -32,92 +31,86 @@ class HostHomePage extends Component {
       imageUrl: this.state.icon,
 
     }
-    await this.props.createATag(tag, this.state.hostKey)
-    if(this.props.tag)
-    this.props.hostAR;
+    await this.props.createATag(tag)
+    if (this.props.tag)
+      this.props.hostAR;
   }
   render() {
     const host = this.props.user.host;
     const props = this.props
     return (
-      <View style={localStyles.hostContainer}>
-        <View style={{ height: "14%" }}>
-          <TouchableOpacity
-            onPress={this.props.backHome}
-            style={localStyles.backHomeButton}
-          >
-            <Text
-              style={localStyles.backButtonText}
+
+      <ScrollView>
+        <View style={localStyles.hostContainer}>
+          <View style={{ height: "14%" }}>
+            <TouchableOpacity
               onPress={this.props.backHome}
+              style={localStyles.backHomeButton}
             >
-              {"< Log out"}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={localStyles.bellowBack}>
-          <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
-          <View style={localStyles.personalContainer}>
-            <Text style={localStyles.infoTitle}>Host Profile</Text>
-            <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
-              <Text style={localStyles.infoSection}>First Name</Text>
-              <Text style={localStyles.infoText}>{host.firstName}</Text>
+              <Text
+                style={localStyles.backButtonText}
+                onPress={this.props.backHome}
+              >
+                {"< Log out"}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={localStyles.bellowBack}>
+            <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
+            <View style={localStyles.personalContainer}>
+              <Text style={localStyles.infoTitle}>Host Profile</Text>
+              <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
+                <Text style={localStyles.infoSection}>First Name</Text>
+                <Text style={localStyles.infoText}>{host.firstName}</Text>
+              </View>
+              <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
+                <Text style={localStyles.infoSection}>Last Name</Text>
+                <Text style={localStyles.infoText}>{host.lastName}</Text>
+              </View>
+              <View>
+                <Text style={localStyles.infoSection}>Email</Text>
+                <Text style={localStyles.infoText}>{host.email}</Text>
+              </View>
             </View>
-            <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
-              <Text style={localStyles.infoSection}>Last Name</Text>
-              <Text style={localStyles.infoText}>{host.lastName}</Text>
+            <View style={localStyles.hostKeyContainer}>
+              <Text style={localStyles.infoTitle}>Select Tag</Text>
+
+              <SelectIcons />
+              <TextInput
+                placeholder="Tag Title"
+                placeholderTextColor={"gray"}
+                style={localStyles.hostKeyInput}
+                onChangeText={(text) =>
+                  this.setState({
+                    tagTitle: text,
+                  })
+                }
+              />
+              <TextInput
+                placeholder="Host Message"
+                placeholderTextColor={"gray"}
+                style={localStyles.hostKeyInput}
+                onChangeText={(text) =>
+                  this.setState({
+                    tagMessage: text,
+                  })
+                }
+              />
             </View>
+            <TouchableOpacity
+              onPress={this.onPress}
+              style={localStyles.arButton}
+            >
+              <Text style={localStyles.arButtonText}>Upload</Text>
+            </TouchableOpacity>
             <View>
-              <Text style={localStyles.infoSection}>Email</Text>
-              <Text style={localStyles.infoText}>{host.email}</Text>
+              <Text>{JSON.stringify(this.props.tag)}</Text>
             </View>
           </View>
-          <View style={localStyles.hostKeyContainer}>
-            <Text style={localStyles.infoTitle}>Select Icon</Text>
-
-            <TextInput
-              placeholder="Tag Title"
-              placeholderTextColor={"gray"}
-              style={localStyles.hostKeyInput}
-              onChangeText={(text) =>
-                this.setState({
-                  tagTitle: text,
-                })
-              }
-            />
-            <TextInput
-              placeholder="Host Message"
-              placeholderTextColor={"gray"}
-              style={localStyles.hostKeyInput}
-              onChangeText={(text) =>
-                this.setState({
-                  tagMessage: text,
-                })
-              }
-            />
-            <TextInput
-              placeholder="Host Location ID"
-              placeholderTextColor={"gray"}
-              style={localStyles.hostKeyInput}
-              onChangeText={(text) =>
-                this.setState({
-                  hostKey: text,
-                })
-              }
-            />
-          </View>
-          <TouchableOpacity
-            onPress={this.onPress}
-            style={localStyles.arButton}
-          >
-            <Text style={localStyles.arButtonText}>Upload!</Text>
-          </TouchableOpacity>
-
-          <View>
-            <Text>{JSON.stringify(this.props.tag)}</Text>
-          </View>
         </View>
-      </View>
-    );
+      </ScrollView>
+
+    )
   }
 }
 
