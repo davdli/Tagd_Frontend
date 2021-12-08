@@ -17,6 +17,7 @@ const DATA = [
   },
 ];
 
+
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <Image style={styles.image} source={{ uri: item.imageUrl }} />
@@ -24,7 +25,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
-const TagCarousel = ({ data }) => {
+const TagCarousel = ({data}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
