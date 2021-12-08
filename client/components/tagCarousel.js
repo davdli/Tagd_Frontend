@@ -17,6 +17,7 @@ const DATA = [
   },
 ];
 
+
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <Image style={styles.image} source={{ uri: item.imageUrl }} />
