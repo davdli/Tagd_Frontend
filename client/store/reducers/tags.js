@@ -30,10 +30,10 @@ export const fetchTags = () => {
   }
 }
 
-export const createTag = (locationID) => {
+export const createTag = (id, tagData) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.post(`https://tagd-backend.herokuapp.com/api/tags/${locationID}`)
+      const { data } = await axios.post(`https://tagd-backend.herokuapp.com/api/tags/${id}`, tagData)
       dispatch(createTags(data))
     } catch (error) {
       console.log(error)

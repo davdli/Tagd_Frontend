@@ -11,7 +11,7 @@ import {
 
 import SelectIcons from './SelectIcons';
 import { fetchTags } from "../store/reducers/tags";
-import {createTag} from "../store/reducers/tags";
+import { createTag } from "../store/reducers/tags";
 
 class HostHomePage extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class HostHomePage extends Component {
       imageUrl: this.state.icon,
 
     }
-    await this.props.createATag(tag)
+    await this.props.createATag(this.state.hostKey, tag)
     if (this.props.tag)
       this.props.hostAR;
   }
@@ -80,7 +80,7 @@ class HostHomePage extends Component {
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
             <SelectIcons />
-
+              
             <TextInput
               placeholder="Tag Title"
               placeholderTextColor={"gray"}
@@ -112,7 +112,7 @@ class HostHomePage extends Component {
               }
             />
             <TouchableOpacity
-              onPress={this.onPress}
+              onPress={this.props.hostAR}
               style={localStyles.arButton}
             >
               <Text style={localStyles.arButtonText}>Upload!</Text>
@@ -135,7 +135,7 @@ const mapStateToProps = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getTags: () => dispatch(fetchTags()),
-    createATag: (tag) => dispatch(createTag(tag))
+    createATag: (id, tag) => dispatch(createTag(id, tag))
   }
 }
 
@@ -143,12 +143,13 @@ const localStyles = StyleSheet.create({
   hostContainer: {
     backgroundColor: "white",
     flex: 1,
-    height: "auto"
+    height: 1000
   },
   bellowBack: {
     alignItems: "center",
     height: "20%",
-    marginBottom: 20
+    marginTop: 60,
+    marginBottom: 120
   },
   titleText: {
     paddingBottom: 30,
@@ -172,7 +173,7 @@ const localStyles = StyleSheet.create({
     fontSize: 20,
   },
   arButton: {
-    width: "85%",
+    width: "100%",
     height: 45,
     alignSelf: "center",
     alignItems: "center",
@@ -216,7 +217,7 @@ const localStyles = StyleSheet.create({
     padding: 20,
     width: "90%",
     height: "70%",
-    marginTop: 40,
+    marginTop: 30,
     marginLeft: 20,
   },
   hostKeyInput: {
