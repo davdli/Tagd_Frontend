@@ -72,7 +72,7 @@ export default class App extends Component {
               ) : this.state.navigatorType === HOST_PAGE ? (
                 <HostHomePage hostAR={this.HostARNavigator} backHome={this.HomeNavigator} />
               ) : (
-                <GuestHomePage guestAR={this.GuestARNavigator} backHome={this.HomeNavigator}/>
+                <GuestHomePage guestAR={this.GuestARNavigator} backHome={this.HomeNavigator} />
               )
               }
             </View>
@@ -121,8 +121,8 @@ export default class App extends Component {
         <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.GuestPageNavigator}>
-            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 20 }} >
-              <Text style={{ fontSize: 24, color: '#fff' }}>Back</Text>
+            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 100 }} >
+              <Text style={{ fontSize: 24, color: '#fff' }}>X</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -145,8 +145,8 @@ export default class App extends Component {
         <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.HostPageNavigator}>
-            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 20 }} >
-              <Text style={{ fontSize: 24, color: '#fff' }}>Back</Text>
+            <View style={{ backgroundColor: "transparent", borderColor: "#80808050", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
+              <Text style={{ fontSize: 24, color: '#80808050' }}>X</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -172,14 +172,12 @@ const localStyles = StyleSheet.create({
   },
 
   buttons: {
-    height: 80,
-    width: 80,
-    paddingTop: 20,
-    paddingBottom: 20,
+    height: 60,
+    width: 50,
     marginTop: 10,
     marginBottom: 10,
-    backgroundColor: '#00000000',
-    borderRadius: 10,
+    backgroundColor: 'transparent',
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: '#ffffff00',
   }
