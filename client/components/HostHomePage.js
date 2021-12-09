@@ -78,6 +78,7 @@ class HostHomePage extends Component {
               </View>
             </View>
           </View>
+
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
 
@@ -115,12 +116,12 @@ class HostHomePage extends Component {
                 })
               }
             />
-          <TouchableOpacity
-            onPress={this.onPress}
-            style={localStyles.arButton}
-          >
-            <Text style={localStyles.arButtonText}>Upload!</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.onPress}
+              style={localStyles.arButton}
+            >
+              <Text style={localStyles.arButtonText}>Upload!</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

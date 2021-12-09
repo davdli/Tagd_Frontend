@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { View, TouchableHighlight, Image, SafeAreaView, StyleSheet, Alert, Text } from 'react-native';
+import { ViroARSceneNavigator } from 'react-viro';
 import store from './client/store'
 import Home from './client/components/Home';
-import SignUp from './client/components/SignUp';
 import Login from './client/components/LogIn';
+import SignUp from './client/components/SignUp';
 import SelectUserType from './client/components/SelectUserType';
-import HostHomePage from './client/components/HostHomePage';
 import GuestHomePage from './client/components/GuestHomePage';
-import HostAR from './client/components/HostAR';
-import { ViroARSceneNavigator } from 'react-viro';
+import HostHomePage from './client/components/HostHomePage';
 
 const HOME = 'HOME';
-const SIGN_UP = 'SIGN_UP';
 const LOG_IN = 'LOG_IN';
+const SIGN_UP = 'SIGN_UP';
 const SELECT_TYPE = 'SELECT_TYPE';
-const HOST_PAGE = 'HOST_PAGE';
 const GUEST_PAGE = 'GUEST_PAGE';
+const HOST_PAGE = 'HOST_PAGE';
+const GUEST_AR = 'GUEST_AR';
 const HOST_AR = 'HOST_AR';
 
 const sharedProps = {
@@ -33,17 +33,22 @@ export default class App extends Component {
       sharedProps: sharedProps
     }
     this.HomeNavigator = this.HomeNavigator.bind(this);
-    this.SignUpNavigator = this.SignUpNavigator.bind(this);
     this.LogInNavigator = this.LogInNavigator.bind(this);
+    this.SignUpNavigator = this.SignUpNavigator.bind(this);
     this.SelectTypeNavigator = this.SelectTypeNavigator.bind(this);
-    this.HostPageNavigator = this.HostPageNavigator.bind(this);
     this.GuestPageNavigator = this.GuestPageNavigator.bind(this);
-    this.HostARNavigator = this.HostARNavigator.bind(this)
-    this._getARNavigator = this._getARNavigator.bind(this);
+    this.HostPageNavigator = this.HostPageNavigator.bind(this);
+    this.GuestARNavigator = this.GuestARNavigator.bind(this);
+    this.HostARNavigator = this.HostARNavigator.bind(this);
+    this._getARNavigatorGuest = this._getARNavigatorGuest.bind(this);
+    this._getARNavigatorHost = this._getARNavigatorHost.bind(this);
+
   }
   render() {
-    if (this.state.navigatorType === HOST_AR) {
-      return this._getARNavigator();
+    if (this.state.navigatorType === GUEST_AR) {
+      return this._getARNavigatorGuest();
+    } else if (this.state.navigatorType === HOST_AR) {
+      return this._getARNavigatorHost();
     } else {
       return (
         <Provider store={store}>
@@ -78,25 +83,52 @@ export default class App extends Component {
   HomeNavigator() {
     this.setState({ navigatorType: HOME });
   }
-  SignUpNavigator() {
-    this.setState({ navigatorType: SIGN_UP });
-  }
   LogInNavigator() {
     this.setState({ navigatorType: LOG_IN });
+  }
+  SignUpNavigator() {
+    this.setState({ navigatorType: SIGN_UP });
   }
   SelectTypeNavigator() {
     this.setState({ navigatorType: SELECT_TYPE });
   }
+  GuestPageNavigator() {
+    this.setState({ navigatorType: GUEST_PAGE });
+  }
   HostPageNavigator() {
     this.setState({ navigatorType: HOST_PAGE });
   }
-  GuestPageNavigator() {
-    this.setState({ navigatorType: GUEST_PAGE });
+  GuestARNavigator() {
+    this.setState({ navigatorType: GUEST_AR });
   }
   HostARNavigator() {
     this.setState({ navigatorType: HOST_AR });
   }
-  _getARNavigator() {
+  _getARNavigatorGuest() {
+    return (
+      <View style={localStyles.outer} >
+        <ViroARSceneNavigator {...this.state.sharedProps}
+          initialScene={{ scene: InitialARScene }} />
+
+        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 77, alignItems: 'center' }}>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._onDisplayDialog}
+            underlayColor={'#00000000'}>
+            <Image source={require("./js/res/button_add-tag.png")} />
+          </TouchableHighlight>
+        </View>
+        <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this.GuestPageNavigator}>
+            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 20 }} >
+              <Text style={{ fontSize: 24, color: '#fff' }}>Back</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
+  }
+  _getARNavigatorHost() {
     return (
       <View style={localStyles.outer} >
         <ViroARSceneNavigator {...this.state.sharedProps}
