@@ -12,7 +12,6 @@ class Home extends Component {
           source={require('../../js/res/HomeImage.jpeg')}
           style={styles.image}>
           <Text style={styles.title}>TAGD</Text>
-          {/* <Button>Button</Button> */}
           <View style={styles.descriptionView}>
             <Text style={styles.descriptionText}>AR Home Guide</Text>
           </View>

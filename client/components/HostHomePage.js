@@ -10,8 +10,10 @@ import {
   Animated,
   Keyboard,
   TouchableWithoutFeedback,
+  ScrollView
 } from "react-native";
-import {createTag} from "../store/reducers/tags"
+import { fetchTags } from "../store/reducers/tags";
+import {createTag} from "../store/reducers/tags";
 
 class HostHomePage extends Component {
   constructor(props) {
@@ -24,7 +26,9 @@ class HostHomePage extends Component {
     };
     this.onPress = this.onPress.bind(this)
   }
-
+  componentDidMount() {
+    this.props.getTags();
+  }
   async onPress() {
     const tag = {
       title: this.state.tagTitle,
@@ -38,41 +42,47 @@ class HostHomePage extends Component {
   }
   render() {
     const host = this.props.user.host;
-    const props = this.props
+    const tags = this.props.tag;
     return (
-      <View style={localStyles.hostContainer}>
-        <View style={{ height: "14%" }}>
-          <TouchableOpacity
-            onPress={this.props.backHome}
-            style={localStyles.backHomeButton}
-          >
-            <Text
-              style={localStyles.backButtonText}
+      <ScrollView>
+        <View style={localStyles.hostContainer}>
+          <View style={{ height: "10%" }}>
+            <TouchableOpacity
               onPress={this.props.backHome}
+              style={localStyles.backHomeButton}
             >
-              {"< Log out"}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={localStyles.bellowBack}>
-          <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
-          <View style={localStyles.personalContainer}>
-            <Text style={localStyles.infoTitle}>Host Profile</Text>
-            <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
-              <Text style={localStyles.infoSection}>First Name</Text>
-              <Text style={localStyles.infoText}>{host.firstName}</Text>
-            </View>
-            <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
-              <Text style={localStyles.infoSection}>Last Name</Text>
-              <Text style={localStyles.infoText}>{host.lastName}</Text>
-            </View>
-            <View>
-              <Text style={localStyles.infoSection}>Email</Text>
-              <Text style={localStyles.infoText}>{host.email}</Text>
+              <Text
+                style={localStyles.backButtonText}
+                onPress={this.props.backHome}
+              >
+                {"< Log out"}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={localStyles.bellowBack}>
+            <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
+            <View style={localStyles.personalContainer}>
+              <Text style={localStyles.infoTitle}>Host Profile</Text>
+              <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
+                <Text style={localStyles.infoSection}>First Name</Text>
+                <Text style={localStyles.infoText}>{host.firstName}</Text>
+              </View>
+              <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
+                <Text style={localStyles.infoSection}>Last Name</Text>
+                <Text style={localStyles.infoText}>{host.lastName}</Text>
+              </View>
+              <View>
+                <Text style={localStyles.infoSection}>Email</Text>
+                <Text style={localStyles.infoText}>{host.email}</Text>
+              </View>
             </View>
           </View>
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
+
+            <View>
+              <Text>{JSON.stringify(this.props.tag)}</Text>
+            </View>
 
             <TextInput
               placeholder="Tag Title"
@@ -111,12 +121,8 @@ class HostHomePage extends Component {
           >
             <Text style={localStyles.arButtonText}>Upload!</Text>
           </TouchableOpacity>
-
-          <View>
-            <Text>{JSON.stringify(this.props.tag)}</Text>
-          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -124,11 +130,13 @@ class HostHomePage extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    tag: state.tag
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
+    getTags: () => dispatch(fetchTags()),
     createATag: (tag) => dispatch(createTag(tag))
   }
 }
@@ -137,10 +145,11 @@ const localStyles = StyleSheet.create({
   hostContainer: {
     backgroundColor: "white",
     flex: 1,
+    height: "auto"
   },
   bellowBack: {
     alignItems: "center",
-    height: "86%",
+    height: "20%",
   },
   titleText: {
     paddingBottom: 30,
@@ -148,7 +157,6 @@ const localStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
-    paddingTop: 30,
   },
   backHomeButton: {
     width: "30%",
@@ -208,6 +216,7 @@ const localStyles = StyleSheet.create({
   hostKeyContainer: {
     padding: 20,
     width: "90%",
+    height: "70%"
   },
   hostKeyInput: {
     width: "100%",

@@ -22,7 +22,7 @@ const createTags = (tag) => {
 export const fetchTags = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post('https://tagd-backend.herokuapp.com/api/tags')
+      const { data } = await axios.get('https://tagd-backend.herokuapp.com/api/tags')
       dispatch(getTags(data))
     } catch (error) {
       console.log(error);
