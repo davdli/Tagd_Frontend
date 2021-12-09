@@ -114,13 +114,13 @@ class HostHomePage extends Component {
                 })
               }
             />
-          </View>
           <TouchableOpacity
             onPress={this.onPress}
             style={localStyles.arButton}
           >
             <Text style={localStyles.arButtonText}>Upload!</Text>
           </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     );
@@ -150,6 +150,7 @@ const localStyles = StyleSheet.create({
   bellowBack: {
     alignItems: "center",
     height: "20%",
+    marginBottom: 20
   },
   titleText: {
     paddingBottom: 30,
@@ -216,7 +217,9 @@ const localStyles = StyleSheet.create({
   hostKeyContainer: {
     padding: 20,
     width: "90%",
-    height: "70%"
+    height: "70%",
+    marginTop: 40,
+    marginLeft: 20,
   },
   hostKeyInput: {
     width: "100%",
