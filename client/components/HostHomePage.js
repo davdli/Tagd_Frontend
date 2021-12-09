@@ -44,7 +44,7 @@ class HostHomePage extends Component {
     return (
       <ScrollView>
         <View style={localStyles.hostContainer}>
-          <View style={{ height: "10%" }}>
+          <View style={{ height: 100 }}>
 
             <TouchableOpacity
               onPress={this.props.backHome}
@@ -80,7 +80,7 @@ class HostHomePage extends Component {
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
             <SelectIcons />
-              
+
             <TextInput
               placeholder="Tag Title"
               placeholderTextColor={"gray"}
@@ -143,11 +143,11 @@ const localStyles = StyleSheet.create({
   hostContainer: {
     backgroundColor: "white",
     flex: 1,
-    height: 1000
+    height: 1100
   },
   bellowBack: {
     alignItems: "center",
-    height: "20%",
+    height: 300,
     marginTop: 60,
     marginBottom: 120
   },
@@ -216,8 +216,8 @@ const localStyles = StyleSheet.create({
   hostKeyContainer: {
     padding: 20,
     width: "90%",
-    height: "70%",
-    marginTop: 30,
+    height: 500,
+    marginTop: -70,
     marginLeft: 20,
   },
   hostKeyInput: {
