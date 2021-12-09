@@ -6,11 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Animated,
-  Keyboard,
-  TouchableWithoutFeedback,
-  ScrollView
+  ScrollView,
 } from "react-native";
+
+import SelectIcons from './SelectIcons';
 
 import { fetchTags } from "../store/reducers/tags";
 import {createTag} from "../store/reducers/tags";
@@ -80,12 +79,9 @@ class HostHomePage extends Component {
           </View>
 
           <View style={localStyles.hostKeyContainer}>
-            <Text style={localStyles.infoTitle}>Select Icon</Text>
+            <Text style={localStyles.infoTitle}>Select Tag</Text>
 
-            <View>
-              <Text>{JSON.stringify(this.props.tag)}</Text>
-            </View>
-
+            <SelectIcons />
             <TextInput
               placeholder="Tag Title"
               placeholderTextColor={"gray"}
@@ -97,7 +93,7 @@ class HostHomePage extends Component {
               }
             />
             <TextInput
-              placeholder="Host Message"
+              placeholder="Tag Message"
               placeholderTextColor={"gray"}
               style={localStyles.hostKeyInput}
               onChangeText={(text) =>
@@ -133,7 +129,7 @@ class HostHomePage extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    tag: state.tag
+    tag: state.tag,
   };
 };
 
@@ -148,12 +144,10 @@ const localStyles = StyleSheet.create({
   hostContainer: {
     backgroundColor: "white",
     flex: 1,
-    height: "auto"
   },
   bellowBack: {
     alignItems: "center",
-    height: "20%",
-    marginBottom: 20
+    height: "86%",
   },
   titleText: {
     paddingBottom: 30,
@@ -161,6 +155,7 @@ const localStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
+    paddingTop: 30,
   },
   backHomeButton: {
     width: "30%",
@@ -220,9 +215,6 @@ const localStyles = StyleSheet.create({
   hostKeyContainer: {
     padding: 20,
     width: "90%",
-    height: "70%",
-    marginTop: 40,
-    marginLeft: 20,
   },
   hostKeyInput: {
     width: "100%",
