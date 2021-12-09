@@ -52,7 +52,10 @@ class LogIn extends Component {
             />
           </View>
           <View style={{ marginTop: 10 }}>
-            <Text style={{ color: 'white', fontSize: 18 }}>Forgot Password? Click here</Text>
+            <Text style={{ color: 'white', fontSize: 18 }}>
+              <Text>Forgot Password? </Text>
+              <Text style={{textDecorationLine: "underline"}}>Click here</Text>
+            </Text>
           </View>
           <TouchableOpacity onPress={() => this.onLogin()}
             style={localStyles.loginButton}>
