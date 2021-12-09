@@ -13,7 +13,7 @@ import {
 } from "react-native";
 
 import { fetchTags } from "../store/reducers/tags";
-import {createTag} from "../store/reducers/tags";
+import { createTag } from "../store/reducers/tags";
 
 class HostHomePage extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class HostHomePage extends Component {
       imageUrl: this.state.icon,
 
     }
-    await this.props.createATag(tag)
+    await this.props.createATag(this.state.hostKey, tag)
     if (this.props.tag)
       this.props.hostAR;
   }
@@ -137,7 +137,7 @@ const mapStateToProps = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getTags: () => dispatch(fetchTags()),
-    createATag: (tag) => dispatch(createTag(tag))
+    createATag: (id, tag) => dispatch(createTag(id, tag))
   }
 }
 
