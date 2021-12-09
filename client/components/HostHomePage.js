@@ -6,12 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Animated,
-  Keyboard,
-  TouchableWithoutFeedback,
-  ScrollView
+  ScrollView,
 } from "react-native";
 
+import SelectIcons from './SelectIcons';
 import { fetchTags } from "../store/reducers/tags";
 import { createTag } from "../store/reducers/tags";
 
@@ -81,8 +79,8 @@ class HostHomePage extends Component {
 
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
-
-
+            <SelectIcons />
+              
             <TextInput
               placeholder="Tag Title"
               placeholderTextColor={"gray"}
@@ -94,7 +92,7 @@ class HostHomePage extends Component {
               }
             />
             <TextInput
-              placeholder="Host Message"
+              placeholder="Tag Message"
               placeholderTextColor={"gray"}
               style={localStyles.hostKeyInput}
               onChangeText={(text) =>

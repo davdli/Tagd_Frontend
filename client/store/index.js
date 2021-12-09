@@ -7,7 +7,7 @@ import tagReducer from "./reducers/tags";
 
 const reducer = combineReducers({
   user: userReducer,
-  tag: tagReducer,
+  tag: tagReducer
 })
 
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger({ collapsed: true })))

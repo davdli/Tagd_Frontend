@@ -29,7 +29,7 @@ const TagCarousel = ({data}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+    const backgroundColor = item.id === selectedId ? "#00597B" : "#0D83B0";
     const color = item.id === selectedId ? 'white' : 'black';
 
     return (
