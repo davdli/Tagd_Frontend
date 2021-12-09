@@ -1,42 +1,33 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchTags } from '../store/reducers/tags';
+import TagCarousel from './TagCarousel';
 
-export default SelectIcons = ({ tag }) => {
-    const { width } = useWindowDimensions();
+class SelectIcons extends Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        this.props.getTags();
+    }
+    render() {
+        const tags = this.props.tags
+        return (
+            <TagCarousel data={tags} />
+        )
+    }
+}
 
-    return (
-        <View style={[styles.container, { width }]}>
-            <Image source={tag.image} style={[styles.image, { width, resizeMode: 'contain' }]} />
+const mapStateToProps = (state) => {
+    return {
+        tags: state.tags
+    }
+}
 
-            <View style={{ flex: 0.3 }}>
-                <Text style={styles.title}>{tag.title}</Text>
-                <Text style={styles.description}>{tag.description}</Text>
-            </View>
-        </View>
-    );
-};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTags: () => dispatch(fetchTags())
+    }
+}
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        aligntags: 'center',
-    },
-    image: {
-        flex: 0.7,
-        justifyContent: 'center',
-    },
-    title: {
-        fontWeight: '800',
-        fontSize: 28,
-        marginBottom: 10,
-        color: '#493d8a',
-        textAlign: 'center',
-    },
-    description: {
-        fontWeight: '300',
-        color: '#62656b',
-        textAlign: 'center',
-        paddingHorizontal: 64,
-    },
-});
+export default connect(mapStateToProps, mapDispatchToProps)(SelectIcons);

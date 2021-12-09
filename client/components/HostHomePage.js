@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   TouchableOpacity,
   StyleSheet,
   Animated,
@@ -12,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   ScrollView
 } from "react-native";
+
 import { fetchTags } from "../store/reducers/tags";
 import {createTag} from "../store/reducers/tags";
 
@@ -36,9 +36,9 @@ class HostHomePage extends Component {
       imageUrl: this.state.icon,
 
     }
-    await this.props.createATag(tag, this.state.hostKey)
-    if(this.props.tag)
-    this.props.hostAR;
+    await this.props.createATag(tag)
+    if (this.props.tag)
+      this.props.hostAR;
   }
   render() {
     const host = this.props.user.host;
@@ -47,6 +47,7 @@ class HostHomePage extends Component {
       <ScrollView>
         <View style={localStyles.hostContainer}>
           <View style={{ height: "10%" }}>
+
             <TouchableOpacity
               onPress={this.props.backHome}
               style={localStyles.backHomeButton}
@@ -124,6 +125,7 @@ class HostHomePage extends Component {
         </View>
       </ScrollView>
     );
+
   }
 }
 
