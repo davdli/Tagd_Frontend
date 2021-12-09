@@ -24,6 +24,7 @@ const sharedProps = {
 }
 
 const InitialARScene = require('./js/HelloWorldSceneAR');
+const HostARScene = require('./js/HostAR');
 
 export default class App extends Component {
   constructor() {
@@ -132,7 +133,7 @@ export default class App extends Component {
     return (
       <View style={localStyles.outer} >
         <ViroARSceneNavigator {...this.state.sharedProps}
-          initialScene={{ scene: InitialARScene }} />
+          initialScene={{ scene: HostARScene }} />
 
         <View style={{ position: 'absolute', left: 0, right: 0, bottom: 77, alignItems: 'center' }}>
           <TouchableHighlight style={localStyles.buttons}
