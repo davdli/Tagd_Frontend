@@ -82,9 +82,6 @@ class HostHomePage extends Component {
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
 
-            <View>
-              <Text>{JSON.stringify(this.props.tag)}</Text>
-            </View>
 
             <TextInput
               placeholder="Tag Title"
@@ -117,7 +114,7 @@ class HostHomePage extends Component {
               }
             />
             <TouchableOpacity
-              onPress={this.onPress}
+              onPress={this.props.hostAR}
               style={localStyles.arButton}
             >
               <Text style={localStyles.arButtonText}>Upload!</Text>
@@ -148,12 +145,13 @@ const localStyles = StyleSheet.create({
   hostContainer: {
     backgroundColor: "white",
     flex: 1,
-    height: "auto"
+    height: 1000
   },
   bellowBack: {
     alignItems: "center",
     height: "20%",
-    marginBottom: 20
+    marginTop: 60,
+    marginBottom: 120
   },
   titleText: {
     paddingBottom: 30,
@@ -177,7 +175,7 @@ const localStyles = StyleSheet.create({
     fontSize: 20,
   },
   arButton: {
-    width: "85%",
+    width: "100%",
     height: 45,
     alignSelf: "center",
     alignItems: "center",
@@ -221,7 +219,7 @@ const localStyles = StyleSheet.create({
     padding: 20,
     width: "90%",
     height: "70%",
-    marginTop: 40,
+    marginTop: 30,
     marginLeft: 20,
   },
   hostKeyInput: {
