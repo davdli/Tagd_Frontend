@@ -20,6 +20,7 @@ class GuestHomePage extends Component {
         </View>
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Hi, {guest.firstName}</Text>
+          <Text style={localStyles.editProfile}>Edit Profile</Text>
           <View style={localStyles.personalContainer}>
             <Text style={localStyles.infoTitle}>Guest Profile</Text>
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
@@ -78,7 +79,7 @@ const localStyles = StyleSheet.create({
     height: '86%'
   },
   titleText: {
-    paddingBottom: 30,
+    paddingBottom: 10,
     color: '#008080',
     textAlign: 'center',
     fontSize: 30,
@@ -155,6 +156,12 @@ const localStyles = StyleSheet.create({
     borderRightColor: 'white',
     borderTopColor: 'white',
   },
+  editProfile: {
+    color: '#008080',
+    textDecorationLine: 'underline',
+    fontSize: 18,
+    paddingBottom: 20
+  }
 });
 
 export default connect(mapStateToProps, null)(GuestHomePage);

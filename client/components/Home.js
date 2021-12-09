@@ -30,7 +30,10 @@ class Home extends Component {
             this.props.signUp()
           }}>
             <View style={styles.signupButton}>
-              <Text style={styles.signupText}>Don't have an account? Sign up</Text>
+              <Text style={styles.signupText}>
+                <Text>Don't have an account? </Text>
+                <Text style={{textDecorationLine: "underline"}}>Sign up</Text>
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
