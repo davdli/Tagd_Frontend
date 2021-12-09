@@ -180,6 +180,7 @@ const localStyles = StyleSheet.create({
     backgroundColor: "#008080",
     justifyContent: "center",
     marginTop: 35,
+    marginBottom: 30,
     borderRadius: 12,
   },
   arButtonText: {
