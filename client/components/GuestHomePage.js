@@ -20,7 +20,9 @@ class GuestHomePage extends Component {
         </View>
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Hi, {guest.firstName}</Text>
-          <Text style={localStyles.editProfile}>Edit Profile</Text>
+          <TouchableOpacity onPress={this.props.editProfile}>
+            <Text style={localStyles.editProfile}>Edit Profile</Text>
+          </TouchableOpacity>
           <View style={localStyles.personalContainer}>
             <Text style={localStyles.infoTitle}>Guest Profile</Text>
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
