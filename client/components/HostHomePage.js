@@ -69,7 +69,7 @@ class HostHomePage extends Component {
           </View>
 
           <View style={localStyles.hostKeyContainer}>
-            <Text style={localStyles.infoTitle}>Select Icon</Text>
+            <Text style={localStyles.infoTitle}>Select A Tag</Text>
 
               <SelectIcons />
 
@@ -107,7 +107,7 @@ class HostHomePage extends Component {
               onPress={this.props.hostAR}
               style={localStyles.arButton}
             >
-              <Text style={localStyles.arButtonText}>Upload!</Text>
+              <Text style={localStyles.arButtonText}>Upload</Text>
             </TouchableOpacity>
           </View>
         </View>

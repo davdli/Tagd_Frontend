@@ -29,15 +29,16 @@ const TagCarousel = ({data}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#00597B" : "#0D83B0";
+    const backgroundColor = item.id === selectedId ? "#008080" : "transparent";
     const color = item.id === selectedId ? 'white' : 'black';
-
+    const borderColor = item.id === selectedId ? 'black' : 'black';
     return (
       <Item
         item={item}
         onPress={() => setSelectedId(item.id)}
         backgroundColor={{ backgroundColor }}
         textColor={{ color }}
+        borderColor={{ borderColor}}
       />
     );
   };
