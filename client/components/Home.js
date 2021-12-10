@@ -7,7 +7,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.background} >
         <ImageBackground
           source={require('../../js/res/HomeImage.jpeg')}
           style={styles.image}>
@@ -32,7 +32,7 @@ class Home extends Component {
             <View style={styles.signupButton}>
               <Text style={styles.signupText}>
                 <Text>Don't have an account? </Text>
-                <Text style={{textDecorationLine: "underline"}}>Sign up</Text>
+                <Text style={{ textDecorationLine: "underline" }}>Sign up</Text>
               </Text>
             </View>
           </TouchableOpacity>
@@ -45,6 +45,10 @@ class Home extends Component {
 export default Home;
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#000000',
+    height: '100%',
+  },
   image: {
     width: '100%',
     height: '85%',
@@ -54,23 +58,29 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 80,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#008080',
     width: '70%',
     marginLeft: 25
   },
   descriptionView: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     width: 200,
     height: 40,
     borderRadius: 10,
     marginTop: 25,
     marginLeft: 25,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#008080'
   },
   descriptionText: {
     color: '#008080',
-    fontSize: 16,
+    fontSize: 22,
+    backgroundColor: 'transparent',
+    textShadowColor: 'black',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 10,
     fontWeight: 'bold',
   },
   loginView: {
@@ -87,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   loginText: {
-    color: 'white',
+    color: 'black',
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
   signupButton: {
     height: 60,
     marginHorizontal: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center'
