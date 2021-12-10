@@ -9,6 +9,7 @@ import SignUp from './client/components/SignUp';
 import SelectUserType from './client/components/SelectUserType';
 import GuestHomePage from './client/components/GuestHomePage';
 import HostHomePage from './client/components/HostHomePage';
+import EditProfile from './client/components/EditProfile';
 
 const HOME = 'HOME';
 const LOG_IN = 'LOG_IN';
@@ -16,6 +17,7 @@ const SIGN_UP = 'SIGN_UP';
 const SELECT_TYPE = 'SELECT_TYPE';
 const GUEST_PAGE = 'GUEST_PAGE';
 const HOST_PAGE = 'HOST_PAGE';
+const EDIT_PROFILE = 'EDIT_PROFILE';
 const GUEST_AR = 'GUEST_AR';
 const HOST_AR = 'HOST_AR';
 
@@ -40,10 +42,10 @@ export default class App extends Component {
     this.GuestPageNavigator = this.GuestPageNavigator.bind(this);
     this.HostPageNavigator = this.HostPageNavigator.bind(this);
     this.GuestARNavigator = this.GuestARNavigator.bind(this);
+    this.EditProfileNavigator = this.EditProfileNavigator.bind(this);
     this.HostARNavigator = this.HostARNavigator.bind(this);
     this._getARNavigatorGuest = this._getARNavigatorGuest.bind(this);
     this._getARNavigatorHost = this._getARNavigatorHost.bind(this);
-
   }
   render() {
     if (this.state.navigatorType === GUEST_AR) {
@@ -69,10 +71,12 @@ export default class App extends Component {
                   hostPage={this.HostPageNavigator} />
               ) : this.state.navigatorType === SELECT_TYPE ? (
                 <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
-              ) : this.state.navigatorType === HOST_PAGE ? (
-                <HostHomePage hostAR={this.HostARNavigator} logIn={this.LogInNavigator} />
+              ) : this.state.navigatorType === EDIT_PROFILE ? (
+                <EditProfile guestPage={this.GuestPageNavigator} hostPage={this.HostPageNavigator} />
+              ): this.state.navigatorType === HOST_PAGE ? (
+                <HostHomePage hostAR={this.HostARNavigator} logIn={this.LogInNavigator} editProfile={this.EditProfileNavigator}/>
               ) : (
-                <GuestHomePage guestAR={this.GuestARNavigator} logIn={this.LogInNavigator} />
+                <GuestHomePage guestAR={this.GuestARNavigator} logIn={this.LogInNavigator} editProfile={this.EditProfileNavigator}/>
               )
               }
             </View>
@@ -98,6 +102,9 @@ export default class App extends Component {
   }
   HostPageNavigator() {
     this.setState({ navigatorType: HOST_PAGE });
+  }
+  EditProfileNavigator() {
+    this.setState({ navigatorType: EDIT_PROFILE })
   }
   GuestARNavigator() {
     this.setState({ navigatorType: GUEST_AR });

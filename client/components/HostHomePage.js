@@ -48,7 +48,9 @@ class HostHomePage extends Component {
           </View>
           <View style={localStyles.bellowBack}>
             <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
+            <TouchableOpacity onPress={this.props.editProfile}>
             <Text style={localStyles.editProfile}>Edit Profile</Text>
+          </TouchableOpacity>
             <View style={localStyles.personalContainer}>
               <Text style={localStyles.infoTitle}>Host Profile</Text>
               <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
