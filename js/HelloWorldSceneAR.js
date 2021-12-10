@@ -75,8 +75,14 @@ export default class HelloWorldSceneAR extends Component {
               });
             }}
             position={[0, 1, 0]} rotation={[-50, 0, 0]}
-            height={.2} width={.3} style={styles.contactInfo}
+            height={.3} width={.4} style={styles.contactInfo}
             >
+            <ViroText
+            textAlign='center' textClipMode="None"
+            style={styles.contactTitle} position={[.00, .15, 0]}
+            scale={[0.014, 0.014, 0]} height={1} width={6}
+            text="Hydrate"
+            />
             <ViroText
             textAlign='center' textClipMode="None"
             style={styles.contactText} position={[.00, .1, 0]}
@@ -104,12 +110,16 @@ export default class HelloWorldSceneAR extends Component {
 const styles = StyleSheet.create({
   contactInfo: {
     backgroundColor: '#DCDCDC',
-    flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'column',
+  },
+  contactTitle: {
+    color: 'black',
+    fontSize: 300,
+    fontWeight: '600',
   },
   contactText: {
     color: '#FFFFFF',
-    fontSize: 300,
+    fontSize: 225,
     fontWeight: '600',
   },
 });
