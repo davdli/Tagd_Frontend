@@ -123,7 +123,7 @@ const localStyles = StyleSheet.create({
     width: '85%',
     height: 40,
     borderWidth: 1,
-    color: 'white',
+    color: 'black',
     fontSize: 18,
     backgroundColor: '#fff',
     borderBottomColor: '#008080',

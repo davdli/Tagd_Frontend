@@ -118,13 +118,6 @@ export default class App extends Component {
         <ViroARSceneNavigator {...this.state.sharedProps}
           initialScene={{ scene: InitialARScene }} />
 
-        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 77, alignItems: 'center' }}>
-          <TouchableHighlight style={localStyles.buttons}
-            onPress={this._onDisplayDialog}
-            underlayColor={'#00000000'}>
-            <Image source={require("./js/res/button_add-tag.png")} />
-          </TouchableHighlight>
-        </View>
         <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.GuestPageNavigator}>
@@ -142,13 +135,6 @@ export default class App extends Component {
         <ViroARSceneNavigator {...this.state.sharedProps}
           initialScene={{ scene: HostARScene }} />
 
-        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 77, alignItems: 'center' }}>
-          <TouchableHighlight style={localStyles.buttons}
-            onPress={this._onDisplayDialog}
-            underlayColor={'#00000000'}>
-            <Image source={require("./js/res/button_add-tag.png")} />
-          </TouchableHighlight>
-        </View>
         <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.HostPageNavigator}>
@@ -158,13 +144,6 @@ export default class App extends Component {
           </TouchableHighlight>
         </View>
       </View>
-    );
-  }
-  _onDisplayDialog() {
-    Alert.prompt(
-      'Leave a tag',
-      'Write a message to place in the world!',
-      '...'
     );
   }
 }
