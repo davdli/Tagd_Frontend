@@ -10,7 +10,6 @@ import {
 } from "react-native";
 
 import SelectIcons from './SelectIcons';
-import { fetchTags } from "../store/reducers/tags";
 import { createTag } from "../store/reducers/tags";
 
 class HostHomePage extends Component {
@@ -23,9 +22,6 @@ class HostHomePage extends Component {
       tagTitle: ""
     };
     this.onPress = this.onPress.bind(this)
-  }
-  componentDidMount() {
-    this.props.getTags();
   }
   async onPress() {
     const tag = {
@@ -46,16 +42,8 @@ class HostHomePage extends Component {
         <View style={localStyles.hostContainer}>
           <View style={{ height: 100 }}>
 
-            <TouchableOpacity
-              onPress={this.props.backHome}
-              style={localStyles.backHomeButton}
-            >
-              <Text
-                style={localStyles.backButtonText}
-                onPress={this.props.backHome}
-              >
-                {"< Log out"}
-              </Text>
+            <TouchableOpacity onPress={this.props.logIn} style={localStyles.backHomeButton}>
+              <Text style={localStyles.backButtonText}>{"< Log out"}</Text>
             </TouchableOpacity>
           </View>
           <View style={localStyles.bellowBack}>
@@ -80,7 +68,8 @@ class HostHomePage extends Component {
 
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Select Icon</Text>
-            <SelectIcons />
+
+              <SelectIcons />
 
             <TextInput
               placeholder="Tag Title"
@@ -129,13 +118,11 @@ class HostHomePage extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    tag: state.tag
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    getTags: () => dispatch(fetchTags()),
     createATag: (id, tag) => dispatch(createTag(id, tag))
   }
 }

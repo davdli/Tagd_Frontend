@@ -70,9 +70,9 @@ export default class App extends Component {
               ) : this.state.navigatorType === SELECT_TYPE ? (
                 <SelectUserType hostPage={this.HostPageNavigator} guestPage={this.GuestPageNavigator} />
               ) : this.state.navigatorType === HOST_PAGE ? (
-                <HostHomePage hostAR={this.HostARNavigator} backHome={this.HomeNavigator} />
+                <HostHomePage hostAR={this.HostARNavigator} logIn={this.LogInNavigator} />
               ) : (
-                <GuestHomePage guestAR={this.GuestARNavigator} backHome={this.HomeNavigator} />
+                <GuestHomePage guestAR={this.GuestARNavigator} logIn={this.LogInNavigator} />
               )
               }
             </View>
@@ -121,8 +121,8 @@ export default class App extends Component {
         <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.GuestPageNavigator}>
-            <View style={{ backgroundColor: "#008080", padding: 8, alignItems: 'center', borderRadius: 100 }} >
-              <Text style={{ fontSize: 24, color: '#fff' }}>X</Text>
+            <View style={{ backgroundColor: "transparent", borderColor: "#008080", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
+              <Text style={{ fontSize: 24, color: '#008080' }}>X</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -145,8 +145,8 @@ export default class App extends Component {
         <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.HostPageNavigator}>
-            <View style={{ backgroundColor: "transparent", borderColor: "#80808050", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
-              <Text style={{ fontSize: 24, color: '#80808050' }}>X</Text>
+            <View style={{ backgroundColor: "transparent", borderColor: "#008080", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
+              <Text style={{ fontSize: 24, color: '#008080' }}>X</Text>
             </View>
           </TouchableHighlight>
         </View>

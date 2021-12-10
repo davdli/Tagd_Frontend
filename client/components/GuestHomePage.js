@@ -14,8 +14,8 @@ class GuestHomePage extends Component {
     return (
       <View style={localStyles.guestContainer}>
         <View style={{ height: "14%" }} >
-          <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton}>
-            <Text style={localStyles.backButtonText} onPress={this.props.backHome}>{'< Log out'}</Text>
+          <TouchableOpacity onPress={this.props.logIn} style={localStyles.backHomeButton}>
+            <Text style={localStyles.backButtonText}>{'< Log out'}</Text>
           </TouchableOpacity>
         </View>
         <View style={localStyles.bellowBack}>
