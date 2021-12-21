@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     width: 225,
     height: 55,
-    borderRadius: 15,
+    borderRadius: 10,
     marginTop: 25,
     marginLeft: 25,
     justifyContent: 'center',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     height: 55,
     marginHorizontal: 20,
     backgroundColor: '#FFFFFF',
-    borderRadius: 15,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -116,6 +116,6 @@ const styles = StyleSheet.create({
   },
   signupText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 18,
   },
 })

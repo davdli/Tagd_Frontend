@@ -34,7 +34,7 @@ class LogIn extends Component {
           <Text style={localStyles.titleText}>Log in with email</Text>
           <View style={localStyles.inputContainer}>
             <TextInput
-              placeholder="Email" placeholderTextColor={'white'}
+              placeholder="Email" placeholderTextColor={'grey'}
               style={localStyles.textInput}
               onChangeText={text => this.setState({
                 email: text
@@ -43,7 +43,7 @@ class LogIn extends Component {
           </View>
           <View style={localStyles.inputContainer}>
             <TextInput
-              placeholder="Password" placeholderTextColor={'white'}
+              placeholder="Password" placeholderTextColor={'grey'}
               style={localStyles.textInput}
               secureTextEntry={true}
               onChangeText={text => this.setState({
@@ -52,9 +52,9 @@ class LogIn extends Component {
             />
           </View>
           <View style={{ marginTop: 10 }}>
-            <Text style={{ color: 'white', fontSize: 18 }}>
+            <Text style={{ color: 'grey', fontSize: 18 }}>
               <Text>Forgot Password? </Text>
-              <Text style={{textDecorationLine: "underline"}}>Click here</Text>
+              <Text style={{textDecorationLine: "underline", color: "black"}}>Click here</Text>
             </Text>
           </View>
           <TouchableOpacity onPress={() => this.onLogin()}
@@ -86,7 +86,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const localStyles = StyleSheet.create({
   loginContainer: {
-    backgroundColor: "#008080",
+    backgroundColor: "#fff",
     flex: 1,
   },
   bellowBack: {
@@ -107,9 +107,9 @@ const localStyles = StyleSheet.create({
   },
   titleText: {
     paddingBottom: 30,
-    color: '#fff',
+    color: 'black',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: 'bold',
     paddingTop: 30
   },
@@ -142,50 +142,46 @@ const localStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
   },
-
-  loginButtonText: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-
-  backButtonText: {
-    color: '#fff',
-    fontSize: 20,
-  },
-
-  loginButton: {
-    width: '85%',
-    height: 45,
-    alignSelf: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    marginTop: 35,
-    borderRadius: 12,
-  },
-
   backHomeButton: {
     width: '20%',
     height: 50,
     alignItems: 'center',
-    backgroundColor: '#008080',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     marginTop: 60,
     marginLeft: 15,
     borderRadius: 12,
   },
+  backButtonText: {
+    color: '#808080',
+    fontSize: 18,
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  loginButton: {
+    width: '85%',
+    height: 55,
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: '#008080',
+    justifyContent: 'center',
+    marginTop: 35,
+    borderRadius: 10,
+  },
   textInput: {
     width: '85%',
     height: 40,
     borderWidth: 1,
-    color: 'white',
+    color: 'black',
     fontSize: 18,
-    backgroundColor: '#008080',
-    borderBottomColor: '#fff',
-    borderLeftColor: '#008080',
-    borderRightColor: '#008080',
-    borderTopColor: '#008080',
+    backgroundColor: '#fff',
+    borderBottomColor: 'grey',
+    borderLeftColor: '#fff',
+    borderRightColor: '#fff',
+    borderTopColor: '#fff',
   },
   inputContainer: {
     paddingTop: 20,
