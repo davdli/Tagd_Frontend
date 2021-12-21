@@ -178,7 +178,7 @@ const localStyles = StyleSheet.create({
     color: 'black',
     fontSize: 18,
     backgroundColor: '#fff',
-    borderBottomColor: 'grey',
+    borderBottomColor: '#D3D3D3',
     borderLeftColor: '#fff',
     borderRightColor: '#fff',
     borderTopColor: '#fff',

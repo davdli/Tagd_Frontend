@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 80,
+    fontSize: 72,
     fontWeight: 'bold',
     color: '#FFFFFF',
     width: '70%',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     color: '#FFFFFF',
-    fontSize: 25,
+    fontSize: 24,
     backgroundColor: 'transparent',
     textShadowColor: 'black',
     textShadowOffset: { width: 1, height: 1 },
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: '#008080',
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   signupView: {

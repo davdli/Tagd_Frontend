@@ -21,16 +21,16 @@ class GuestHomePage extends Component {
         <View style={localStyles.bellowBack}>
           <Text style={localStyles.titleText}>Hi, {guest.firstName}</Text>
           <TouchableOpacity onPress={this.props.editProfile}>
-            <Text style={localStyles.editProfile}>Edit Profile</Text>
+            <Text style={localStyles.editProfile}>Edit profile</Text>
           </TouchableOpacity>
           <View style={localStyles.personalContainer}>
-            <Text style={localStyles.infoTitle}>Guest Profile</Text>
-            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
-              <Text style={localStyles.infoSection}>First Name</Text>
+            <Text style={localStyles.infoTitle}>Guest information</Text>
+            <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1 }}>
+              <Text style={localStyles.infoSection}>First name</Text>
               <Text style={localStyles.infoText}>{guest.firstName}</Text>
             </View>
-            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 }}>
-              <Text style={localStyles.infoSection}>Last Name</Text>
+            <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1 }}>
+              <Text style={localStyles.infoSection}>Last name</Text>
               <Text style={localStyles.infoText}>{guest.lastName}</Text>
             </View>
             <View>
@@ -42,7 +42,7 @@ class GuestHomePage extends Component {
           <View style={localStyles.hostKeyContainer}>
             <Text style={localStyles.infoTitle}>Enter AR experience</Text>
             <TextInput
-              placeholder="Host key" placeholderTextColor={'gray'}
+              placeholder="Host key" placeholderTextColor={'grey'}
               style={localStyles.hostKeyInput}
               secureTextEntry={true}
               onChangeText={text => this.setState({
@@ -84,7 +84,7 @@ const localStyles = StyleSheet.create({
     paddingBottom: 10,
     color: '#008080',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: 'bold',
     paddingTop: 30
   },
@@ -99,22 +99,22 @@ const localStyles = StyleSheet.create({
     borderRadius: 12,
   },
   backButtonText: {
-    color: '#008080',
-    fontSize: 20,
+    color: 'black',
+    fontSize: 18,
   },
   arButton: {
     width: '85%',
-    height: 45,
+    height: 55,
     alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: '#008080',
     justifyContent: 'center',
     marginTop: 35,
-    borderRadius: 12,
+    borderRadius: 10,
   },
   arButtonText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   inputContainer: {
@@ -128,7 +128,7 @@ const localStyles = StyleSheet.create({
     width: '90%'
   },
   infoTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 5
   },
@@ -153,7 +153,7 @@ const localStyles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 18,
     backgroundColor: 'white',
-    borderBottomColor: 'black',
+    borderBottomColor: '#D3D3D3',
     borderLeftColor: 'white',
     borderRightColor: 'white',
     borderTopColor: 'white',

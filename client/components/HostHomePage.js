@@ -49,16 +49,16 @@ class HostHomePage extends Component {
           <View style={localStyles.bellowBack}>
             <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
             <TouchableOpacity onPress={this.props.editProfile}>
-            <Text style={localStyles.editProfile}>Edit Profile</Text>
-          </TouchableOpacity>
+              <Text style={localStyles.editProfile}>Edit profile</Text>
+            </TouchableOpacity>
             <View style={localStyles.personalContainer}>
-              <Text style={localStyles.infoTitle}>Host Profile</Text>
-              <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
-                <Text style={localStyles.infoSection}>First Name</Text>
+              <Text style={localStyles.infoTitle}>Host information</Text>
+              <View style={{ borderBottomColor: "#D3D3D3", borderBottomWidth: 1 }}>
+                <Text style={localStyles.infoSection}>First name</Text>
                 <Text style={localStyles.infoText}>{host.firstName}</Text>
               </View>
-              <View style={{ borderBottomColor: "black", borderBottomWidth: 1 }}>
-                <Text style={localStyles.infoSection}>Last Name</Text>
+              <View style={{ borderBottomColor: "#D3D3D3", borderBottomWidth: 1 }}>
+                <Text style={localStyles.infoSection}>Last name</Text>
                 <Text style={localStyles.infoText}>{host.lastName}</Text>
               </View>
               <View>
@@ -69,12 +69,13 @@ class HostHomePage extends Component {
           </View>
 
           <View style={localStyles.hostKeyContainer}>
-            <Text style={localStyles.infoTitle}>Select A Tag</Text>
+            <Text style={localStyles.infoTitle}>Create AR tag</Text>
+            <Text style={localStyles.infoSection}>Select icon</Text>
 
               <SelectIcons />
 
             <TextInput
-              placeholder="Tag Title"
+              placeholder="Tag title"
               placeholderTextColor={"gray"}
               style={localStyles.hostKeyInput}
               onChangeText={(text) =>
@@ -84,7 +85,7 @@ class HostHomePage extends Component {
               }
             />
             <TextInput
-              placeholder="Tag Message"
+              placeholder="Tag message"
               placeholderTextColor={"gray"}
               style={localStyles.hostKeyInput}
               onChangeText={(text) =>
@@ -93,21 +94,11 @@ class HostHomePage extends Component {
                 })
               }
             />
-            <TextInput
-              placeholder="Host Location ID"
-              placeholderTextColor={"gray"}
-              style={localStyles.hostKeyInput}
-              onChangeText={(text) =>
-                this.setState({
-                  hostKey: text,
-                })
-              }
-            />
             <TouchableOpacity
               onPress={this.props.hostAR}
               style={localStyles.arButton}
             >
-              <Text style={localStyles.arButtonText}>Upload</Text>
+              <Text style={localStyles.arButtonText}>Upload!</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -139,13 +130,13 @@ const localStyles = StyleSheet.create({
     alignItems: "center",
     height: 300,
     marginTop: 60,
-    marginBottom: 120
+    marginBottom: 130
   },
   titleText: {
     paddingBottom: 10,
     color: "#008080",
     textAlign: "center",
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: "bold",
   },
   backHomeButton: {
@@ -159,23 +150,23 @@ const localStyles = StyleSheet.create({
     borderRadius: 12,
   },
   backButtonText: {
-    color: "#008080",
-    fontSize: 20,
+    color: "black",
+    fontSize: 18,
   },
   arButton: {
     width: "100%",
-    height: 45,
+    height: 55,
     alignSelf: "center",
     alignItems: "center",
     backgroundColor: "#008080",
     justifyContent: "center",
     marginTop: 35,
     marginBottom: 30,
-    borderRadius: 12,
+    borderRadius: 10,
   },
   arButtonText: {
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
   },
   inputContainer: {
@@ -189,7 +180,7 @@ const localStyles = StyleSheet.create({
     width: "90%",
   },
   infoTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
     marginBottom: 5,
   },
@@ -217,10 +208,13 @@ const localStyles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 18,
     backgroundColor: "white",
-    borderBottomColor: "black",
+    borderBottomColor: "#D3D3D3",
     borderLeftColor: "white",
     borderRightColor: "white",
     borderTopColor: "white",
+    marginTop: 5,
+    marginBottom: 10,
+
   },
   editProfile: {
     color: '#008080',
