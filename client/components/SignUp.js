@@ -50,13 +50,13 @@ class SignUp extends React.Component {
     return (
       <View style={localStyles.signupContainer} >
         <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton} >
-          <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Back'}</Text>
+          <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Home'}</Text>
         </TouchableOpacity>
         <Text onPress={() => Keyboard.dismiss()} style={localStyles.titleText} >Sign up with email</Text>
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="First name" placeholderTextColor={'white'}
+            placeholder="First name" placeholderTextColor={'grey'}
             onChangeText={text => this.setState({
               firstName: text
             })}
@@ -66,7 +66,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="Last name" placeholderTextColor={'white'}
+            placeholder="Last name" placeholderTextColor={'grey'}
             onChangeText={text => this.setState({
               lastName: text
             })}
@@ -76,7 +76,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="Email" placeholderTextColor={'white'}
+            placeholder="Email" placeholderTextColor={'grey'}
             onChangeText={text => this.setState({
               email: text
             })}
@@ -86,7 +86,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="Password" placeholderTextColor={'white'}
+            placeholder="Password" placeholderTextColor={'grey'}
             secureTextEntry={true}
             onChangeText={text => this.setState({
               password: text
@@ -122,41 +122,41 @@ class SignUp extends React.Component {
 const localStyles = StyleSheet.create({
   titleText: {
     paddingBottom: 30,
-    color: '#fff',
+    color: 'black',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: 'bold',
     paddingTop: 60
   },
   signupContainer: {
-    backgroundColor: "#008080",
+    backgroundColor: "#fff",
     flex: 1,
   },
   backHomeButton: {
     width: '20%',
     height: 50,
     alignItems: 'center',
-    backgroundColor: '#008080',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     marginTop: 50,
     marginLeft: 15,
     borderRadius: 12,
   },
   backButtonText: {
-    color: '#fff',
-    fontSize: 20,
+    color: '#808080',
+    fontSize: 18,
   },
   textInput: {
     width: '85%',
     height: 40,
     borderWidth: 1,
-    color: 'white',
+    color: 'black',
     fontSize: 18,
-    backgroundColor: '#008080',
-    borderBottomColor: '#fff',
-    borderLeftColor: '#008080',
-    borderRightColor: '#008080',
-    borderTopColor: '#008080',
+    backgroundColor: '#fff',
+    borderBottomColor: '#808080',
+    borderLeftColor: '#fff',
+    borderRightColor: '#fff',
+    borderTopColor: '#fff',
   },
   inputContainer: {
     paddingTop: 18,
@@ -166,21 +166,19 @@ const localStyles = StyleSheet.create({
   },
   signupButton: {
     width: '85%',
-    height: 45,
+    height: 55,
     alignSelf: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#008080',
     justifyContent: 'center',
     marginTop: 35,
-    borderRadius: 12,
+    borderRadius: 10,
   },
   signupButtonText: {
-    color: 'black',
-    fontSize: 20,
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold'
   },
-  //   signupButtonText:active {
-  //   backgroundColor: '#e5e5e5',
-  // },
   typeSelection: {
     flexDirection: 'row',
     alignItems: 'center'
@@ -188,11 +186,11 @@ const localStyles = StyleSheet.create({
   selectUserType: {
     width: "40%",
     margin: 5,
-    height: 37,
-    backgroundColor: 'white',
+    height: 35,
+    backgroundColor: '#008080',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 12,
+    borderRadius: 10,
   },
   centerTypeButtons: {
     alignItems: 'center'

@@ -11,7 +11,7 @@ class Home extends Component {
         <ImageBackground
           source={require('../../js/res/HomeImage.jpeg')}
           style={styles.image}>
-          <Text style={styles.title}>TAGD</Text>
+          <Text style={styles.title}>tagd</Text>
           <View style={styles.descriptionView}>
             <Text style={styles.descriptionText}>AR Home Guide</Text>
           </View>
@@ -56,27 +56,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 80,
+    fontSize: 72,
     fontWeight: 'bold',
-    color: '#008080',
+    color: '#FFFFFF',
     width: '70%',
     marginLeft: 25
   },
   descriptionView: {
     backgroundColor: 'transparent',
-    width: 200,
-    height: 40,
+    width: 225,
+    height: 55,
     borderRadius: 10,
     marginTop: 25,
     marginLeft: 25,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: '#008080'
+    borderColor: '#FFFFFF'
   },
   descriptionText: {
-    color: '#008080',
-    fontSize: 22,
+    color: '#FFFFFF',
+    fontSize: 24,
     backgroundColor: 'transparent',
     textShadowColor: 'black',
     textShadowOffset: { width: 1, height: 1 },
@@ -86,36 +86,36 @@ const styles = StyleSheet.create({
   loginView: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: 30
+    marginTop: -80
   },
   loginButton: {
-    height: 60,
+    height: 55,
     marginHorizontal: 20,
-    backgroundColor: '#008080',
-    borderRadius: 15,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
   loginText: {
-    color: 'black',
-    fontSize: 20,
+    color: '#008080',
+    fontSize: 24,
     fontWeight: 'bold',
   },
   signupView: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginTop: 50
+    marginBottom: 40
   },
   signupButton: {
     height: 60,
     marginHorizontal: 20,
     backgroundColor: 'black',
-    borderRadius: 15,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
   signupText: {
-    color: '#008080',
-    fontSize: 16,
+    color: '#FFFFFF',
+    fontSize: 18,
   },
 })
