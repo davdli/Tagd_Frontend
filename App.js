@@ -118,11 +118,11 @@ export default class App extends Component {
         <ViroARSceneNavigator {...this.state.sharedProps}
           initialScene={{ scene: InitialARScene }} />
 
-        <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
+        <View style={{ position: 'absolute', left: 20, right: 0, top: 40, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.GuestPageNavigator}>
-            <View style={{ backgroundColor: "transparent", borderColor: "#008080", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
-              <Text style={{ fontSize: 24, color: '#008080' }}>X</Text>
+            <View style={{ backgroundColor: "white", borderColor: "white", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
+              <Text style={{ fontSize: 14, color: 'black' }}>X</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -135,15 +135,33 @@ export default class App extends Component {
         <ViroARSceneNavigator {...this.state.sharedProps}
           initialScene={{ scene: HostARScene }} />
 
-        <View style={{ position: 'absolute', left: 10, right: 0, top: 10, alignItems: 'flex-start', justifyContent: "center" }}>
+        <View style={{ position: 'absolute', left: 20, right: 0, top: 40, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.HostPageNavigator}>
-            <View style={{ backgroundColor: "transparent", borderColor: "#008080", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
-              <Text style={{ fontSize: 24, color: '#008080' }}>X</Text>
+            <View style={{ backgroundColor: "white", borderColor: "white", borderWidth: 2, padding: 8, alignItems: 'center', borderRadius: 100 }} >
+              <Text style={{ fontSize: 14, color: 'black' }}>X</Text>
             </View>
           </TouchableHighlight>
         </View>
+        <View style={localStyles.bottom}>
+          <TouchableHighlight style={localStyles.saveButton} onPress={this._onDisplayDialog}>
+            <Text style={localStyles.saveText}>Save tag</Text>
+          </TouchableHighlight>
+        </View>
       </View>
+    );
+  }
+  _onDisplayDialog() {
+    Alert.alert(
+      "Confirm and save",
+      "Are you sure?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        { text: "OK" }
+      ]
     );
   }
 }
@@ -152,20 +170,40 @@ const localStyles = StyleSheet.create({
   outer: {
     flex: 1,
   },
-
   arView: {
     flex: 1,
   },
-
   buttons: {
-    height: 60,
-    width: 50,
+    height: 40,
+    width: 40,
     marginTop: 10,
     marginBottom: 10,
     backgroundColor: 'transparent',
     borderRadius: 20,
     borderWidth: 1,
     borderColor: '#ffffff00',
+  },
+  bottom: {
+    position: 'absolute',
+    width: '100%',
+    height: 100,
+    bottom: 0,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  saveButton: {
+    height: 55,
+    width: '35%',
+    backgroundColor: '#008080',
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+  },
+  saveText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 });
 
