@@ -59,18 +59,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+    height: 300
   },
   item: {
     padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    height: 300,
+    alignItems: 'center'
   },
   title: {
-    fontSize: 32,
+    fontSize: 18,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 210,
   }
 });
 

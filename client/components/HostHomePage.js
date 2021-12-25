@@ -198,7 +198,7 @@ const localStyles = StyleSheet.create({
   hostKeyContainer: {
     padding: 20,
     width: "90%",
-    height: 500,
+    height: 600,
     marginTop: -70,
     marginLeft: 20,
   },
