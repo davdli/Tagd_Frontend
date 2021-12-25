@@ -144,11 +144,24 @@ export default class App extends Component {
           </TouchableHighlight>
         </View>
         <View style={localStyles.bottom}>
-          <TouchableHighlight style={localStyles.saveButton}>
+          <TouchableHighlight style={localStyles.saveButton} onPress={this._onDisplayDialog}>
             <Text style={localStyles.saveText}>Save tag</Text>
           </TouchableHighlight>
         </View>
       </View>
+    );
+  }
+  _onDisplayDialog() {
+    Alert.alert(
+      "Confirm and save",
+      "Are you sure?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        { text: "OK" }
+      ]
     );
   }
 }
