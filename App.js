@@ -25,7 +25,7 @@ const sharedProps = {
   apiKey: "API_KEY_HERE",
 }
 
-const InitialARScene = require('./js/HelloWorldSceneAR');
+const GuestARScene = require('./js/GuestAR');
 const HostARScene = require('./js/HostAR');
 
 export default class App extends Component {
@@ -116,7 +116,7 @@ export default class App extends Component {
     return (
       <View style={localStyles.outer} >
         <ViroARSceneNavigator {...this.state.sharedProps}
-          initialScene={{ scene: InitialARScene }} />
+          initialScene={{ scene: GuestARScene }} />
 
         <View style={{ position: 'absolute', left: 20, right: 0, top: 40, alignItems: 'flex-start', justifyContent: "center" }}>
           <TouchableHighlight style={localStyles.buttons}
@@ -125,6 +125,9 @@ export default class App extends Component {
               <Text style={{ fontSize: 14, color: 'black' }}>X</Text>
             </View>
           </TouchableHighlight>
+        </View>
+        <View style={localStyles.bottom}>
+          <Text style={{fontSize: 22, fontWeight: 'bold',}}>Experience hosted by Sarah</Text>
         </View>
       </View>
     );
