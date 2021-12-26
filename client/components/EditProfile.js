@@ -1,50 +1,30 @@
-import React from 'react'
-import { connect } from "react-redux"
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native'
-import { createSingleUser } from '../store/reducers/users'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native';
+import { updateSingleUser } from '../store/reducers/users';
 
-class SignUp extends React.Component {
+class EditProfile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       firstName: '',
       lastName: '',
       email: '',
-      password: '',
-      userType: '',
     }
-    this.onPressSignup = this.onPressSignup.bind(this);
+    this.onPressEdit = this.onPressEdit.bind(this);
   }
 
-  async onPressSignup() {
-    const newUser = {
+  async onPressEdit() {
+    const updatedUser = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      password: this.state.password,
-      userType: this.state.userType
     }
-    if (this.state.userType === 'host') {
-      try {
-        await this.props.createUser(newUser)
-        this.props.hostPage()
-      } catch (e) {
-        let error = new Error(e)
-        throw error
-      }
-    } else if (this.state.userType === 'guest') {
-      try {
-        await this.props.createUser(newUser)
-        this.props.guestPage()
-      } catch (e) {
-        let error = new Error(e)
-        throw error
-      }
-    }
+    await this.props.updateUser(updatedUser)
+    // this.props.guestPage()
   }
 
   render() {
-    console.log()
     return (
       <View style={localStyles.signupContainer} >
         <TouchableOpacity onPress={this.props.guestPage} style={localStyles.backHomeButton} >
@@ -54,7 +34,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="First name" placeholderTextColor={'black'}
+            placeholder="First name" placeholderTextColor={'grey'}
             onChangeText={text => this.setState({
               firstName: text
             })}
@@ -64,7 +44,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="Last name" placeholderTextColor={'black'}
+            placeholder="Last name" placeholderTextColor={'grey'}
             onChangeText={text => this.setState({
               lastName: text
             })}
@@ -74,7 +54,7 @@ class SignUp extends React.Component {
         <View style={localStyles.inputContainer} >
           <TextInput
             style={localStyles.textInput}
-            placeholder="Email" placeholderTextColor={'black'}
+            placeholder="Email" placeholderTextColor={'grey'}
             onChangeText={text => this.setState({
               email: text
             })}
@@ -82,22 +62,26 @@ class SignUp extends React.Component {
           />
         </View>
         <View style={localStyles.centerTypeButtons}>
-          <TouchableOpacity onPress={this.onPressSignup} style={localStyles.signupButton} >
-            <Text style={localStyles.signupButtonText} >Save</Text>
+          <TouchableOpacity onPress={this.onPressEdit} style={localStyles.signupButton} >
+            <Text style={localStyles.signupButtonText}>Save</Text>
           </TouchableOpacity>
         </View>
+
+        {/* <View>
+          <Text>{JSON.stringify(this.props.user.user)}</Text>
+        </View> */}
       </View >
     )
   }
-
 }
+
 
 const localStyles = StyleSheet.create({
   titleText: {
     paddingBottom: 30,
-    color: '#008080',
+    color: 'black',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: 'bold',
     paddingTop: 60
   },
@@ -116,7 +100,7 @@ const localStyles = StyleSheet.create({
     borderRadius: 12,
   },
   backButtonText: {
-    color: '#008080',
+    color: '#808080',
     fontSize: 20,
   },
   textInput: {
@@ -126,7 +110,7 @@ const localStyles = StyleSheet.create({
     color: 'black',
     fontSize: 18,
     backgroundColor: '#fff',
-    borderBottomColor: '#008080',
+    borderBottomColor: '#D3D3D3',
     borderLeftColor: '#fff',
     borderRightColor: '#fff',
     borderTopColor: '#fff',
@@ -139,17 +123,18 @@ const localStyles = StyleSheet.create({
   },
   signupButton: {
     width: '85%',
-    height: 45,
+    height: 55,
     alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: '#008080',
     justifyContent: 'center',
     marginTop: 35,
-    borderRadius: 12,
+    borderRadius: 10,
   },
   signupButtonText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
+    fontWeight: 'bold'
   },
   typeSelection: {
     flexDirection: 'row',
@@ -169,14 +154,16 @@ const localStyles = StyleSheet.create({
   }
 });
 
-const mapState = (state) => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.user
   }
-}
+};
 
-const mapDispatch = (dispatch) => ({
-  createUser: (user) => dispatch(createSingleUser(user)),
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUser: (user) => dispatch(updateSingleUser(user))
+  }
+};
 
-export default connect(mapState, mapDispatch)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
