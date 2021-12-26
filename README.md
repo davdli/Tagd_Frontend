@@ -19,6 +19,9 @@ Tagd is an augmented reality mobile application that allows hosts to create and 
 - In Viro Media app, click hamburger menu then click Enter Testbed
 - Enter ngrok endpoint located in terminal and enjoy!
 
+## Demo
+Coming Soon!
+
 ## Developers
 - <a href="https://github.com/davdli">David Li</a>
 - <a href="https://github.com/gregbabbert">Greg Babbert</a>
