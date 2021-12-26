@@ -1,50 +1,30 @@
-import React from 'react'
-import { connect } from "react-redux"
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native'
-import { createSingleUser } from '../store/reducers/users'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native';
+import { updateSingleUser } from '../store/reducers/users';
 
-class SignUp extends React.Component {
+class EditProfile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       firstName: '',
       lastName: '',
       email: '',
-      password: '',
-      userType: '',
     }
-    this.onPressSignup = this.onPressSignup.bind(this);
+    this.onPressEdit = this.onPressEdit.bind(this);
   }
 
-  async onPressSignup() {
-    const newUser = {
+  async onPressEdit() {
+    const updatedUser = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      password: this.state.password,
-      userType: this.state.userType
     }
-    if (this.state.userType === 'host') {
-      try {
-        await this.props.createUser(newUser)
-        this.props.hostPage()
-      } catch (e) {
-        let error = new Error(e)
-        throw error
-      }
-    } else if (this.state.userType === 'guest') {
-      try {
-        await this.props.createUser(newUser)
-        this.props.guestPage()
-      } catch (e) {
-        let error = new Error(e)
-        throw error
-      }
-    }
+    await this.props.updateUser(updatedUser)
+    // this.props.guestPage()
   }
 
   render() {
-    console.log()
     return (
       <View style={localStyles.signupContainer} >
         <TouchableOpacity onPress={this.props.guestPage} style={localStyles.backHomeButton} >
@@ -82,15 +62,19 @@ class SignUp extends React.Component {
           />
         </View>
         <View style={localStyles.centerTypeButtons}>
-          <TouchableOpacity onPress={this.onPressSignup} style={localStyles.signupButton} >
-            <Text style={localStyles.signupButtonText} >Save</Text>
+          <TouchableOpacity onPress={this.onPressEdit} style={localStyles.signupButton} >
+            <Text style={localStyles.signupButtonText}>Save</Text>
           </TouchableOpacity>
         </View>
+
+        {/* <View>
+          <Text>{JSON.stringify(this.props.user.user)}</Text>
+        </View> */}
       </View >
     )
   }
-
 }
+
 
 const localStyles = StyleSheet.create({
   titleText: {
@@ -170,14 +154,16 @@ const localStyles = StyleSheet.create({
   }
 });
 
-const mapState = (state) => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.user
   }
-}
+};
 
-const mapDispatch = (dispatch) => ({
-  createUser: (user) => dispatch(createSingleUser(user)),
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUser: (user) => dispatch(updateSingleUser(user))
+  }
+};
 
-export default connect(mapState, mapDispatch)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

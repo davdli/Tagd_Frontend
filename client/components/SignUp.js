@@ -1,10 +1,9 @@
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native';
+import { createSingleUser } from '../store/reducers/users';
 
-import React from 'react'
-import { connect } from "react-redux"
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native'
-import { createSingleUser } from '../store/reducers/users'
-
-class SignUp extends React.Component {
+class SignUp extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -42,11 +41,9 @@ class SignUp extends React.Component {
         throw error
       }
     }
-
-  };
+  }
 
   render() {
-    console.log()
     return (
       <View style={localStyles.signupContainer} >
         <TouchableOpacity onPress={this.props.backHome} style={localStyles.backHomeButton} >
@@ -116,7 +113,6 @@ class SignUp extends React.Component {
       </View >
     )
   }
-
 }
 
 const localStyles = StyleSheet.create({
@@ -199,12 +195,14 @@ const localStyles = StyleSheet.create({
 
 const mapState = (state) => {
   return {
-    user: state.user,
+    user: state.user
   }
-}
+};
 
-const mapDispatch = (dispatch) => ({
-  createUser: (user) => dispatch(createSingleUser(user)),
-});
+const mapDispatch = (dispatch) => {
+  return {
+    createUser: (user) => dispatch(createSingleUser(user))
+  }
+};
 
-export default connect(mapState, mapDispatch)(SignUp)
+export default connect(mapState, mapDispatch)(SignUp);
