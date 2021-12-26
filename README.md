@@ -1,32 +1,26 @@
-### Hello, and welcome to TAGD! 👋
+# Tagd
+Tagd is an augmented reality mobile application that allows hosts to create and display personalized messages to help guests access and locate necessities in and around their property.
 
-<b>TAGD</b> is an app that uses augmented reality to allow home owners to show guests around their home with ease. In TAGD hosts are given the ability to place tags, AR messages, throughtout their home for guests to view. Guests can then look at these messages through our app's AR camera. We came up with the ideo for TAGD after thinking about the times we've stayed in a home that wasn't ours. It can sometimes be difficult to find things like the wifi password or where to put the recycling. TAGD solves this problem by having visible, informative messages for the guests to clearly see.
+## Tech Stack
+- ![Node.js](https://img.shields.io/badge/-Node.js-339933A?logo=node.js&logoColor=white&style=flat)
+- ![React Native](https://img.shields.io/badge/-React%20Native-61DAFB?logo=react&logoColor=white&style=flat)
+- ![Express](https://img.shields.io/badge/-Express-000000?logo=express&logoColor=white&style=flat)
+- ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=white&style=flat)
+- ![Redux](https://img.shields.io/badge/-Redux-764ABC?logo=redux&logoColor=white&style=flat)
+- ![Sequelize](https://img.shields.io/badge/-Sequelize-52B0E7?logo=sequelize&logoColor=white&style=flat)
+- ![Viro React](https://img.shields.io/badge/-Viro%20React-3399FF?style=flat)
+- ![Viro AR](https://img.shields.io/badge/-Viro%20AR-7A1FA2?style=flat)
+- ![Heroku](https://img.shields.io/badge/-Heroku-430098?logo=heroku&logoColor=white&style=flat)
 
----
+## Setup
+- `git clone git@github.com:davdli/TAGD_Frontend.git` in terminal
+- `npm install` and `npm start` in project root directory
+- Install Viro Media app from App Store or Google Playstore
+- In Viro Media app, click hamburger menu then click Enter Testbed
+- Enter ngrok endpoint located in terminal and enjoy!
 
-### How to test out TAGD:
-<ol>
-  <li>git clone our repo TAGD-FrontEnd</li>
-  <li>On your phone download the Viro Media app</li>
-  <li>In your local TAGD clone, npm install</li>
-  <li>After the installation is complete run npm start</li>
-  <li>You will be given an ngrok link in your terminal, open Viro Media and type that link into "Enter Testbed"</li>
-  <li>Once the app loads, create a guest or host account and start using!</li>
-</ol>
-
----
-
-### Technologies used:
-<ul>
-  <li>React Native</li>
-  <li>Redux</li>
-  <li>ViroReact</li>
-  <li>Node.js</li>
-  <li>Express</li>
-  <li>Sequelize</li>
-  <li>PostgreSQL</li>
-  <li>Heroku</li>
-</ul>
-
-### Developers:
-This app was made by David Li, Tai Zaidi, Antonio Scalfaro and Greg Babbert
+## Developers
+- <a href="https://github.com/davdli">David Li</a>
+- <a href="https://github.com/gregbabbert">Greg Babbert</a>
+- <a href="https://github.com/trzaidi">Tai Zaidi</a>
+- <a href="https://github.com/tscalfaro">Tony Scalfaro</a>
