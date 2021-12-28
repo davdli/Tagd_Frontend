@@ -1,78 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native';
 import { updateSingleUser } from '../store/reducers/users';
 
-class EditProfile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-    }
-    this.onPressEdit = this.onPressEdit.bind(this);
+const EditProfile = (props) => {
+  const [updatedUser, setUpdatedUser] = useState(props.user.user || { firstName: '', lastName: '', email: ''});
+
+  const onPressEdit = async (updatedUser) => {
+    await props.updateSingleUser(updatedUser);
+    props.guestPage();
   }
 
-  async onPressEdit() {
-    const updatedUser = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-    }
-    await this.props.updateUser(updatedUser)
-    // this.props.guestPage()
-  }
-
-  render() {
-    return (
-      <View style={localStyles.signupContainer} >
-        <TouchableOpacity onPress={this.props.guestPage} style={localStyles.backHomeButton} >
-          <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Cancel'}</Text>
+  return (
+    <View style={localStyles.signupContainer} >
+      <TouchableOpacity onPress={props.guestPage} style={localStyles.backHomeButton} >
+        <Text style={localStyles.backButtonText} onPress={props.backHome} >{'< Cancel'}</Text>
+      </TouchableOpacity>
+      <Text onPress={() => Keyboard.dismiss()} style={localStyles.titleText} >Update Profile</Text>
+      <View style={localStyles.inputContainer} >
+        <TextInput
+          style={localStyles.textInput}
+          placeholder="First name" placeholderTextColor={'grey'}
+          onChangeText={text => setUpdatedUser({ ...updatedUser, firstName: text })}
+          defaultValue={''}
+        />
+      </View>
+      <View style={localStyles.inputContainer} >
+        <TextInput
+          style={localStyles.textInput}
+          placeholder="Last name" placeholderTextColor={'grey'}
+          onChangeText={text => setUpdatedUser({...updatedUser, lastName: text })}
+        />
+      </View>
+      <View style={localStyles.inputContainer} >
+        <TextInput
+          style={localStyles.textInput}
+          placeholder="Email" placeholderTextColor={'grey'}
+          onChangeText={text => setUpdatedUser({ ...updatedUser, email: text })}
+          defaultValue={''}
+        />
+      </View>
+      <View style={localStyles.centerTypeButtons}>
+        <TouchableOpacity onPress={() => onPressEdit(updatedUser)} style={localStyles.signupButton} >
+          <Text style={localStyles.signupButtonText}>Save</Text>
         </TouchableOpacity>
-        <Text onPress={() => Keyboard.dismiss()} style={localStyles.titleText} >Update Profile</Text>
-        <View style={localStyles.inputContainer} >
-          <TextInput
-            style={localStyles.textInput}
-            placeholder="First name" placeholderTextColor={'grey'}
-            onChangeText={text => this.setState({
-              firstName: text
-            })}
-            defaultValue={''}
-          />
-        </View>
-        <View style={localStyles.inputContainer} >
-          <TextInput
-            style={localStyles.textInput}
-            placeholder="Last name" placeholderTextColor={'grey'}
-            onChangeText={text => this.setState({
-              lastName: text
-            })}
-            defaultValue={''}
-          />
-        </View>
-        <View style={localStyles.inputContainer} >
-          <TextInput
-            style={localStyles.textInput}
-            placeholder="Email" placeholderTextColor={'grey'}
-            onChangeText={text => this.setState({
-              email: text
-            })}
-            defaultValue={''}
-          />
-        </View>
-        <View style={localStyles.centerTypeButtons}>
-          <TouchableOpacity onPress={this.onPressEdit} style={localStyles.signupButton} >
-            <Text style={localStyles.signupButtonText}>Save</Text>
-          </TouchableOpacity>
-        </View>
+      </View>
 
-        {/* <View>
-          <Text>{JSON.stringify(this.props.user.user)}</Text>
-        </View> */}
-      </View >
-    )
-  }
+      {/* <View>
+        <Text>{JSON.stringify(props.user.user)}</Text>
+      </View> */}
+    </View >
+  )
 }
 
 
@@ -160,10 +138,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateUser: (user) => dispatch(updateSingleUser(user))
-  }
+const mapDispatchToProps = {
+  updateSingleUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

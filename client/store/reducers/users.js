@@ -9,21 +9,21 @@ const UPDATE_USER = 'UPDATE_USER';
 const getUser = (user) => {
     return {
         type: GET_USER,
-        user
+        user,
     }
 };
 
 const createUser = (user) => {
     return {
         type: CREATE_USER,
-        user
+        user,
     }
 };
 
-const updateUser = (user) => {
+export const updateUser = (user) => {
     return {
         type: UPDATE_USER,
-        user
+        user,
     }
 };
 
@@ -66,14 +66,23 @@ export const updateSingleUser = (userData) => {
   }
 };
 
-export default function userReducer(state = {}, action) {
+const initialState = {
+    user : {
+        id: null,
+        firstName: '',
+        lastName: '',
+        email: ''
+    }
+};
+
+export default function userReducer(state = initialState, action) {
     switch (action.type) {
         case GET_USER:
-            return action.user
+            return { ...state, ...action.user }
         case CREATE_USER:
-            return action.user
+            return { ...state, ...action.user }
         case UPDATE_USER:
-            return action.user
+            return { ...state, user: action.user }
         default:
             return state;
     }

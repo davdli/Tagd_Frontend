@@ -104,8 +104,6 @@ class SignUp extends Component {
               <Text style={localStyles.signupButtonText} >Guest</Text>
             </TouchableOpacity>
           </View>
-          <Text>{this.state.userType}</Text>
-          {/* this.props.selectType is used to get to select type page */}
           <TouchableOpacity onPress={this.onPressSignup} style={localStyles.signupButton} >
             <Text style={localStyles.signupButtonText} >Sign Up</Text>
           </TouchableOpacity>
