@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Button, Keyboard } from 'react-native';
-// import { updateSingleUser } from '../store/reducers/users';
-import { updateUser } from '../store/reducers/users';
-import axios from 'axios';
+import { updateSingleUser } from '../store/reducers/users';
 
 const EditProfile = (props) => {
-
-  const [updatedUser, setUpdatedUser] = useState(props.user.user ?? { firstName: '', lastName: '', email: ''});
+  const [updatedUser, setUpdatedUser] = useState(props.user.user || { firstName: '', lastName: '', email: ''});
 
   const onPressEdit = async (updatedUser) => {
-    // await this.props.updateUser(updatedUser)
-    const { data } = await axios.put('https://tagd-backend.herokuapp.com/api/users/3', updatedUser);
-    await props.updateUser(data);
-    // setGuest(data);
-    // alert(JSON.stringify(props.user.user));
-    props.guestPage()
+    await props.updateSingleUser(updatedUser);
+    props.guestPage();
   }
+
   return (
     <View style={localStyles.signupContainer} >
       <TouchableOpacity onPress={props.guestPage} style={localStyles.backHomeButton} >
@@ -52,9 +46,9 @@ const EditProfile = (props) => {
         </TouchableOpacity>
       </View>
 
-      <View>
+      {/* <View>
         <Text>{JSON.stringify(props.user.user)}</Text>
-      </View>
+      </View> */}
     </View >
   )
 }
@@ -144,92 +138,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     updateUser: (user) => dispatch(updateSingleUser(user))
-//   }
-// };
-
 const mapDispatchToProps = {
-  // updateUser: (user) => updateSingleUser(user),
-  updateUser,
+  updateSingleUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
-
-
-
-// class EditProfile extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       firstName: '',
-//       lastName: '',
-//       email: '',
-//     }
-//     this.onPressEdit = this.onPressEdit.bind(this);
-//   }
-
-//   async onPressEdit() {
-//     const updatedUser = {
-//       firstName: this.state.firstName,
-//       lastName: this.state.lastName,
-//       email: this.state.email,
-//     }
-//     // await this.props.updateUser(updatedUser)
-//     const { data } = await axios.put('https://tagd-backend.herokuapp.com/api/users/3', updatedUser);
-//     this.props.updateUser(data);
-//     alert(JSON.stringify(this.props.user.user));
-//     this.props.guestPage()
-//   }
-
-//   render() {
-//     return (
-//       <View style={localStyles.signupContainer} >
-//         <TouchableOpacity onPress={this.props.guestPage} style={localStyles.backHomeButton} >
-//           <Text style={localStyles.backButtonText} onPress={this.props.backHome} >{'< Cancel'}</Text>
-//         </TouchableOpacity>
-//         <Text onPress={() => Keyboard.dismiss()} style={localStyles.titleText} >Update Profile</Text>
-//         <View style={localStyles.inputContainer} >
-//           <TextInput
-//             style={localStyles.textInput}
-//             placeholder="First name" placeholderTextColor={'grey'}
-//             onChangeText={text => this.setState({
-//               firstName: text
-//             })}
-//             defaultValue={''}
-//           />
-//         </View>
-//         <View style={localStyles.inputContainer} >
-//           <TextInput
-//             style={localStyles.textInput}
-//             placeholder="Last name" placeholderTextColor={'grey'}
-//             onChangeText={text => this.setState({
-//               lastName: text
-//             })}
-//             defaultValue={''}
-//           />
-//         </View>
-//         <View style={localStyles.inputContainer} >
-//           <TextInput
-//             style={localStyles.textInput}
-//             placeholder="Email" placeholderTextColor={'grey'}
-//             onChangeText={text => this.setState({
-//               email: text
-//             })}
-//             defaultValue={''}
-//           />
-//         </View>
-//         <View style={localStyles.centerTypeButtons}>
-//           <TouchableOpacity onPress={this.onPressEdit} style={localStyles.signupButton} >
-//             <Text style={localStyles.signupButtonText}>Save</Text>
-//           </TouchableOpacity>
-//         </View>
-
-//         <View>
-//           <Text>{JSON.stringify(this.props.user.user)}</Text>
-//         </View>
-//       </View >
-//     )
-//   }
-// }

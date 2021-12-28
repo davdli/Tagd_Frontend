@@ -5,6 +5,7 @@ import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Animated, 
 const GuestHomePage = (props) => {
   const [hostKey, setHostKey] = useState('');
   const guest = useSelector(state => state.user.user);
+
   return (
     <View style={localStyles.guestContainer}>
       <View style={{ height: "14%" }} >
@@ -55,13 +56,6 @@ const GuestHomePage = (props) => {
     </View>
   )
 }
-
-
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.user.user
-//   };
-// };
 
 const localStyles = StyleSheet.create({
   guestContainer: {
@@ -158,68 +152,4 @@ const localStyles = StyleSheet.create({
   }
 });
 
-// class GuestHomePage extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       hostKey: '',
-//       guest: this.props.user.user,
-//     }
-//   }
-//   render() {
-//     // const guest = this.props.user.user;
-//     return (
-//       <View style={localStyles.guestContainer}>
-//         <View style={{ height: "14%" }} >
-//           <TouchableOpacity onPress={this.props.logIn} style={localStyles.backHomeButton}>
-//             <Text style={localStyles.backButtonText}>{'< Log out'}</Text>
-//           </TouchableOpacity>
-//         </View>
-//         <View style={localStyles.bellowBack}>
-//           <Text style={localStyles.titleText}>Hi, {this.state.guest.firstName}</Text>
-//           <TouchableOpacity onPress={this.props.editProfile}>
-//             <Text style={localStyles.editProfile}>Edit profile</Text>
-//           </TouchableOpacity>
-//           <View style={localStyles.personalContainer}>
-//             <Text style={localStyles.infoTitle}>Guest information</Text>
-//             <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1 }}>
-//               <Text style={localStyles.infoSection}>First name</Text>
-//               <Text style={localStyles.infoText}>{this.state.guest.firstName}</Text>
-//             </View>
-//             <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1 }}>
-//               <Text style={localStyles.infoSection}>Last name</Text>
-//               <Text style={localStyles.infoText}>{this.state.guest.lastName}</Text>
-//             </View>
-//             <View>
-//               <Text style={localStyles.infoSection}>Email</Text>
-//               <Text style={localStyles.infoText}>{this.state.guest.email}</Text>
-//             </View>
-//           </View>
-
-//           <View style={localStyles.hostKeyContainer}>
-//             <Text style={localStyles.infoTitle}>Enter AR experience</Text>
-//             <TextInput
-//               placeholder="Host key" placeholderTextColor={'grey'}
-//               style={localStyles.hostKeyInput}
-//               secureTextEntry={true}
-//               onChangeText={text => this.setState({
-//                 hostKey: text
-//               })}
-//             />
-//           </View>
-//           <TouchableOpacity onPress={this.props.guestAR}
-//             style={localStyles.arButton}>
-//             <Text style={localStyles.arButtonText}>Let's go!</Text>
-//           </TouchableOpacity>
-
-//           <View>
-//             <Text>{JSON.stringify(this.state.guest)}</Text>
-//           </View>
-
-//         </View>
-//       </View>
-//     )
-//   }
-// }
-// export default connect(mapStateToProps, null)(GuestHomePage);
 export default GuestHomePage;
