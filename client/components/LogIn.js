@@ -14,9 +14,9 @@ class LogIn extends Component {
   }
   async onLogin() {
     await this.props.loginUser(this.state.email, this.state.password);
-    if (this.props.user.user) {
+    if (this.props.user.user.id) {
       this.props.guestPage();
-    } else if (this.props.user.host) {
+    } else if (this.props.user.host.id) {
       this.props.hostPage();
     } else {
       console.log('Incorrect username/password')

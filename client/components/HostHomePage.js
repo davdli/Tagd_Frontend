@@ -1,29 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
-
+import React, { useState } from "react";
+import { connect, useSelector } from "react-redux";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import SelectIcons from './SelectIcons';
 import { createTag } from "../store/reducers/tags";
 
-class HostHomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hostKey: "",
-      icon: "https://media.istockphoto.com/photos/playing-card-two-of-hearts-picture-id166089272?k=20&m=166089272&s=612x612&w=0&h=zODXUL-8g-CyRao9P2yO1ESSxnBc7EOminanb9sjctY=",
-      tagMessage: "",
-      tagTitle: ""
-    };
-    this.onPress = this.onPress.bind(this)
-  }
-  async onPress() {
+const HostHomePage = (props) => {
+  const [state, setState] = useState({
+    hostKey: "",
+    icon: "",
+    tagMessage: "",
+    tagTitle: "",
+  })
+  const onPress = async () => {
     const tag = {
       title: this.state.tagTitle,
       description: this.state.tagMessage,
@@ -34,90 +22,67 @@ class HostHomePage extends Component {
     if (this.props.tag)
       this.props.hostAR;
   }
-  render() {
-    const host = this.props.user.host;
-    const tags = this.props.tag;
-    return (
-      <ScrollView>
-        <View style={localStyles.hostContainer}>
-          <View style={{ height: 100 }}>
+  const host = useSelector(state => state.user.host)
+  const tag = useSelector(state => state.tag)
+  return (
+    <ScrollView>
+      <View style={localStyles.hostContainer}>
+        <View style={{ height: 100 }}>
 
-            <TouchableOpacity onPress={this.props.logIn} style={localStyles.backHomeButton}>
-              <Text style={localStyles.backButtonText}>{"< Log out"}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={localStyles.bellowBack}>
-            <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
-            <TouchableOpacity onPress={this.props.editProfile}>
-              <Text style={localStyles.editProfile}>Edit profile</Text>
-            </TouchableOpacity>
-            <View style={localStyles.personalContainer}>
-              <Text style={localStyles.infoTitle}>Host information</Text>
-              <View style={{ borderBottomColor: "#D3D3D3", borderBottomWidth: 1 }}>
-                <Text style={localStyles.infoSection}>First name</Text>
-                <Text style={localStyles.infoText}>{host.firstName}</Text>
-              </View>
-              <View style={{ borderBottomColor: "#D3D3D3", borderBottomWidth: 1 }}>
-                <Text style={localStyles.infoSection}>Last name</Text>
-                <Text style={localStyles.infoText}>{host.lastName}</Text>
-              </View>
-              <View>
-                <Text style={localStyles.infoSection}>Email</Text>
-                <Text style={localStyles.infoText}>{host.email}</Text>
-              </View>
+          <TouchableOpacity onPress={props.logIn} style={localStyles.backHomeButton}>
+            <Text style={localStyles.backButtonText}>{"< Log out"}</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={localStyles.bellowBack}>
+          <Text style={localStyles.titleText}>Hi, {host.firstName} </Text>
+          <TouchableOpacity onPress={props.editProfile}>
+            <Text style={localStyles.editProfile}>Edit profile</Text>
+          </TouchableOpacity>
+          <View style={localStyles.personalContainer}>
+            <Text style={localStyles.infoTitle}>Host information</Text>
+            <View style={{ borderBottomColor: "#D3D3D3", borderBottomWidth: 1 }}>
+              <Text style={localStyles.infoSection}>First name</Text>
+              <Text style={localStyles.infoText}>{host.firstName}</Text>
+            </View>
+            <View style={{ borderBottomColor: "#D3D3D3", borderBottomWidth: 1 }}>
+              <Text style={localStyles.infoSection}>Last name</Text>
+              <Text style={localStyles.infoText}>{host.lastName}</Text>
+            </View>
+            <View>
+              <Text style={localStyles.infoSection}>Email</Text>
+              <Text style={localStyles.infoText}>{host.email}</Text>
             </View>
           </View>
-
-          <View style={localStyles.hostKeyContainer}>
-            <Text style={localStyles.infoTitle}>Create AR tag</Text>
-            <Text style={localStyles.infoSection}>Select icon</Text>
-
-              <SelectIcons />
-
-            <TextInput
-              placeholder="Tag title"
-              placeholderTextColor={"gray"}
-              style={localStyles.hostKeyInput}
-              onChangeText={(text) =>
-                this.setState({
-                  tagTitle: text,
-                })
-              }
-            />
-            <TextInput
-              placeholder="Tag message"
-              placeholderTextColor={"gray"}
-              style={localStyles.hostKeyInput}
-              onChangeText={(text) =>
-                this.setState({
-                  tagMessage: text,
-                })
-              }
-            />
-            <TouchableOpacity
-              onPress={this.props.hostAR}
-              style={localStyles.arButton}
-            >
-              <Text style={localStyles.arButtonText}>Upload!</Text>
-            </TouchableOpacity>
-          </View>
         </View>
-      </ScrollView>
-    );
 
-  }
-}
+        <View style={localStyles.hostKeyContainer}>
+          <Text style={localStyles.infoTitle}>Create AR tag</Text>
+          <Text style={localStyles.infoSection}>Select icon</Text>
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
+            <SelectIcons />
 
-const mapDispatch = (dispatch) => {
-  return {
-    createATag: (id, tag) => dispatch(createTag(id, tag))
-  }
+          <TextInput
+            placeholder="Tag title"
+            placeholderTextColor={"gray"}
+            style={localStyles.hostKeyInput}
+            onChangeText={text => setState({ tagTitle: text })}
+          />
+          <TextInput
+            placeholder="Tag message"
+            placeholderTextColor={"gray"}
+            style={localStyles.hostKeyInput}
+            onChangeText={text => setState({ tagMessage: text })}
+          />
+          <TouchableOpacity
+            onPress={props.hostAR}
+            style={localStyles.arButton}
+          >
+            <Text style={localStyles.arButtonText}>Upload!</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
+  );
 }
 
 const localStyles = StyleSheet.create({
@@ -224,4 +189,4 @@ const localStyles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, mapDispatch)(HostHomePage);
+export default HostHomePage;
