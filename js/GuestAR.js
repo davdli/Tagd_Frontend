@@ -17,7 +17,7 @@ import {
   ViroMaterials
 } from 'react-viro';
 
-export default class HelloWorldSceneAR extends Component {
+export default class GuestAR extends Component {
 
   constructor() {
     super();
@@ -42,30 +42,52 @@ export default class HelloWorldSceneAR extends Component {
           });
         }} />
         <ViroARImageMarker target={"targetOne"} >
-          <ViroText fontSize={5}
-              style={styles.boldFont} position={[0, 0, 0]}
-              width={10} height={5} extrusionDepth={0.5}
-              materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-              rotation={[-90, 0, 0]}
-              onDrag={(fixedDistance, fixedToWorld) => {
-                this.state.position = this.setState({
-                  position: fixedDistance
-                });
-              }}
-              text="Hat Info" />
-        </ViroARImageMarker>
-        <ViroARImageMarker target={"targetTwo"} >
-          <ViroText fontSize={5}
-            style={styles.boldFont} position={[0, 0, 0]}
-            width={10} height={5} extrusionDepth={0.5}
-            materials={["frontMaterial", "backMaterial", "sideMaterial"]}
-            rotation={[-90, 0, 0]}
+          <ViroFlexView dragType="FixedDistance" opacity={0.75}
             onDrag={(fixedDistance, fixedToWorld) => {
               this.state.position = this.setState({
                 position: fixedDistance
               });
             }}
-            text="Logo Info" />
+            position={[0, 1, 0]} rotation={[-50, 0, 0]}
+            height={.2} width={.3} style={styles.contactInfo}
+            >
+            <ViroText
+            textAlign='center' textClipMode="None"
+            style={styles.contactTitle} position={[.00, .1, 0]}
+            scale={[0.014, 0.014, 0]} height={1} width={6}
+            text="Wifi Password"
+            />
+            <ViroText
+            textAlign='center' textClipMode="None"
+            style={styles.contactText} position={[.00, 0, 0]}
+            scale={[0.014, 0.014, 0]} height={1} width={6}
+            text="12345678"
+            />
+          </ViroFlexView >
+        </ViroARImageMarker>
+        <ViroARImageMarker target={"targetTwo"} >
+          <ViroFlexView dragType="FixedDistance" opacity={0.75}
+            onDrag={(fixedDistance, fixedToWorld) => {
+              this.state.position = this.setState({
+                position: fixedDistance
+              });
+            }}
+            position={[0, 1, 0]} rotation={[-50, 0, 0]}
+            height={.2} width={.3} style={styles.contactInfo}
+            >
+            <ViroText
+            textAlign='center' textClipMode="None"
+            style={styles.contactTitle} position={[.00, .1, 0]}
+            scale={[0.014, 0.014, 0]} height={1} width={6}
+            text="Dishwasher"
+            />
+            <ViroText
+            textAlign='center' textClipMode="None"
+            style={styles.contactText} position={[.00, 0, 0]}
+            scale={[0.014, 0.014, 0]} height={1} width={6}
+            text="Bottom left of sink!"
+            />
+          </ViroFlexView >
         </ViroARImageMarker>
         <ViroARImageMarker target={"targetThree"} >
           <ViroFlexView dragType="FixedDistance" opacity={0.75}
@@ -75,19 +97,19 @@ export default class HelloWorldSceneAR extends Component {
               });
             }}
             position={[0, 1, 0]} rotation={[-50, 0, 0]}
-            height={.3} width={.4} style={styles.contactInfo}
+            height={.2} width={.3} style={styles.contactInfo}
             >
             <ViroText
             textAlign='center' textClipMode="None"
-            style={styles.contactTitle} position={[.00, .15, 0]}
+            style={styles.contactTitle} position={[.00, .1, 0]}
             scale={[0.014, 0.014, 0]} height={1} width={6}
-            text="Hydrate"
+            text="Water Bottles"
             />
             <ViroText
             textAlign='center' textClipMode="None"
-            style={styles.contactText} position={[.00, .1, 0]}
+            style={styles.contactText} position={[.00, 0, 0]}
             scale={[0.014, 0.014, 0]} height={1} width={6}
-            text="Remember to drink water!"
+            text="In cabinet below!"
             />
           </ViroFlexView >
         </ViroARImageMarker>
@@ -98,14 +120,13 @@ export default class HelloWorldSceneAR extends Component {
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
-        text: 'Welcome David'
+        text: 'Welcome Jason!'
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
     }
   }
 }
-
 
 const styles = StyleSheet.create({
   contactInfo: {
@@ -114,15 +135,16 @@ const styles = StyleSheet.create({
   },
   contactTitle: {
     color: 'black',
-    fontSize: 300,
+    fontSize: 200,
     fontWeight: '600',
   },
   contactText: {
     color: '#FFFFFF',
-    fontSize: 225,
+    fontSize: 200,
     fontWeight: '600',
   },
 });
+
 
 ViroMaterials.createMaterials({
   frontMaterial: {
@@ -138,20 +160,20 @@ ViroMaterials.createMaterials({
 
 ViroARTrackingTargets.createTargets({
   "targetOne": {
-    source: require('./res/BottleIcon.jpeg'),
+    source: require('./res/QueenOfSpades.jpeg'),
     orientation: "Up",
     physicalWidth: 0.2 // real world width in meters
   },
   "targetTwo": {
-    source: require('./res/BottleIcon.jpeg'),
+    source: require('./res/EightOfHearts.jpeg'),
     orientation: "Up",
     physicalWidth: 0.2 // real world width in meters
   },
   "targetThree": {
-    source: require('./res/BottleIcon.jpeg'),
+    source: require('./res/SevenOfClubs.jpeg'),
     orientation: "Up",
     physicalWidth: 0.2 // real world width in meters
   },
 });
 
-module.exports = HelloWorldSceneAR;
+module.exports = GuestAR;

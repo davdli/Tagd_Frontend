@@ -127,7 +127,7 @@ export default class App extends Component {
           </TouchableHighlight>
         </View>
         <View style={localStyles.bottom}>
-          <Text style={{fontSize: 22, fontWeight: 'bold',}}>Experience hosted by Sarah</Text>
+          <Text style={{fontSize: 22, fontWeight: 'bold',}}>Experience hosted by Amanda</Text>
         </View>
       </View>
     );
