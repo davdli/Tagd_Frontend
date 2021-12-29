@@ -128,12 +128,12 @@ ViroMaterials.createMaterials({
 
 ViroARTrackingTargets.createTargets({
   "targetOne": {
-    source: require('./res/nyyhat.jpg'),
+    source: require('./res/BottleIcon.jpeg'),
     orientation: "Up",
     physicalWidth: 0.2 // real world width in meters
   },
   "targetTwo": {
-    source: require('./res/UniqueLogo.jpg'),
+    source: require('./res/BottleIcon.jpeg'),
     orientation: "Up",
     physicalWidth: 0.2 // real world width in meters
   },
