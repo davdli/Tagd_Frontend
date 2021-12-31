@@ -2,7 +2,6 @@
 Tagd is an augmented reality mobile application that allow hosts to create and display personalized messages to help guests access and locate necessities in and around their property.
 
 ## Preview
-
 Host
 <p float="left">
 <img width='25%' src="public/TagdHostDemo1.gif">
